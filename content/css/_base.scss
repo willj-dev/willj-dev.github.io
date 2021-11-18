@@ -108,5 +108,13 @@ body {
         .footer-fill {
             flex: 1 1 auto;
         }
+
+        @media (max-width: 425px) {
+            flex-direction: column;
+
+            .footer-divider {
+                display: none;
+            }
+        }
     }
 }
