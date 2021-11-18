@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
 
-    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
     
-    <title>home - willj.dev</title>
+    <title>$title$ - willj.dev</title>
   </head>
 
   
@@ -17,16 +18,16 @@
       <h1>
         <a id="header-root" href="https://www.willj.dev">willj.dev</a>
         <span class="header-sep">/</span>
-        
-        <span id="header-title">home</span></h1>
+        $if(page-dirs)$
+        $for(page-dirs)$
+        <a href="$cumulative-dir$">$current-dir$</a>
+        <span class="header-sep">/</span>
+        $endfor$
+        $endif$
+        <span id="header-title">$title$</span></h1>
     </header>
     <main>
-      <div id="index-container">
-  <div id="under-construction">
-    <p>This page is still under construction. Please check back later!</p>
-  </div>
-</div>
-
+      $body$
     </main>
     <footer>
       <span id="built-with">Built with <a href="https://jaspervdj.be/hakyll">Hakyll</a></span>

@@ -1,0 +1,49 @@
+body {
+    height: 100vh;
+
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 0;
+
+    header {
+        flex: 0 0 auto;
+        align-items: stretch;
+        justify-content: flex-start;
+
+        font-family: 'Computer Modern Sans', sans-serif;
+        padding-left: 1em;
+
+        a {
+            text-decoration: none;
+            color: black;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    main {
+        flex: 1 0 auto;
+        align-items: flex-start;
+        justify-content: stretch;
+
+        font-family: 'Computer Modern Serif', serif;
+    }
+
+    footer {
+        flex: 0 0 auto;
+        align-items: stretch;
+        justify-content: flex-end;
+
+        font-family: 'Computer Modern Sans', sans-serif;
+        padding: 1em;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+
+        .footer-divider {
+            margin: 0 1em;
+        }
+    }
+}
