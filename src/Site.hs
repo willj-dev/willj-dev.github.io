@@ -6,7 +6,10 @@ import Site.Pandoc (pageCompiler)
 
 import qualified Data.ByteString as SBS
 import qualified Data.ByteString.Lazy as LBS
-import System.FilePath (takeFileName)
+import System.FilePath (takeFileName, splitDirectories)
+import System.FilePath.Posix (joinPath) -- always use '/' to make site paths
+import Data.Foldable (foldl')
+import Site.Config (makeItemWith)
 
 hakyllConfig :: Configuration
 hakyllConfig =
@@ -55,7 +58,7 @@ compileIndex = match "index.rst" $ do
   compile $
     pageCompiler
       >>= loadAndApplyTemplate "templates/index.html" defaultContext
-      >>= loadAndApplyTemplate "templates/base.html" defaultContext
+      >>= loadAndApplyTemplate "templates/base.html" (pageDirsContext <> defaultContext)
       >>= relativizeUrls
 
 filenameOnlyRoute, htmlExtensionRoute :: Routes
@@ -71,3 +74,22 @@ withSassIncludes :: Rules () -> Rules ()
 withSassIncludes sassRules = do
   deps <- makePatternDependency "css/_*.scss"
   rulesExtraDependencies [deps] sassRules
+
+pageDirsContext :: forall a. Context a
+pageDirsContext = listField "page-dirs" pageDirContext pageDirsCompiler
+  where
+    pageDirContext = mconcat [cumulativeDirField, currentDirField]
+    cumulativeDirField = field "cumulative-dir" (return . fst . itemBody)
+    currentDirField = field "current-dir" (return . snd . itemBody)
+
+    pageDirsCompiler = foldPageDirs . toFilePath <$> getUnderlying
+    foldPageDirs itemPath = foldl' foldFn [] (init $ splitDirectories itemPath)
+
+    foldFn :: [Item (String, String)] -> FilePath -> [Item (String, String)]
+    foldFn [] rootDir = [makeItemWith pageDirIdentifier (rootDir, rootDir)]
+    foldFn dirs nextDir = dirs ++ [
+      makeItemWith pageDirIdentifier (joinPath [fst . itemBody $ last dirs, nextDir], nextDir)
+      ]
+
+    pageDirIdentifier (cd, _) = fromFilePath $ "__page_dir_" ++ cd
+

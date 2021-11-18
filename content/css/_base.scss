@@ -8,7 +8,7 @@ body {
     margin: 0;
 
     #dark-mode, #light-mode {
-        padding: 1em;
+        padding: 0 1em;
         cursor: pointer;
         width: 80px;
         text-align: center;
@@ -23,8 +23,8 @@ body {
             background-color: colors.$solarized_base02;
         }
 
-        #header-root, #header-title {
-            color: colors.$solarized_base01;
+        h1, h2, h3, h4, #header-path > a {
+            color: colors.$solarized_base1;
         }
     }
 
@@ -37,7 +37,7 @@ body {
             background-color: colors.$solarized_base2;
         }
 
-        #header-root, #header-title {
+        h1, h2, h3, h4, #header-path > a {
             color: colors.$solarized_base01;
         }
 
@@ -63,9 +63,12 @@ body {
         #header-path {
             margin-left: 32px;
 
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+
             a {
                 text-decoration: none;
-                color: colors.$solarized_base1;
     
                 &:hover {
                     text-decoration: underline;
@@ -81,10 +84,13 @@ body {
             flex: 1 1 auto;
         }
 
+        .header-sep {
+            margin: 0 8px;
+        }
     }
 
     main {
-        padding-left: 32px;
+        padding: 0 32px;
         flex: 1 0 auto;
         align-items: flex-start;
         justify-content: stretch;
