@@ -5,34 +5,44 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
-
     <link rel="stylesheet" type="text/css" href="./css/main.css">
-    
     <title>home - willj.dev</title>
   </head>
 
   
-  <body>
+  <body id="page-body" class="dark-mode">
     <header>
-      <h1>
+      <h1 id="header-path" class="header-element">
         <a id="header-root" href="https://www.willj.dev">willj.dev</a>
         <span class="header-sep">/</span>
         
-        <span id="header-title">home</span></h1>
+        <a id="header-title" href="./index.html">home</a>
+      </h1>
+      <div class="header-fill"></div>
+      <div id="dark-mode" class="header-element">Dark Mode</div>
+      <div id="light-mode" class="header-element">Light Mode</div>
     </header>
     <main>
       <div id="index-container">
-  <div id="under-construction">
-    <p>This page is still under construction. Please check back later!</p>
-  </div>
+  <h2 id="welcome">Welcome!</h2><p>My name is Will J, and this is my site!</p><h2 id="projects">Projects</h2><p>Coming Soon!</p>
 </div>
 
     </main>
     <footer>
+      <span id="site-source">
+        <a href="https://github.com/willj-dev/willj-dev.github.io/">Site Source</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="site-source">
+        <a href="https://github.com/willj-dev/willj-dev.github.io/tree/main/content/index.rst">Page Source</a>
+      </span>
+      <div class="footer-fill"></div>
       <span id="built-with">Built with <a href="https://jaspervdj.be/hakyll">Hakyll</a></span>
       <span class="footer-divider">|</span>
       <span id="hosted-by">Hosted by <a href="https://pages.github.com">GitHub Pages</a></span>
+      <span class="footer-divider">|</span>
+      <span id="colors-credit"><a href="https://ethanschoonover.com/solarized">Solarized</a> theme by Ethan Schoonover</span>
     </footer>
   </body>
-
+  <script src="./js/colorMode.js"></script>
 </html>
