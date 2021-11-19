@@ -1,10 +1,9 @@
 ------------------------
-title: Millennial Society
+title: A Millennial Utopia
+project-id: millennial-utopia
+blurb: >
+  A collection of pages describing a form of post-capitalist society, and exploring the extent to which it could be achieved sometime in the Third Millennium.
 ------------------------
-
-Welcome!
-****************
-Blah Blah
 
 Core Principles
 ****************

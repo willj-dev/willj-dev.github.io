@@ -1,19 +1,52 @@
+@use 'sass:list';
 
-// Colors are from Solarized, by Ethan Schoonover: https://ethanschoonover.com/solarized
+// uses the Base16 color theme system: https://github.com/chriskempson/base16
+// color scheme is Tomorrow by Chris Kempson: https://github.com/chriskempson/base16-tomorrow-scheme
 
-$solarized_base03:    #002b36;
-$solarized_base02:    #073642;
-$solarized_base01:    #586e75;
-$solarized_base00:    #657b83;
-$solarized_base0:     #839496;
-$solarized_base1:     #93a1a1;
-$solarized_base2:     #eee8d5;
-$solarized_base3:     #fdf6e3;
-$solarized_yellow:    #b58900;
-$solarized_orange:    #cb4b16;
-$solarized_red:       #dc322f;
-$solarized_magenta:   #d33682;
-$solarized_violet:    #6c71c4;
-$solarized_blue:      #268bd2;
-$solarized_cyan:      #2aa198;
-$solarized_green:     #859900;
+$base16-tomorrow: (
+  #ffffff, #e0e0e0, #d6d6d6, #8e908c, #969896, #4d4d4c, #282a2e, #1d1f21,
+  #c82829, #f5871f, #eab700, #718c00, #3e999f, #4271ae, #8959a8, #a3685a
+);
+
+$base16-tomorrow-night: (
+  #1d1f21, #282a2e, #373b41, #969896, #b4b7b4, #c5c8c6, #e0e0e0, #ffffff,
+  #cc6666, #de935f, #f0c674, #b5bd68, #8abeb7, #81a2be, #b294bb, #a3685a
+);
+
+@mixin apply-base16-colors ($color-scheme) {
+
+  $base16-bg:         list.nth($color-scheme, 1);
+  $base16-bg-light:   list.nth($color-scheme, 2);
+  $base16-fg-dark:    list.nth($color-scheme, 5);
+  $base16-fg:         list.nth($color-scheme, 6);
+
+  $base16-accent1:    list.nth($color-scheme, 9);
+  $base16-accent2:    list.nth($color-scheme, 10);
+  $base16-accent3:    list.nth($color-scheme, 11);
+  $base16-accent4:    list.nth($color-scheme, 12);
+  $base16-accent5:    list.nth($color-scheme, 13);
+  $base16-accent6:    list.nth($color-scheme, 14);
+  $base16-accent7:    list.nth($color-scheme, 15);
+  $base16-accent8:    list.nth($color-scheme, 16);
+
+  background-color: $base16-bg;
+  color: $base16-fg;
+
+  #dark-mode, #light-mode, .card {
+    background-color: $base16-bg-light;
+  }
+
+  a {
+    &:link {
+      color: $base16-accent6;
+    }
+
+    &:visited {
+      color: $base16-accent7;
+    }
+  }
+
+  h1, h2, h3, h4, #header-path > a {
+    color: $base16-fg-dark;
+  }
+}

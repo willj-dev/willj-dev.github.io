@@ -11,8 +11,6 @@ import Data.Aeson (FromJSON, Options (fieldLabelModifier))
 import Data.Aeson.TH (defaultOptions, deriveJSON)
 import Data.Yaml.Aeson (ParseException, decodeEither')
 import Hakyll.Core.Compiler (Compiler, loadBody)
-import Hakyll.Core.Identifier (Identifier, fromFilePath, toFilePath)
-import Hakyll.Core.Item (Item (..))
 
 data RSTConfig = RSTConfig
   { rst_prefix :: String,
@@ -52,15 +50,3 @@ configCompiler = loadBody "config.yaml" >>= yamlCompiler
     -- Note: needs FlexibleContexts to compile without a type signature!
     handleYamlError :: FromJSON a => ParseException -> Compiler a
     handleYamlError pe = throwError [show pe]
-
-makeItemWith :: (a -> Identifier) -> a -> Item a
-makeItemWith makeId body = Item (makeId body) body
-
-makeSubItemWith :: (a -> String) -> (a -> b) -> Item a -> Item b
-makeSubItemWith mapIdSuffix mapBody (Item parentId parentBody) = Item newId newBody
-  where
-    newId = addIdSuffix parentId (mapIdSuffix parentBody)
-    newBody = mapBody parentBody
-
-addIdSuffix :: Identifier -> String -> Identifier
-addIdSuffix parentId suffix = fromFilePath (toFilePath parentId ++ "_" ++ suffix)

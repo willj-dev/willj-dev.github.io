@@ -15,7 +15,8 @@ cabal-version:       >=1.10
 
 executable willj-dev-ghpages
   main-is:             Site.hs
-  other-modules:       Site.Config,
+  other-modules:       Site.Common,
+                       Site.Config,
                        Site.Pandoc,
                        Site.Utopia,
                        Site.Utopia.Terms,
