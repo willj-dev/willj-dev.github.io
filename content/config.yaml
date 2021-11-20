@@ -3,18 +3,25 @@ rst:
   suffix: ''
 cfp:
   rst:
-    prefix: ''
+    prefix: |
+      .. For some reason, the :class: option sets the span class to the roleName, regardless
+          of what is actually specified in the field body.
+          Fixed in https://github.com/jgm/pandoc/pull/7700 (not yet released)
+      .. role:: caption
+        :class: asdf-see-comment-above
+      .. role: pseudoml(code)
+        :language: pseudoml
     suffix: ''
 utopia:
   rst:
     prefix: |
       .. default-role:: term-link
 
-      ..  For some reason, the :class: option sets the span class to the roleName, regardless
+      .. For some reason, the :class: option sets the span class to the roleName, regardless
           of what is actually specified in the field body.
           Fixed in https://github.com/jgm/pandoc/pull/7700 (not yet released)
       .. role:: term-link
-          :class: asdf-see-comment-above
+        :class: asdf-see-comment-above
     suffix: |
       .. _A Millennial Utopia: ./a-millennial-utopia.html
       .. _Selected Utopian Social Principles: ./selected-principles.html
