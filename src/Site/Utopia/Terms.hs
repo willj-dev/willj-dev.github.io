@@ -1,25 +1,20 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TupleSections #-}
 
-module Site.Utopia.Terms (pageContext) where
+module Site.Utopia.Terms (termContext) where
 
-import Site.Common
-import Site.Config
-import Site.Pandoc (rstCompiler, rstContext)
+import Site.Common ( makeSubItemWith )
+import Site.Config(Term(..), configCompiler, config_utopia, utopia_rst)
+import Site.Pandoc (rstCompiler)
 
 import Hakyll.Core.Compiler (Compiler)
-import Hakyll.Core.Identifier (fromFilePath)
 import Hakyll.Core.Item (Item (itemBody))
-import Hakyll.Web.Template.Context (Context, defaultContext, field, listField, listFieldWith)
+import Hakyll.Web.Template.Context (Context, field, listFieldWith)
 
--- Context for pages/*.rst, with the term list and RST prefix/suffix
-pageContext :: Context String
-pageContext = mconcat [termsField, rstContext, defaultContext]
-  where
-    termsField = listField "terms" termContext termItems
-    termItems = fmap makeTermItem . utopia_terms . config_utopia <$> configCompiler
-    makeTermItem = makeItemWith (\(Term term _ _) -> fromFilePath $ "__term_" ++ term)
-
+-- Term definition is compiled as RST with the Utopia prefix/suffix (i.e. support
+-- for custom roles and link targets). Term alternatives (plurals, etc) are compiled
+-- into a list field, which is used in the terms JS to support pinning/hovering over
+-- terms in the article body.
 termContext :: Context Term
 termContext = mconcat [termField, defnField, altsField]
   where
@@ -28,7 +23,11 @@ termContext = mconcat [termField, defnField, altsField]
     defnField = field "definition" compileDefinitionRST
 
     compileDefinitionRST :: Item Term -> Compiler String
-    compileDefinitionRST = rstCompiler . fmap term_definition
+    compileDefinitionRST term = do
+      config <- utopia_rst . config_utopia <$> configCompiler
+
+      -- ignore pandoc-generated TOC for term cards
+      snd <$> rstCompiler config (fmap term_definition term)
 
     altsField = listFieldWith "alternatives" altContext altItems
 

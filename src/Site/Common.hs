@@ -2,34 +2,41 @@
 
 module Site.Common where
 
-import Hakyll.Core.Compiler (Compiler)
+import Hakyll.Core.Compiler (Compiler, getUnderlying)
 import Hakyll.Core.Identifier (toFilePath, Identifier, fromFilePath)
-import Hakyll.Core.Identifier.Pattern (fromList)
+import Hakyll.Core.Identifier.Pattern (fromList, fromGlob, complement, (.&&.))
 import Hakyll.Core.Item (Item (Item))
 import Hakyll.Core.Metadata (getMetadataField')
-import Hakyll.Core.Routes (Routes, customRoute, setExtension)
+import Hakyll.Core.Routes (Routes, customRoute, setExtension, composeRoutes)
 import Hakyll.Web.Html.RelativizeUrls (relativizeUrls)
-import Hakyll.Web.Template.Context (Context, defaultContext)
+import Hakyll.Web.Template.Context (Context, defaultContext, field)
 import Hakyll.Web.Template (loadAndApplyTemplate)
 import Hakyll.Core.Rules (Rules, match)
-import System.FilePath (takeFileName, splitPath)
+import System.FilePath (takeFileName, splitPath, splitDirectories)
 import System.FilePath.Posix (joinPath) -- always use '/' to make site paths
 
-applyIndexTemplates :: Item String -> Compiler (Item String)
+projectIdContext, headerTitleContext :: Context String
+projectIdContext = field "project-id" (const $ getUnderlying >>= projectIdFromIdentifier)
+headerTitleContext = field "header-title" (const $ getUnderlying >>= (`getMetadataField'` "title"))
+
+applyIndexTemplates :: Bool -> Item String -> Compiler (Item String)
 applyIndexTemplates = applyIndexTemplatesWith defaultContext
 
-applyIndexTemplatesWith :: Context String -> Item String -> Compiler (Item String)
-applyIndexTemplatesWith indexContext indexHTML =
+applyIndexTemplatesWith :: Context String -> Bool -> Item String -> Compiler (Item String)
+applyIndexTemplatesWith indexContext isProjectIndex indexHTML =
   loadAndApplyTemplate "templates/index.html" indexContext indexHTML
-  >>= loadAndApplyTemplate "templates/base.html" defaultContext
+  >>= loadAndApplyTemplate "templates/base.html" baseContext
   >>= relativizeUrls
+  where
+    baseContext = if isProjectIndex
+      then projectIdContext <> defaultContext
+      else defaultContext
 
-filenameOnlyRoute, htmlExtensionRoute, tailRoute :: Routes
+filenameOnlyRoute, htmlExtensionRoute, tailRoute, tailHTMLRoute :: Routes
 filenameOnlyRoute = customRoute (takeFileName . toFilePath)
 htmlExtensionRoute = setExtension "html"
-tailRoute = customRoute (fpTail . toFilePath)
-  where
-    fpTail = joinPath . tail . splitPath
+tailRoute = customRoute (joinPath . tail . splitPath . toFilePath)
+tailHTMLRoute = composeRoutes tailRoute htmlExtensionRoute
 
 makeItemWith :: (a -> Identifier) -> a -> Item a
 makeItemWith makeId body = Item (makeId body) body
@@ -52,9 +59,18 @@ data ProjectMetadata = ProjectMetadata
 projectMetadata :: Identifier -> Rules ProjectMetadata
 projectMetadata projectIndex = do
   title     <- getMetadataField' projectIndex "title"
-  projectId <- getMetadataField' projectIndex "project-id"
+  projectId <- projectIdFromIdentifier projectIndex
   blurb     <- getMetadataField' projectIndex "blurb"
   return (ProjectMetadata title projectId blurb)
 
 matchOnly :: Identifier -> Rules () -> Rules ()
 matchOnly ident = match (fromList [ident])
+
+matchGlobExceptIndex :: String -> Rules () -> Rules ()
+matchGlobExceptIndex globString = match $ fromGlob globString .&&. complement (fromGlob "**/index.*")
+
+-- 'blah/project-id/page.foo' -> 'project-id'
+projectIdFromIdentifier :: MonadFail m => Identifier -> m String
+projectIdFromIdentifier itemId = case splitDirectories (toFilePath itemId) of
+    [_, projectId, _] -> return projectId
+    _                 -> fail $ "could not determine project id for " ++ show itemId

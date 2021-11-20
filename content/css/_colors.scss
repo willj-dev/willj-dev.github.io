@@ -1,4 +1,5 @@
 @use 'sass:list';
+@use 'sass:color';
 
 // uses the Base16 color theme system: https://github.com/chriskempson/base16
 // color scheme is Tomorrow by Chris Kempson: https://github.com/chriskempson/base16-tomorrow-scheme
@@ -17,6 +18,7 @@ $base16-tomorrow-night: (
 
   $base16-bg:         list.nth($color-scheme, 1);
   $base16-bg-light:   list.nth($color-scheme, 2);
+  $base16-highlight:  list.nth($color-scheme, 4);
   $base16-fg-dark:    list.nth($color-scheme, 5);
   $base16-fg:         list.nth($color-scheme, 6);
 
@@ -48,5 +50,13 @@ $base16-tomorrow-night: (
 
   h1, h2, h3, h4, #header-path > a {
     color: $base16-fg-dark;
+  }
+
+  #page-toc a {
+    color: $base16-accent5;
+  }
+
+  .term-link, .term-card {
+    border-color: color.adjust($base16-highlight, $alpha: -0.2);
   }
 }

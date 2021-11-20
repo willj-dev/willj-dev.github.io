@@ -34,9 +34,16 @@ data UtopiaConfig = UtopiaConfig
 
 $(deriveJSON (defaultOptions {fieldLabelModifier = drop 7}) ''UtopiaConfig)
 
+data ConceptualFPConfig = ConceptualFPConfig
+  { cfp_rst :: RSTConfig
+  }
+
+$(deriveJSON (defaultOptions {fieldLabelModifier = drop 4}) ''ConceptualFPConfig)
+
 data Config = Config
   { config_rst :: RSTConfig,
-    config_utopia :: UtopiaConfig
+    config_utopia :: UtopiaConfig,
+    config_cfp :: ConceptualFPConfig
   }
 
 $(deriveJSON (defaultOptions {fieldLabelModifier = drop 7}) ''Config)
