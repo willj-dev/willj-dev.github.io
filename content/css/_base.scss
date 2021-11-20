@@ -16,13 +16,13 @@ body {
   }
 
   &.dark-mode {
-    #dark-mode { display: none; } // don't show dark mode toggle in dark mode
+    .light-mode-only { display: none; }
 
     @include colors.apply-base16-colors(colors.$base16-tomorrow-night);
   }
 
   &.light-mode {
-    #light-mode { display: none; } // don't show light mode toggle in light mode
+    .dark-mode-only { display: none; }
 
     @include colors.apply-base16-colors(colors.$base16-tomorrow);
   }
