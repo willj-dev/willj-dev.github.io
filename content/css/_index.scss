@@ -5,17 +5,17 @@
 
   .project-card {
     margin: 0.5em;
-    width: 20vw;
+    width: 30vw;
     min-width: 256px;
 
     min-height: 256px;
 
     .card-title {
-      padding: 0 1em;
+      padding: 0 2em;
     }
 
     .card-content {
-      padding: 1em;
+      padding: 0 2em 2em 2em;
     }
   }
 
