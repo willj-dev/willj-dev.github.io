@@ -46,7 +46,7 @@ Article 4 - Judicial Council
 
 Proof of crimes and/or the validity of laws that define them is demonstrated in front of judges who are directly and proportionally elected to three levels of precedence, with many municipal judges; somewhat fewer appeals court judges; and several high court judges (but an odd number to prevent ties). Ditto method for determining and implementing fair and reasonable proportional representation.
 
-Any crime which may be punished more severely than a fine must be proven before a jury. Search warrants may be issued by a judge with a less rigorous burden of proof than a full criminal trial, but should still be done\.\.\.judiciously. A search warrant should only be issued if there is reason to believe that that warrant is the only way to obtain critical evidence to prove that a crime has been committed. This is an example of the MSC concept of minimum curtailment of individual rights in order to guarantee the continued equal and universal availability of basic goods and services.
+Any crime which may be punished more severely than a fine must be proven before a jury. Search warrants may be issued by a judge with a less rigorous burden of proof than a full criminal trial, but should still be done...judiciously. A search warrant should only be issued if there is reason to believe that that warrant is the only way to obtain critical evidence to prove that a crime has been committed. This is an example of the MSC concept of minimum curtailment of individual rights in order to guarantee the continued equal and universal availability of basic goods and services.
 
 Article 5 - Constitutional Amendment
 *************************************************

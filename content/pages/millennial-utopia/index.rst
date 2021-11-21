@@ -14,7 +14,7 @@ Is it possible?
 
 We’re pretty sure, but we’re working on gathering enough data to prove that before becoming official!
 
-Our fundamental (as yet unproven) assertion  is this: in a high-tech society, there is enough industry and automation that not everyone needs to work on basic goods and services to keep everyone housed, fed, healthy, and\-\-last but certainly not least\-\-otherwise free to go about their lives without having to worry about losing any of those benefits. 
+Our fundamental (as yet unproven) assertion  is this: in a high-tech society, there is enough industry and automation that not everyone needs to work on basic goods and services to keep everyone housed, fed, healthy, and--last but certainly not least--otherwise free to go about their lives without having to worry about losing any of those benefits. 
 
 For more information about how we intend to prove this assertion, check out `Proving MU Viability`_.
 

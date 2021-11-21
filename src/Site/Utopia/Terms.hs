@@ -1,15 +1,14 @@
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TupleSections #-}
 
 module Site.Utopia.Terms (termContext) where
 
-import Site.Common ( makeSubItemWith )
-import Site.Config(Term(..), configCompiler, config_utopia, utopia_rst)
-import Site.Pandoc (rstCompiler)
-
 import Hakyll.Core.Compiler (Compiler)
 import Hakyll.Core.Item (Item (itemBody))
 import Hakyll.Web.Template.Context (Context, field, listFieldWith)
+
+import Site.Common ( makeSubItemWith )
+import Site.Config(Term(..), configCompiler, config_utopia, utopia_rst)
+import Site.Pandoc (rstCompiler)
 
 -- Term definition is compiled as RST with the Utopia prefix/suffix (i.e. support
 -- for custom roles and link targets). Term alternatives (plurals, etc) are compiled
@@ -25,9 +24,7 @@ termContext = mconcat [termField, defnField, altsField]
     compileDefinitionRST :: Item Term -> Compiler String
     compileDefinitionRST term = do
       config <- utopia_rst . config_utopia <$> configCompiler
-
-      -- ignore pandoc-generated TOC for term cards
-      snd <$> rstCompiler config (fmap term_definition term)
+      rstCompiler config (fmap term_definition term)
 
     altsField = listFieldWith "alternatives" altContext altItems
 

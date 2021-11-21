@@ -1,13 +1,7 @@
-{-# LANGUAGE OverloadedStrings, RankNTypes #-}
-
-{-# LANGUAGE OverloadedStrings, RankNTypes #-}
-import Site.Common (makeItemWith, ProjectMetadata(..), applyIndexTemplates)
-import Site.ConceptualFP (conceptualFPRules)
-import Site.Utopia (utopiaRules)
+module Site (site) where
 
 import qualified Data.ByteString      as SBS
 import qualified Data.ByteString.Lazy as LBS
-import Hakyll.Core.Configuration (Configuration(..), defaultConfiguration)
 import Hakyll.Core.Compiler (Compiler, getResourceBody, getResourceLBS, getResourceString)
 import Hakyll.Core.File (copyFileCompiler)
 import Hakyll.Core.Identifier.Pattern (fromList)
@@ -16,21 +10,17 @@ import Hakyll.Core.Metadata (makePatternDependency)
 import Hakyll.Core.Routes (idRoute, setExtension)
 import Hakyll.Core.Rules (Rules, match, compile, route, rulesExtraDependencies)
 import Hakyll.Core.UnixFilter (unixFilter)
-import Hakyll.Main (hakyllWith)
 import Hakyll.Web.Html.RelativizeUrls (relativizeUrls)
 import Hakyll.Web.Template (templateBodyCompiler, loadAndApplyTemplate, applyAsTemplate)
 import Hakyll.Web.Template.Context (defaultContext, listField, field)
 import Hakyll.Core.Identifier (fromFilePath)
 
-hakyllConfig :: Configuration
-hakyllConfig =
-  defaultConfiguration
-    { destinationDirectory = "docs",
-      providerDirectory = "content"
-    }
+import Site.Common (makeItemWith, ProjectMetadata(..), applyIndexTemplates)
+import Site.ConceptualFP (conceptualFPRules)
+import Site.Utopia (utopiaRules)
 
-main :: IO ()
-main = hakyllWith hakyllConfig $ do
+site :: Rules ()
+site = do
   loadTemplates
   compileNotFound
   loadSiteConfig

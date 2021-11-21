@@ -2,7 +2,7 @@
 title: Implementation Ideas
 ------------------------
 
-Little widgets and knick knacks that would help make MU transition seamless, but aren\'t really worth mentioning anywhere else
+Little widgets and knick knacks that would help make MU transition seamless, but aren't really worth mentioning anywhere else
 
 PM data sync
 *************************************************
@@ -12,14 +12,14 @@ Utility which syncs secure personal data in the MU with PM data storage (gcloud,
 Council business tracker
 *************************************************
 
-Live updates on what is under consideration, who has the floor, whether there\'s a quorum…
+Live updates on what is under consideration, who has the floor, whether there's a quorum…
 
 Come to think of it, this could have little tooltips to show what motions would currently be in order, information about parliamentary procedure…
 
 GC Rules of Order
 *************************************************
 
-Like it says, for each of the MUG councils. In \"contemporary style\" (modern language, organized like web docs, \.\.\.) but make it clear that it\'s basically just specific applications of RRO
+Like it says, for each of the MUG councils. In "contemporary style" (modern language, organized like web docs, ...) but make it clear that it's basically just specific applications of RRO
 
 RRO style and organization (especially copious notes) as the standard MU documentation style?
 
@@ -28,7 +28,7 @@ Time
 
 One of the advantages of starting from scratch and slowly building our membership, rather than attempting to manage the transition over an entire population at once, is that we can spruce up a lot of systems that have not aged very well.
 
-One of these is time: leap years, inconsistent numbering\.\.\.of course, we should learn our lesson from the French Revolution and not try to go too overboard.
+One of these is time: leap years, inconsistent numbering...of course, we should learn our lesson from the French Revolution and not try to go too overboard.
 
 A “binary timestamp” is an unsigned binary integer of some specified size along with enough reference data to define an epoch:
 A reference event to set the start point of the epoch
