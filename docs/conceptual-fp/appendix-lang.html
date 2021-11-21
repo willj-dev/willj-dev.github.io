@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Noto+Sans+Mono|Material+Icons">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <title>Recursion Schemes - willj.dev</title>
+    <title>Appendix: Language-Specific Caveats - willj.dev</title>
   </head>
 
   
@@ -18,13 +18,13 @@
         <span class="header-sep">/</span>
         <a href="../conceptual-fp">conceptual-fp</a>
         <span class="header-sep">/</span>
-        <a id="title" href="../conceptual-fp/recursion-schemes.html">Recursion Schemes</a></h1>
+        <a id="title" href="../conceptual-fp/appendix-lang.html">Appendix: Language-Specific Caveats</a></h1>
       <div class="header-fill"></div>
     </header>
     <main><div id="page-container">
-  <div id="page-toc"><ul></ul></div>
+  <div id="page-toc"><ul><li><a href="#scala-cats">Scala / <code>cats</code></a></li><li><a href="#haskell">Haskell</a></li><li><a href="#typescript-fp-ts">TypeScript / <code>fp-ts</code></a></li><li><a href="#idris">Idris</a></li></ul></div>
   <div id="page-content">
-    <p>To Do!</p>
+    <p>Here we will discuss some “gotchas” or signficant syntactic deviations from some popular programming languages that might catch the inexperienced reader off-guard if they try to apply the concepts above to that language. Once again, the goal is not to teach a specific language; this is just a collection of warnings and disclaimers that would otherwise have cluttered the main narrative.</p><h2 id="scala-cats">Scala / <code>cats</code></h2><ul><li>typeclasses via implicits/traits</li></ul><h2 id="haskell">Haskell</h2><ul><li>type name translations (Maybe vs Optional, etc)</li><li>data vs newtype</li><li>newtype for re-implementing typeclasses</li><li>dangers with laziness (e.g. foldr vs foldl)</li><li>reader, writer, state defined in terms of their transformers</li></ul><h2 id="typescript-fp-ts">TypeScript / <code>fp-ts</code></h2><ul><li>syntax difficulties</li><li>type name translations (Option vs Optional, etc)</li></ul><h2 id="idris">Idris</h2><ul><li>labelled interfaces</li></ul>
   </div>
 </div>
 </main>
@@ -34,7 +34,7 @@
       </span>
       <span class="footer-divider">|</span>
       <span id="site-source" class="footer-element">
-        <a href="https://github.com/willj-dev/willj-dev.github.io/tree/main/content/pages\conceptual-fp\recursion-schemes.rst">Page Source</a>
+        <a href="https://github.com/willj-dev/willj-dev.github.io/tree/main/content/pages\conceptual-fp\appendix-lang.rst">Page Source</a>
       </span>
       <span class="footer-divider">|</span>
       <div id="dark-mode" class="footer-element light-mode-only">Dark Mode</div>

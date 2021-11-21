@@ -221,4 +221,4 @@ Excellent question! Hopefully it goes without saying that we are not trying to c
 - figure out approximate desirability levels
 - come up with a conversion between desirability and local housing cost
 - look at available places with member which matches their situation
-- cover housing up to the equivalent “base rent” for a functional-but-minimal residence
+- cover housing up to the equivalent "base rent" for a functional-but-minimal residence

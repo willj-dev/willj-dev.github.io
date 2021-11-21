@@ -30,9 +30,10 @@ One of the advantages of starting from scratch and slowly building our membershi
 
 One of these is time: leap years, inconsistent numbering...of course, we should learn our lesson from the French Revolution and not try to go too overboard.
 
-A “binary timestamp” is an unsigned binary integer of some specified size along with enough reference data to define an epoch:
-A reference event to set the start point of the epoch
-A reference period to set the “tick length” of each timestamp increment that can be represented in the given number of bits
+A "binary timestamp" is an unsigned binary integer of some specified size along with enough reference data to define an epoch:
+
+- A reference event to set the start point of the epoch
+- A reference period to set the "tick length" of each timestamp increment that can be represented in the given number of bits
 
 We will define the Proto-Utopian Epoch to start at the same time as the Unix Epoch (e.g. 1970-01-01T00:00.000Z). Eventually, we hope, there will come a time when we can mark the start of the official First Utopian Epoch :)
 
@@ -40,15 +41,11 @@ As for time scale, let us start with a 128-bit integer and see how much that wil
 
 kPUE128:Ums=1.64531091023z
 
-Multiplying Unix millis by this number will give the current “PUE128 time”. Coincidentally, this happens to be on the same order as Avogadro’s number, but I’m pretty sure that’s just a fluke.
+Multiplying Unix millis by this number will give the current "PUE128 time". Coincidentally, this happens to be on the same order as Avogadro’s number, but I’m pretty sure that’s just a fluke.
 
-This defines a universal timeline suitable for computers, but doesn’t really satisfy important “real-life” needs that humans are accustomed to. We will need two more time-shaped systems: a solar calendar tied to orbital reference points (such as the two polar solstices each year), which is divided into 12 months, where each month is made of 4 weeks of 7 days. Unfortunately, Earth doesn’t rotate a whole number of times around its own axis in each orbit; if each day is 24 hours, this means that we will need to 
+This defines a universal timeline suitable for computers, but doesn’t really satisfy important "real-life" needs that humans are accustomed to. We will need two more time-shaped systems: a solar calendar tied to orbital reference points (such as the two polar solstices each year), which is divided into 12 months, where each month is made of 4 weeks of 7 days. Unfortunately, Earth doesn’t rotate a whole number of times around its own axis in each orbit; if each day is 24 hours, this means that we will need to 
 
-
-Define one day as the amount of time it takes the earth to move through an orbit according to some published source.
-
-Then one year is 360 days, with 12 months of 30 days. Divide each day evenly into 24h*60m*60s. 
-
-How long is that second compared to Gregorian? A bit larger, by about 3/20 of a contemporary second. So, doable.
-
-This is enough to construct a universal timeline tied to a specific reference event and scale. 
+- Define one day as the amount of time it takes the earth to move through an orbit according to some published source.
+- Then one year is 360 days, with 12 months of 30 days. Divide each day evenly into 24h*60m*60s. 
+- How long is that second compared to Gregorian? A bit larger, by about 3/20 of a contemporary second. So, doable.
+- This is enough to construct a universal timeline tied to a specific reference event and scale. 

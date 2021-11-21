@@ -99,7 +99,3 @@ Consider the languages most of us use today. From their earliest ancestors, they
 By contrast, as we saw above, many of the contributions that formed the foundation for functional programming languages came from mathematicians and logicians. This is actually a very useful thing for us, but it comes with a price: they were there first, so they got to pick the names. Mathematicians are perfectly happy floating around in wizard robes and unironically saying things like "oh yes Veronica, monads are just monoids in the category of endofunctors!" Engineers live much closer to the real world and do not have time for such frippery, and have satisfied themselves with more normal-sounding terms like "class", "object", "singleton", or "factory".
 
 So, yes, there will be some unfamiliar and mystical-sounding terms ahead. But fear not: they are just names, and the things they represent have solid programmer-friendly meanings.
-
-.. class:: next-page
-
-  Next: `Basic Concepts`_
