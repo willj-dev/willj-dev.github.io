@@ -22,7 +22,15 @@
       <div class="header-fill"></div>
     </header>
     <main><div id="page-container">
-  <div id="page-toc"><ul><li><a href="#functor">Functor</a></li><li><a href="#foldable">Foldable</a></li><li><a href="#monoid">Monoid</a></li><li><a href="#applicative">Applicative</a></li><li><a href="#traversable">Traversable</a></li><li><a href="#monad">Monad</a></li></ul></div>
+  <div id="page-toc">
+    <div id="next-page">
+      Previous page: <a href="./basic-concepts.html">Basic Concepts</a>
+    </div>
+    <ul><li><a href="#functor">Functor</a></li><li><a href="#foldable">Foldable</a></li><li><a href="#monoid">Monoid</a></li><li><a href="#applicative">Applicative</a></li><li><a href="#traversable">Traversable</a></li><li><a href="#monad">Monad</a></li></ul>
+    <div id="next-page">
+      Next page: <a href="./monad-field-guide.html">Monads: A Field Guide</a>
+    </div>
+    </div>
   <div id="page-content">
     <p>So far, the typeclasses we’ve seen have obvious analogues in non-functional languages too. This section will look at a few of the typeclasses that are particularly important to functional programming design.</p><h2 id="functor">Functor</h2><p>The <code class="interpreted-text" role="pseudoml">Functor</code> typeclass is for data types that can be treated like containers whose elements can be “mapped over.” Specifically:</p><div class="sourceCode" id="cb1"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typeclass</span> <span class="dt">Functor</span> f</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    map </span><span class="op">:</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b</span></code></pre></div><p>You might also think about a functor as a way to apply a function <em>through</em> a data structure. Lists are a common example; indeed, many object-oriented languages give a <code class="interpreted-text" role="pseudoml">map</code> method to their array or list class.</p><div class="sourceCode" id="cb2"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Functor</span> []</span>

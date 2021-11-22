@@ -15,7 +15,6 @@ import Hakyll.Web.Template.Context (constField)
 import Skylighting.Parser (parseSyntaxDefinitionFromText)
 import Skylighting.Types (Syntax)
 import Skylighting.Syntax (defaultSyntaxMap)
-import qualified Skylighting.Syntax as S
 import Text.Pandoc.Options (WriterOptions(writerSyntaxMap))
 
 import Site.Config
