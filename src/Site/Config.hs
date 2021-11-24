@@ -1,22 +1,14 @@
-{-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE TupleSections #-}
-{-# OPTIONS_GHC -Wno-deprecations #-}
 
 module Site.Config where
 
-import Control.Monad.Error (MonadError (throwError))
+import Control.Monad.Except (MonadError (throwError))
 import Data.Aeson (FromJSON, Options (fieldLabelModifier))
 import Data.Aeson.TH (defaultOptions, deriveJSON)
 import Data.Yaml.Aeson (ParseException, decodeEither')
 import Hakyll.Core.Compiler (Compiler, loadBody)
 
-data RSTConfig = RSTConfig
-  { rst_prefix :: String,
-    rst_suffix :: String
-  }
-
-$(deriveJSON (defaultOptions {fieldLabelModifier = drop 4}) ''RSTConfig)
+{-# ANN module ("HLint: ignore Use newtype instead of data" :: String) #-}
 
 data Term = Term
   { term_term :: String,
@@ -27,22 +19,13 @@ data Term = Term
 $(deriveJSON (defaultOptions {fieldLabelModifier = drop 5}) ''Term)
 
 data UtopiaConfig = UtopiaConfig
-  { utopia_rst :: RSTConfig,
-    utopia_terms :: [Term]
+  { utopia_terms :: [Term]
   }
 
 $(deriveJSON (defaultOptions {fieldLabelModifier = drop 7}) ''UtopiaConfig)
 
-data ConceptualFPConfig = ConceptualFPConfig
-  { cfp_rst :: RSTConfig
-  }
-
-$(deriveJSON (defaultOptions {fieldLabelModifier = drop 4}) ''ConceptualFPConfig)
-
 data Config = Config
-  { config_rst :: RSTConfig,
-    config_utopia :: UtopiaConfig,
-    config_cfp :: ConceptualFPConfig
+  { config_utopia :: UtopiaConfig
   }
 
 $(deriveJSON (defaultOptions {fieldLabelModifier = drop 7}) ''Config)

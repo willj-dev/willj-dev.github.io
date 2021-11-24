@@ -1,23 +1,16 @@
-{-# OPTIONS_GHC -Wno-deprecations #-}
 {-# LANGUAGE DeriveFunctor #-}
 
 module Site.ConceptualFP.PseudoML (loadPseudoMLSyntax, compilePandocWithPseudoML) where
 
-import Control.Monad.Error (throwError)
+import Control.Monad.Except (throwError)
 import Data.Binary (Binary(..), encode)
 import qualified Data.Map.Strict as M
 import qualified Data.Text.Lazy as TL
-import Hakyll.Core.Compiler (Compiler, getResourceBody, makeItem, loadBody, debugCompiler)
-import Hakyll.Core.Item (itemBody, Item)
-import Hakyll.Core.Rules (Rules, match, compile)
-import Hakyll.Core.Writable (Writable(..))
-import Hakyll.Web.Template.Context (constField)
-import Skylighting.Parser (parseSyntaxDefinitionFromText)
-import Skylighting.Types (Syntax)
-import Skylighting.Syntax (defaultSyntaxMap)
-import Text.Pandoc.Options (WriterOptions(writerSyntaxMap))
+import Hakyll
+import Skylighting
+import Text.Pandoc
 
-import Site.Config
+import Site.Common
 import Site.Pandoc
 
 loadPseudoMLSyntax :: Rules ()
@@ -33,17 +26,12 @@ loadPseudoMLSyntax = match "pseudoml.xml" $ compile syntaxCompiler
       , parserMsg
       ]
 
-compilePandocWithPseudoML :: Item String -> TOCCompiler (Item String)
+compilePandocWithPseudoML :: Item String -> Compiler CompiledPage
 compilePandocWithPseudoML rstItem = do
-  rstConfig <- cfp_rst . config_cfp <$> configCompiler
-  pseudoMLSyntax <- (unWB <$> loadBody "pseudoml.xml") :: Compiler Syntax
-  debugCompiler $ show pseudoMLSyntax
-  (htmlTOC, htmlBody) <- applyRSTTemplate rstConfig rstItem >>= compilePandocWithTOC' ropt (wopt pseudoMLSyntax)
-  htmlItem <- makeItem htmlBody
-  return (constField "toc" htmlTOC, htmlItem)
+  woptPseudoML <- wopt <$> (unWB <$> loadBody "pseudoml.xml")
+  compilePandocRST rstItem >>= compilePandocPageWith woptPseudoML
   where
-    ropt = myReaderOptions
-    wopt s = myWriterOptions { writerSyntaxMap = M.insert "PseudoML" s defaultSyntaxMap }
+    wopt s = myDefaultWriterOptions { writerSyntaxMap = M.insert "PseudoML" s defaultSyntaxMap }
 
 -- Need a bit of misdirection here because Hakyll has a Writable instance for
 -- a lazy bytestring, but not for Binary.

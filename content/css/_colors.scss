@@ -48,6 +48,10 @@ $base16-tomorrow-night: (
     &:visited {
       color: $base16-accent7;
     }
+
+    &.anchor {
+      color: $base16-highlight;
+    }
   }
 
   h1, h2, h3, h4, #header-path > a {

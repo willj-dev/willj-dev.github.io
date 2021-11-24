@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" prefix="og: https://ogp.me/ns#">
 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Enable autoscaling for smol screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- OpenGraph metadata for link previews -->
+    <meta property="og:title" content="Monads: A Field Guide">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://willj.dev//conceptual-fp/monad-field-guide.html">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="willj.dev">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Noto+Sans+Mono|Material+Icons">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <title>Monads: A Field Guide - willj.dev</title>
   </head>
 
-  
   <body id="page-body" class="dark-mode">
     <header>
       <h1 id="header-path" class="header-element">
@@ -22,7 +31,7 @@
       <div class="header-fill"></div>
     </header>
     <main><div id="page-container">
-  <div id="page-toc">
+  <div id="page-toc" class="contents">
     <div id="next-page">
       Previous page: <a href="./intermediate-typeclasses.html">Intermediate Typeclasses</a>
     </div>
@@ -32,7 +41,7 @@
     </div>
     </div>
   <div id="page-content">
-    <p>To Do!</p><h2 id="optional">Optional</h2><h2 id="list">List</h2><h2 id="either">Either</h2><h2 id="io">IO</h2><h2 id="reader">Reader</h2><h2 id="writer">Writer</h2><h2 id="state">State</h2>
+    <p>To Do!</p><h2 id="optional">Optional<a href="#optional" class="anchor" title="Optional">anchor</a></h2><h2 id="list">List<a href="#list" class="anchor" title="List">anchor</a></h2><h2 id="either">Either<a href="#either" class="anchor" title="Either">anchor</a></h2><h2 id="io">IO<a href="#io" class="anchor" title="IO">anchor</a></h2><h2 id="reader">Reader<a href="#reader" class="anchor" title="Reader">anchor</a></h2><h2 id="writer">Writer<a href="#writer" class="anchor" title="Writer">anchor</a></h2><h2 id="state">State<a href="#state" class="anchor" title="State">anchor</a></h2>
   </div>
 </div>
 </main>
@@ -58,7 +67,9 @@
       <span class="footer-divider">|</span>
       <span id="colors-credit" class="footer-element">
         <a href="https://github.com/chriskempson/base16">Base16</a> color scheme:
-          <a href="https://github.com/chriskempson/base16-tomorrow-scheme">Tomorrow<span class="dark-mode-only"> Night</span></a>
+        <a href="https://github.com/chriskempson/base16-tomorrow-scheme">
+          Tomorrow<span class="dark-mode-only"> Night</span>
+        </a>
       </span>
     </footer>
   </body>

@@ -1,11 +1,13 @@
 ------------------------
 title: A Millennial Utopia
+blurb: >
+  Our "ideal" vision of a society which guarantees the MSC, if one was to suddenly appear on Earth in 2021.
 ------------------------
 
 Introduction
 *************************************************
 
-`The Millennial Social Code`_ (MSC) defines a set of rights which we believe are possible to guarantee equally to every individual in a contemporary human society. It is taken to be self-evident that in 2021, human society is divided between nations whose governments are each, to some degree or another, corrupt: they willfully or negligently allow some of their citizens to benefit from the exploitation of other people. This exploitation is an active part of contemporary human society all over the world, but it has also been a constant presence for as long as we have been keeping historical records. Some particularly egregious examples still exert an influence on modern society even after hundreds of years. This happens when sufficiently dedicated evildoers conspire to maintain exploitative social systems that work in their benefit, and society as a whole is unable or unwilling to stop it.
+The `Millennial Social Code`_ (MSC) defines a set of rights which we believe are possible to guarantee equally to every individual in a contemporary human society. It is taken to be self-evident that in 2021, human society is divided between nations whose governments are each, to some degree or another, corrupt: they willfully or negligently allow some of their citizens to benefit from the exploitation of other people. This exploitation is an active part of contemporary human society all over the world, but it has also been a constant presence for as long as we have been keeping historical records. Some particularly egregious examples still exert an influence on modern society even after hundreds of years. This happens when sufficiently dedicated evildoers conspire to maintain exploitative social systems that work in their benefit, and society as a whole is unable or unwilling to stop it.
 
 The source of this corruption is always the unreasonable influence of a small number of individuals who accumulate a vastly unequal proportion of humanity's wealth by manipulating the social and economic system to their own advantage. These individuals will be referred to here as plutocrats, after the concept of a plutocracy: a system of government controlled by the wealthy. They have been part of human society since the invention of private property, and plutocrats in today's globe-spanning, consumer-capitalist, high-technology societies can be found in many positions (not necessarily national government) but they all have one thing in common: they each control a shockingly vast proportion of the total wealth generated over millennia of human economic activity.
 
@@ -105,7 +107,7 @@ If it is not possible to completely avoid the formation of a standing military, 
 Disaster Recovery
 ''''''''''''''''''''''''''''''
 
-In the event of a natural disaster, procedures should be in place to prevent social affluence from dropping below zero, even in the event of widespread technology failures (such as large-scale cyberattack, or solar flares killing off electronics) or significant damage to infrastructure (tsunamis, meteors, earthquakes, …). People in urban and suburban areas will need access to emergency stockpiles with enough capacity to keep everyone alive until they can develop supply lines from rural areas and start rebuilding. Digital systems must always have fallback strategies to analog backups. Hard copies of enough knowledge to reconstruct a digital society (or maintain a non-digital society), from the ground up must be readily available, and there must be a process for devolving to distributed local governments, each of which should be capable of sustaining itself independently in case long-distance communication and resource management becomes impossible.
+In the event of a natural disaster, procedures should be in place to prevent social affluence from dropping below zero, even in the event of widespread technology failures (such as large-scale cyberattack, or solar flares killing off electronics) or significant damage to infrastructure (tsunamis, meteors, earthquakes, ....). People in urban and suburban areas will need access to emergency stockpiles with enough capacity to keep everyone alive until they can develop supply lines from rural areas and start rebuilding. Digital systems must always have fallback strategies to analog backups. Hard copies of enough knowledge to reconstruct a digital society (or maintain a non-digital society), from the ground up must be readily available, and there must be a process for devolving to distributed local governments, each of which should be capable of sustaining itself independently in case long-distance communication and resource management becomes impossible.
 
 Social Development
 *************************************************
@@ -144,7 +146,7 @@ Form of Government
 
 In the Enlightenment tradition, the MU government has three branches (Legislative, Executive, Judiciary), and structural checks and balances between them to prevent abuse. However, unlike the thinkers who gave us our first liberal-republican governments, we have the benefit of three centuries in which humanity was able to (not without difficulty) achieve an extremely well-educated general population, by 17th-century standards. This was the primary excuse (which may not have been valid even then) for including systemic advantages for an aristocratic elite class. In the US, this can be seen in institutions such as the Electoral College or the Senate, not to mention more recent symptoms of systemic corruption of democratic processes: gerrymandering, corporate lobbying, and other evils. With hindsight, we can do away with such antidemocratic patterns and institutions and build a government which can truly be said to provide equal representation for each person in practice as well as in theory.
 
-See `The Millennial Utopian Constitution`_ for details about the actual structure of this government. Here we will provide some concrete ideas for its real-world implementation.
+See the `Millennial Utopian Constitution`_ for details about the actual structure of this government. Here we will provide some concrete ideas for its real-world implementation.
 
 Executive Council
 ============================
@@ -201,10 +203,3 @@ Starting from a consumer-capitalist society and a certain population of voluntee
 At least, for a little while. It would be foolish to assume that the plutocrats will happily give up and allow the system they rule to be bought out from under them and absorbed into the MU where they cannot use their exploitative system to hoard personal wealth. Maybe this will happen - if the MU spreads so quickly that the plutocrats cannot gather a coordinated defense in time - but more likely, at some point, plutocrat-controlled businesses will refuse to sell MULLC goods or services if we keep taking their workers, and plutocrat-controlled banks will no longer agree to hold MULLC's assets or issue it credit.
 
 See `Transitioning From Capitalism`_ for more details about the general shape of this undertaking.
-
-.. _Selected Utopian Social Principles: /selected-principles.html
-.. _The Millennial Utopian Constitution: /constitution.html
-.. _The Millennial Social Code: /msc.html
-.. _Transitioning From Capitalism: /transition.html
-.. _Equitable Management and Distribution of Shared Resources: /managing-shared-resources.html
-.. _Proving MU Viability: /proving-mu-viability.html

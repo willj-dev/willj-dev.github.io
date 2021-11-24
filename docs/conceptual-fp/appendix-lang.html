@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" prefix="og: https://ogp.me/ns#">
 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Enable autoscaling for smol screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- OpenGraph metadata for link previews -->
+    <meta property="og:title" content="Appendix: Language-Specific Caveats">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://willj.dev//conceptual-fp/appendix-lang.html">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="willj.dev">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Noto+Sans+Mono|Material+Icons">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
     <title>Appendix: Language-Specific Caveats - willj.dev</title>
   </head>
 
-  
   <body id="page-body" class="dark-mode">
     <header>
       <h1 id="header-path" class="header-element">
@@ -22,7 +31,7 @@
       <div class="header-fill"></div>
     </header>
     <main><div id="page-container">
-  <div id="page-toc">
+  <div id="page-toc" class="contents">
     <div id="next-page">
       Previous page: <a href="./advanced-typeclasses.html">Advanced Typeclasses</a>
     </div>
@@ -32,7 +41,7 @@
     </div>
     </div>
   <div id="page-content">
-    <p>Here we will discuss some “gotchas” or signficant syntactic deviations from some popular programming languages that might catch the inexperienced reader off-guard if they try to apply the concepts above to that language. Once again, the goal is not to teach a specific language; this is just a collection of warnings and disclaimers that would otherwise have cluttered the main narrative.</p><h2 id="scala-cats">Scala / <code>cats</code></h2><ul><li>typeclasses via implicits/traits</li></ul><h2 id="haskell">Haskell</h2><ul><li>type name translations (Maybe vs Optional, etc)</li><li>data vs newtype</li><li>newtype for re-implementing typeclasses</li><li>dangers with laziness (e.g. foldr vs foldl)</li><li>reader, writer, state defined in terms of their transformers</li></ul><h2 id="typescript-fp-ts">TypeScript / <code>fp-ts</code></h2><ul><li>syntax difficulties</li><li>type name translations (Option vs Optional, etc)</li></ul><h2 id="idris">Idris</h2><ul><li>labelled interfaces</li></ul>
+    <p>Here we will discuss some “gotchas” or signficant syntactic deviations from some popular programming languages that might catch the inexperienced reader off-guard if they try to apply the concepts above to that language. Once again, the goal is not to teach a specific language; this is just a collection of warnings and disclaimers that would otherwise have cluttered the main narrative.</p><h2 id="scala-cats">Scala / <code>cats</code><a href="#scala-cats" class="anchor" title="Scala / cats">anchor</a></h2><ul><li>typeclasses via implicits/traits</li></ul><h2 id="haskell">Haskell<a href="#haskell" class="anchor" title="Haskell">anchor</a></h2><ul><li>type name translations (Maybe vs Optional, etc)</li><li>data vs newtype</li><li>newtype for re-implementing typeclasses</li><li>dangers with laziness (e.g. foldr vs foldl)</li><li>reader, writer, state defined in terms of their transformers</li></ul><h2 id="typescript-fp-ts">TypeScript / <code>fp-ts</code><a href="#typescript-fp-ts" class="anchor" title="TypeScript / fp-ts">anchor</a></h2><ul><li>syntax difficulties</li><li>type name translations (Option vs Optional, etc)</li></ul><h2 id="idris">Idris<a href="#idris" class="anchor" title="Idris">anchor</a></h2><ul><li>labelled interfaces</li></ul>
   </div>
 </div>
 </main>
@@ -58,7 +67,9 @@
       <span class="footer-divider">|</span>
       <span id="colors-credit" class="footer-element">
         <a href="https://github.com/chriskempson/base16">Base16</a> color scheme:
-          <a href="https://github.com/chriskempson/base16-tomorrow-scheme">Tomorrow<span class="dark-mode-only"> Night</span></a>
+        <a href="https://github.com/chriskempson/base16-tomorrow-scheme">
+          Tomorrow<span class="dark-mode-only"> Night</span>
+        </a>
       </span>
     </footer>
   </body>

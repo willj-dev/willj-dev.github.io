@@ -1,40 +1,44 @@
 
 module Site.Common where
 
-import Hakyll.Core.Compiler (Compiler, getUnderlying)
-import Hakyll.Core.Identifier (toFilePath, Identifier, fromFilePath)
-import Hakyll.Core.Identifier.Pattern (fromList, fromGlob, complement, (.&&.))
-import Hakyll.Core.Item (Item (Item))
-import Hakyll.Core.Metadata (getMetadataField')
-import Hakyll.Core.Routes (Routes, customRoute, setExtension, composeRoutes)
-import Hakyll.Web.Html.RelativizeUrls (relativizeUrls)
-import Hakyll.Web.Template.Context (Context, defaultContext, field)
-import Hakyll.Web.Template (loadAndApplyTemplate)
-import Hakyll.Core.Rules (Rules, match)
-import System.FilePath (takeFileName, splitPath, splitDirectories)
-import System.FilePath.Posix (joinPath) -- always use '/' to make site paths
+import Hakyll
 
-projectIdContext, headerTitleContext :: Context String
-projectIdContext = field "project-id" (const $ getUnderlying >>= projectIdFromIdentifier)
-headerTitleContext = field "header-title" (const $ getUnderlying >>= (`getMetadataField'` "title"))
+import qualified System.FilePath as FPL -- FilePath Local, for files on the current machine
+import qualified System.FilePath.Posix as FPP -- always use '/' to make site routes
 
-applyIndexTemplates :: Bool -> Item String -> Compiler (Item String)
-applyIndexTemplates = applyIndexTemplatesWith defaultContext
+-- | kebab-case id for a project (e.g. "conceptual-fp").
+type ProjectId = String
 
-applyIndexTemplatesWith :: Context String -> Bool -> Item String -> Compiler (Item String)
-applyIndexTemplatesWith indexContext isProjectIndex indexHTML =
-  loadAndApplyTemplate "templates/index.html" indexContext indexHTML
-  >>= loadAndApplyTemplate "templates/base.html" baseContext
-  >>= relativizeUrls
-  where
-    baseContext = if isProjectIndex
-      then projectIdContext <> defaultContext
-      else defaultContext
+-- | kebab-case id for a page (e.g. "a-millennial-utopia"); the identifier for the file
+--   containing a page's content is always at 'pages/$project-id$/$page-id$.rst'
+type PageId = String
+
+-- | kebab-case "canonical" section name, which should always exist and be targetable
+--   by URL fragments, e.g. '/millennial-utopia/a-millennial-utopia.html#government-transparency'
+type SectionId = String
+
+-- | Arbitrary text that can serve as an RST hyperlink reference, e.g. `Government Transparency`_
+--   (There may be multiple ways to refer to the same section, depending on context)
+type LinkText = String
+
+data CompiledPage = CompiledPage
+  { page_title        :: String,
+    page_name         :: PageId,
+    page_blurb        :: Maybe String,
+    page_html         :: Item String,
+    page_htmlTOC      :: String
+  }
+
+-- 'blah/project-id/page.foo' -> 'project-id'
+projectId :: MonadFail m => Identifier -> m ProjectId
+projectId itemId = case FPL.splitDirectories (toFilePath itemId) of
+    [_, pid, _] -> return pid
+    _           -> fail $ "could not determine project id for " ++ show itemId
 
 filenameOnlyRoute, htmlExtensionRoute, tailRoute, tailHTMLRoute :: Routes
-filenameOnlyRoute = customRoute (takeFileName . toFilePath)
+filenameOnlyRoute = customRoute (FPL.takeFileName . toFilePath)
 htmlExtensionRoute = setExtension "html"
-tailRoute = customRoute (joinPath . tail . splitPath . toFilePath)
+tailRoute = customRoute (FPP.joinPath . tail . FPL.splitPath . toFilePath)
 tailHTMLRoute = composeRoutes tailRoute htmlExtensionRoute
 
 makeItemWith :: (a -> Identifier) -> a -> Item a
@@ -49,27 +53,11 @@ makeSubItemWith mapIdSuffix mapBody (Item parentId parentBody) = Item newId newB
 addIdSuffix :: Identifier -> String -> Identifier
 addIdSuffix parentId suffix = fromFilePath (toFilePath parentId ++ "_" ++ suffix)
 
-data ProjectMetadata = ProjectMetadata
-  { proj_title  :: String
-  , proj_id     :: String
-  , proj_blurb  :: String
-  }
+maybeField :: String -> (Item a -> Compiler (Maybe String)) -> Context a
+maybeField key mkVal = Context $ \k _ i ->
+  if k == key
+    then mkVal i >>= maybe (noResult $ "Nothing value for " ++ key) (return . StringField)
+    else noResult $ "Tried maybeField " ++ key
 
-projectMetadata :: Identifier -> Rules ProjectMetadata
-projectMetadata projectIndex = do
-  title     <- getMetadataField' projectIndex "title"
-  projectId <- projectIdFromIdentifier projectIndex
-  blurb     <- getMetadataField' projectIndex "blurb"
-  return (ProjectMetadata title projectId blurb)
-
-matchOnly :: Identifier -> Rules () -> Rules ()
-matchOnly ident = match (fromList [ident])
-
-matchGlobExceptIndex :: String -> Rules () -> Rules ()
-matchGlobExceptIndex globString = match $ fromGlob globString .&&. complement (fromGlob "**/index.*")
-
--- 'blah/project-id/page.foo' -> 'project-id'
-projectIdFromIdentifier :: MonadFail m => Identifier -> m String
-projectIdFromIdentifier itemId = case splitDirectories (toFilePath itemId) of
-    [_, projectId, _] -> return projectId
-    _                 -> fail $ "could not determine project id for " ++ show itemId
+dbg :: Show a => a -> Compiler a
+dbg x = debugCompiler (show x) >> return x

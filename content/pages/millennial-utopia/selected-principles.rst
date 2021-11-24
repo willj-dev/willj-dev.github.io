@@ -1,5 +1,7 @@
 ------------------------
 title: Selected Utopian Social Principles
+blurb: >
+  A smattering of smaller essays and blurbs relevant to our vision of a just society and how such a society is governed.
 ------------------------
 
 (non-exhaustive and in no particular order)

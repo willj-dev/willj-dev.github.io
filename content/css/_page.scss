@@ -18,6 +18,10 @@
       list-style-type: none;
     }
 
+    > ul {
+      padding: 0;
+    }
+
     li {
       ~ li {
         margin-top: 0.25em;

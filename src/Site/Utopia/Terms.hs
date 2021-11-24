@@ -2,15 +2,13 @@
 
 module Site.Utopia.Terms (termContext) where
 
-import Hakyll.Core.Compiler (Compiler)
-import Hakyll.Core.Item (Item (itemBody))
-import Hakyll.Web.Template.Context (Context, field, listFieldWith)
+import Hakyll
 
-import Site.Common ( makeSubItemWith )
-import Site.Config(Term(..), configCompiler, config_utopia, utopia_rst)
-import Site.Pandoc (rstCompiler)
+import Site.Common
+import Site.Config
+import Site.Pandoc
 
--- Term definition is compiled as RST with the Utopia prefix/suffix (i.e. support
+-- | Term definition is compiled as RST with the Utopia template (i.e. support
 -- for custom roles and link targets). Term alternatives (plurals, etc) are compiled
 -- into a list field, which is used in the terms JS to support pinning/hovering over
 -- terms in the article body.
@@ -23,8 +21,12 @@ termContext = mconcat [termField, defnField, altsField]
 
     compileDefinitionRST :: Item Term -> Compiler String
     compileDefinitionRST term = do
-      config <- utopia_rst . config_utopia <$> configCompiler
-      rstCompiler config (fmap term_definition term)
+      termDefPandoc <- preprocRST >>= compilePandocRST
+      compileHTMLPandoc termDefPandoc
+      where
+        preprocRST =
+          loadAndApplyTemplate "templates/millennial-utopia.rst" defaultContext (term_definition <$> term)
+          >>= loadAndApplyTemplate "templates/base.rst" defaultContext
 
     altsField = listFieldWith "alternatives" altContext altItems
 

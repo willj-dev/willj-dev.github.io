@@ -7,14 +7,14 @@ So far, the typeclasses we’ve seen have obvious analogues in non-functional la
 Functor
 -------
 
-The :pseudoml:`Functor` typeclass is for data types that can be treated like containers whose elements can be "mapped over." Specifically:
+The `Functor` typeclass is for data types that can be treated like containers whose elements can be "mapped over." Specifically:
 
 .. code:: pseudoml
 
    typeclass Functor f
        map : (a -> b) -> f a -> f b
 
-You might also think about a functor as a way to apply a function *through* a data structure. Lists are a common example; indeed, many object-oriented languages give a :pseudoml:`map` method to their array or list class.
+You might also think about a functor as a way to apply a function *through* a data structure. Lists are a common example; indeed, many object-oriented languages give a `map` method to their array or list class.
 
 .. code:: pseudoml
 
@@ -25,7 +25,7 @@ You might also think about a functor as a way to apply a function *through* a da
    -- this evaluates to [10, 4]
    someInts = map stringLength ["functional", "peep"]
 
-:pseudoml:`Optional` is also a useful :pseudoml:`Functor`:
+`Optional` is also a useful `Functor`:
 
 .. code:: pseudoml
 
@@ -36,14 +36,14 @@ You might also think about a functor as a way to apply a function *through* a da
 Foldable
 --------
 
-:pseudoml:`Foldable` is the typeclass of data structures that can be traversed, accumulating some result at each point:
+`Foldable` is the typeclass of data structures that can be traversed, accumulating some result at each point:
 
 .. code:: pseudoml
 
    typeclass Foldable t
        foldl : (b -> a -> b) -> b -> t a -> b
 
-The :pseudoml:`l` at the end of :pseudoml:`foldl` indicates that this is a *left fold*\  [3]_. The words "left" and "right" refer to the head and tail of a list, respectively; in general, left folds start at the "front" of a data structure (they are *breadth-first*), and right folds start at the "back" (*depth-first*). What this means is best illustrated by an example. Consider this definition of the :pseudoml:`sum` function, which sums a list of integers:
+The `l` at the end of `foldl` indicates that this is a *left fold*\  [3]_. The words "left" and "right" refer to the head and tail of a list, respectively; in general, left folds start at the "front" of a data structure (they are *breadth-first*), and right folds start at the "back" (*depth-first*). What this means is best illustrated by an example. Consider this definition of the `sum` function, which sums a list of integers:
 
 .. code:: pseudoml
 
@@ -66,11 +66,13 @@ Now let’s consider what happens when this function is evaluated.
    foldl (+) ((((0 + 1) + 2) + 4) + 8) []
    ((((0 + 1) + 2) + 4) + 8)
 
-As you can see, the first thing to be evaluated is :math:`0 + 1`, and we proceed down the list, evaluating the "left-most" operations first. This implies the existence of a *right fold*:
+As you can see, the first thing to be evaluated is :math:`0 + 1`, and we proceed down the list, evaluating the "left-most" operations first. This implies the existence of a *right fold*[1]_:
+
+.. [1]
+   See `Right Folds from the Left`_ for a generic right-fold, if all we have to start with is a left-fold
 
 .. code:: pseudoml
 
-   -- see Appendix~\ref{endo} for a generic foldr in terms of foldl
    foldrList : (a -> b -> b) -> b -> [a] -> b
    foldrList _ b [] = b
    foldrList f b (x :: xs) = f x (foldr f b xs)
@@ -97,11 +99,11 @@ Unsurprisingly, now we’re starting on the right! This ends up evaluating to th
    ((((0 - 1) - 2) - 4) - 8) = -15
    (1 - (2 - (4 - (8 - 0)))) = -5
 
-In this case, :pseudoml:`foldl` and :pseudoml:`foldr` give different results! This isn’t actually that big of a deal though--if you know which side you’re starting from, you can always define your folding function appropriately (and perhaps reverse your list) in order to get the result you want. It turns out, though, that sometimes it does matter which fold you choose!
+In this case, `foldl` and `foldr` give different results! This isn’t actually that big of a deal though--if you know which side you’re starting from, you can always define your folding function appropriately (and perhaps reverse your list) in order to get the result you want. It turns out, though, that sometimes it does matter which fold you choose!
 
-The examples above with :pseudoml:`(+)` are *reductions*: they collapse the list as they traverse it. Both reductions happen in linear time (since they traverse the input list exactly once), but :pseudoml:`foldl` happens in constant space, while :pseudoml:`foldr` uses linear space! For very long lists, this can easily overflow the stack. The reason is that when folding from the left, we’re keeping a "running total" of the folded value; each rescursive call need not generate its own stack frame, so the fold only needs as much memory as is required to store the result value. On the other hand, folding from the right means that we must traverse the entire list before we can start evaluating stuff, and each time we recurse further into the list, we have to hold on to the current value while we wait for the evaluation to work its way back up the stack!
+The examples above with `(+)` are *reductions*: they collapse the list as they traverse it. Both reductions happen in linear time (since they traverse the input list exactly once), but `foldl` happens in constant space, while `foldr` uses linear space! For very long lists, this can easily overflow the stack. The reason is that when folding from the left, we’re keeping a "running total" of the folded value; each rescursive call need not generate its own stack frame, so the fold only needs as much memory as is required to store the result value. On the other hand, folding from the right means that we must traverse the entire list before we can start evaluating stuff, and each time we recurse further into the list, we have to hold on to the current value while we wait for the evaluation to work its way back up the stack!
 
-However, not all folds are reductions, and interestingly, the situation is reversed for non-reductive folds. Consider the two functions below, which implement :pseudoml:`map` over a list, one with a left fold and the other with a right fold. You should be able to convince yourself that they both produce the same result as we saw for the :pseudoml:`Functor` instance above:
+However, not all folds are reductions, and interestingly, the situation is reversed for non-reductive folds. Consider the two functions below, which implement `map` over a list, one with a left fold and the other with a right fold. You should be able to convince yourself that they both produce the same result as we saw for the `Functor` instance above:
 
 .. code:: pseudoml
 
@@ -123,7 +125,7 @@ Note that when we’re folding from the left, we put each successive result at t
    mapr stringLength ["Mrs", "Birdy", "says", "peep"]
    -- (3 :: (5 :: (4 :: (4 :: []))))
 
-The problem here is that concatenation using :pseudoml:`++` runs in time proportional to the length of the left-hand list, and each time we do a concatenation, the left-hand list gets bigger; suddenly our left fold is in *quadratic time*! We would therefore rather choose a right fold for this job, because it allows us to use the constant-time list constructor :pseudoml:`::` rather than linear-time concatenation.
+The problem here is that concatenation using `++` runs in time proportional to the length of the left-hand list, and each time we do a concatenation, the left-hand list gets bigger; suddenly our left fold is in *quadratic time*! We would therefore rather choose a right fold for this job, because it allows us to use the constant-time list constructor `::` rather than linear-time concatenation.
 
 Now, depending on your language’s evaluation rules, how it implements lists, and particuarly how smart its optimizer is, your mileage may vary. The moral of this story is that you should choose your fold so that reductions are *strict and tail-recursive*, and non-reductive folds build the output structure efficiently, using only constant-time operations (if possible).
 
@@ -135,7 +137,7 @@ Monoid
 
 First, a warning: monoids are to monads as Java is to JavaScript, so apologies in advance for the similar words. Blame mathematicians again.
 
-Here’s the definition of :pseudoml:`Monoid`:
+Here’s the definition of `Monoid`:
 
 .. code:: pseudoml
 
@@ -143,7 +145,7 @@ Here’s the definition of :pseudoml:`Monoid`:
        empty : a
        (<>) : a -> a -> a
 
-This can be read a couple of different ways. Usually the one folks see first treats :pseudoml:`<>` as an operator for glomming two instances of the monoid together, with :pseudoml:`empty` as the "neutral" element; for example, with integers:
+This can be read a couple of different ways. Usually the one folks see first treats `<>` as an operator for glomming two instances of the monoid together, with `empty` as the "neutral" element; for example, with integers:
 
 .. code:: pseudoml
 
@@ -165,14 +167,14 @@ Notice that I have named the instance; this can sometimes be useful, because the
 Each of these specifies a particular way that integers can be stuck together. With these examples handy, we can write down the *monoid laws*:
 
 Associativity
-   :pseudoml:`(x <> y) <> z == x <> (y <> z)`
+   `(x <> y) <> z == x <> (y <> z)`
 
 Identity
-   :pseudoml:`x <> empty == empty <> x == x`
+   `x <> empty == empty <> x == x`
 
-The requirement that :pseudoml:`<>` be associative means that there aren’t monoid instances for division or subtraction. (By the way, division has another problem too—:pseudoml:`<>` should always be defined for all values, but division by zero isn’t defined!)
+The requirement that `<>` be associative means that there aren’t monoid instances for division or subtraction. (By the way, division has another problem too—`<>` should always be defined for all values, but division by zero isn’t defined!)
 
-The other way to interpret a monoid is as a way to choose between two values with :pseudoml:`<>`, with :pseudoml:`empty` providing a default choice.
+The other way to interpret a monoid is as a way to choose between two values with `<>`, with `empty` providing a default choice.
 
 .. code:: pseudoml
 
@@ -190,9 +192,9 @@ The other way to interpret a monoid is as a way to choose between two values wit
        x <> Nothing     = x
        Nothing <> x     = x
 
-Here, the :pseudoml:`First` instance always chooses the first non-:pseudoml:`Nothing` value it was given; likewise, :pseudoml:`Last` always chooses the last.
+Here, the `First` instance always chooses the first non-`Nothing` value it was given; likewise, `Last` always chooses the last.
 
-As a final example, :pseudoml:`Bool` also admits two possible monoids:
+As a final example, `Bool` also admits two possible monoids:
 
 .. code:: pseudoml
 
@@ -209,9 +211,9 @@ Applicative
 
 The extravagantly-named *applicative functor* is, of course, simply a functor that is applicative!
 
-That sounds deeply, almost offensively unhelpful, but interestingly it’s one of the more meaningful names for important concepts (looking at you, ‘Monad’). To illustrate what it means, let’s consider a puzzle. A program has asked the user for two integers, :pseudoml:`x` and :pseudoml:`y`, but since getting these integers involves communing with the outside world of side effects, they are both of type :pseudoml:`IO Int`. Your goal is to add them together. How can we do this?
+That sounds deeply, almost offensively unhelpful, but interestingly it’s one of the more meaningful names for important concepts (looking at you, ‘Monad’). To illustrate what it means, let’s consider a puzzle. A program has asked the user for two integers, `x` and `y`, but since getting these integers involves communing with the outside world of side effects, they are both of type `IO Int`. Your goal is to add them together. How can we do this?
 
-Unlike most data types, :pseudoml:`IO` values cannot be "unwrapped", because that would defeat the purpose of keeping side effects contained. :pseudoml:`IO` is a functor, so we can do things like
+Unlike most data types, `IO` values cannot be "unwrapped", because that would defeat the purpose of keeping side effects contained. `IO` is a functor, so we can do things like
 
 .. code:: pseudoml
 
@@ -224,9 +226,9 @@ Unlike most data types, :pseudoml:`IO` values cannot be "unwrapped", because tha
    z : IO Int
    z = map (*2) x -- double it!
 
-but before you ask, :pseudoml:`x + y` doesn’t work because :pseudoml:`IO Int` is not a number! It’s more like a *promise* of a number, and in fact thinking about :pseudoml:`IO` like an ES :pseudoml:`Promise` or a Java :pseudoml:`CompletableFuture` is not a terrible approximation.
+but before you ask, `x + y` doesn’t work because `IO Int` is not a number! It’s more like a *promise* of a number, and in fact thinking about `IO` like an ES `Promise` or a Java `CompletableFuture` is not a terrible approximation.
 
-Okay fine, it’s a trick question, and presumably you have already figured out that the answer has to do with whatever an applicative is. Plain functors simply don’t provide enough power to support this sort of operation. Happily, :pseudoml:`IO` is an :pseudoml:`Applicative`, which gives us access to this gadget:
+Okay fine, it’s a trick question, and presumably you have already figured out that the answer has to do with whatever an applicative is. Plain functors simply don’t provide enough power to support this sort of operation. Happily, `IO` is an `Applicative`, which gives us access to this gadget:
 
 .. code:: pseudoml
 
@@ -238,7 +240,7 @@ Okay fine, it’s a trick question, and presumably you have already figured out 
 
    addXAndY = addTwoIOs x y -- ta da!
 
-The function :pseudoml:`liftA2` takes a pure function of two arguments, and turns it into a function over an Applicative. The term *lift* is one that will occur a lot; it’s usually given to a function that takes a "plain" function and transforms it into a "special" one—e.g. *lifting* the humble :pseudoml:`(+)` into the exciting world of :pseudoml:`IO`. ":pseudoml:`liftA`" denotes a lift into Applicatives, and ":pseudoml:`liftA2`" indicates that it operates on functions of two arguments; once you get over that hurdle, it’s easy enough to construct :pseudoml:`liftA`\ :math:`n` but usually that’s excessive. In fact, you’ve already seen :pseudoml:`liftA1`: it’s just functor :pseudoml:`map`!
+The function `liftA2` takes a pure function of two arguments, and turns it into a function over an Applicative. The term *lift* is one that will occur a lot; it’s usually given to a function that takes a "plain" function and transforms it into a "special" one—e.g. *lifting* the humble `(+)` into the exciting world of `IO`. "`liftA`" denotes a lift into Applicatives, and "`liftA2`" indicates that it operates on functions of two arguments; once you get over that hurdle, it’s easy enough to construct `liftA`\ :math:`n` but usually that’s excessive. In fact, you’ve already seen `liftA1`: it’s just functor `map`!
 
 .. code:: pseudoml
 
@@ -253,7 +255,7 @@ Hopefully that is enough to start shedding light on the name *applicative functo
        pure  : a -> f a
        (<*>) : f (a -> b) -> f a -> f b
 
-The :pseudoml:`pure` function lifts a plain value into an applicative. The name is intended to suggest that we’re getting "just" that value: no spooky side effects, no accidental emails to scandalize grandma, it’s a pure value. For instance, if we didn’t want to bother asking the user for numbers (they would probably screw it up anyway), we could just say
+The `pure` function lifts a plain value into an applicative. The name is intended to suggest that we’re getting "just" that value: no spooky side effects, no accidental emails to scandalize grandma, it’s a pure value. For instance, if we didn’t want to bother asking the user for numbers (they would probably screw it up anyway), we could just say
 
 .. code:: pseudoml
 
@@ -263,14 +265,14 @@ The :pseudoml:`pure` function lifts a plain value into an applicative. The name 
    myY : IO Int
    myY = pure 3
 
-The other thing, :pseudoml:`(<*>)`, is pronounced "apply", and it takes a lifted single-argument function and applies it to a lifted value. These two things together allow us to define :pseudoml:`liftA2`:
+The other thing, `(<*>)`, is pronounced "apply", and it takes a lifted single-argument function and applies it to a lifted value. These two things together allow us to define `liftA2`:
 
 .. code:: pseudoml
 
    liftA2 : (Applicative f) => (a -> b -> c) -> (f a -> f b -> f c)
    liftA2 f x y = pure f <*> x <*> y
 
-Which is to say, we lift :pseudoml:`f` up into the applicative, (partially!) apply it to :pseudoml:`x`, and then finally apply that to :pseudoml:`y`. In fact, we could have started with :pseudoml:`liftA2` instead:
+Which is to say, we lift `f` up into the applicative, (partially!) apply it to `x`, and then finally apply that to `y`. In fact, we could have started with `liftA2` instead:
 
 .. code:: pseudoml
 

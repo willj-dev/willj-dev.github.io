@@ -1,5 +1,7 @@
 ------------------------
 title: The Millennial Utopian Constitution
+blurb: >
+  This is the template for our own internal governance, as well as being a model for any modern representative democracy, from PTA meetings to nation-states.
 ------------------------
 
 This document defines a governmental structure which is founded on the principles of direct democracy and proportional representation. The primary duty of this government is to uphold and defend The Millennial Social Code equally for all persons. Any resources generated in excess of those required to fulfill this duty are to be fairly, openly, and reasonably allocated for the enjoyment and enlightenment of individual citizens and humanity as a whole.

@@ -2,25 +2,18 @@ module Site.ConceptualFP (conceptualFPRules) where
 
 import qualified Data.Map.Strict as M
 import Data.Map.Strict (Map, (!), (!?))
-import Hakyll.Core.Compiler (getResourceBody, Compiler, getUnderlying)
-import Hakyll.Core.Identifier (Identifier, toFilePath)
-import Hakyll.Core.Item (Item)
-import Hakyll.Core.Rules (Rules, route, compile, match)
-import Hakyll.Web.Html.RelativizeUrls (relativizeUrls)
-import Hakyll.Web.Template (templateBodyCompiler, loadAndApplyTemplate)
-import Hakyll.Web.Template.Context (Context, defaultContext, constField)
+import Hakyll
 import System.FilePath (takeBaseName)
 
 import Site.Common
-import Site.ConceptualFP.PseudoML (loadPseudoMLSyntax, compilePandocWithPseudoML)
-import Site.Config (config_cfp, configCompiler, cfp_rst, ConceptualFPConfig)
-import Site.Pandoc (rstBodyCompiler, rstContext)
-import Hakyll.Core.Metadata (getAllMetadata, Metadata, lookupString)
+import Site.ConceptualFP.PseudoML
+import Site.Pandoc
+import Site.Project
 
-indexId :: Identifier
-indexId = "pages/conceptual-fp/index.rst"
+cfpProjectId :: ProjectId
+cfpProjectId = "conceptual-fp"
 
-pageOrder :: [String]
+pageOrder :: [PageId]
 pageOrder =
   [ "introduction"
   , "basic-concepts"
@@ -38,40 +31,40 @@ conceptualFPRules = do
   loadPseudoMLSyntax
   compilePages
   compileIndex
-  projectMetadata indexId
+  projectMetadata cfpProjectId
 
 loadTemplates, compilePages, compileIndex :: Rules ()
 loadTemplates = match "templates/conceptual-fp/*" $ compile templateBodyCompiler
 
-compilePages = matchGlobExceptIndex "pages/conceptual-fp/*.rst" $ do
+compilePages = matchProjectPages cfpProjectId $ do
   route tailHTMLRoute
   compile $ do
-    config <- config_cfp <$> configCompiler
-    rstItem <- getResourceBody
-    (toc, body) <- compilePandocWithPseudoML rstItem
+    pg <- cfpRSTCompiler
     pn <- compilePageTitles >>= compilePrevNextContext
-    applyCFPTemplates config (toc <> pn) body
+    applyCFPTemplates pn pg
 
--- todo: toc in correct page order
-compileIndex = matchOnly indexId $ do
+compileIndex = matchProjectIndex cfpProjectId $ do
   route tailHTMLRoute
-  compile $ do
-    config <- cfp_rst . config_cfp <$> configCompiler
-    rstBodyCompiler config >>= applyIndexTemplates True
+  compile $ getResourceBody
+    >>= loadAndApplyTemplate "templates/conceptual-fp.rst" defaultContext
+    >>= compilePandocRST
+    >>= compileHTMLPandoc
+    >>= makeItem
+    >>= applyProjectIndexTemplates pageOrder
 
-applyCFPTemplates :: ConceptualFPConfig -> Context String -> Item String -> Compiler (Item String)
-applyCFPTemplates config tocContext pageHTMLItem =
+cfpRSTCompiler :: Compiler CompiledPage
+cfpRSTCompiler = getResourceBody
+  >>= loadAndApplyTemplate "templates/conceptual-fp.rst" defaultContext
+  >>= compilePandocWithPseudoML
+
+applyCFPTemplates :: Context String -> CompiledPage -> Compiler (Item String)
+applyCFPTemplates pnContext (CompiledPage t _ _ pageHTMLItem toc) =
   loadAndApplyTemplate "templates/conceptual-fp/page.html" pageContext pageHTMLItem
     >>= loadAndApplyTemplate "templates/base.html" baseContext
     >>= relativizeUrls
     where
-      pageContext = tocContext <> conceptualFPContext config
-      baseContext = projectIdContext <> headerTitleContext <> defaultContext
-
-conceptualFPContext :: ConceptualFPConfig -> Context String
-conceptualFPContext config = mconcat [cfpRSTContext, defaultContext]
-  where
-    cfpRSTContext = rstContext (cfp_rst config)
+      pageContext = constField "toc" toc <> pnContext <> defaultContext
+      baseContext = projectIdContext <> constField "header-title" t <> defaultContext
 
 getUnderlyingBaseName :: Compiler String
 getUnderlyingBaseName = identifierBaseName <$> getUnderlying
@@ -113,7 +106,7 @@ prevnext (Just p) Nothing  = Prev p
 prevnext Nothing  (Just n) = Next n
 prevnext (Just p) (Just n) = PrevNext p n
 
--- don't make too many chapters, or else the lazy foldl will become inefficient!
+-- don't make too many chapters, or else the lazy foldl will become inefficient! :)
 pagePrevNexts :: Map String PrevNext
 pagePrevNexts = foldl go M.empty $ pnTriples pageOrder
   where

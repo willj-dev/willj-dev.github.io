@@ -1,5 +1,7 @@
 ------------------------
-title: Implementation Ideas
+title: Marketing Ideas
+blurb: >
+  Ideas for branding, infographics, ...
 ------------------------
 
 Logos

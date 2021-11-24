@@ -18,7 +18,9 @@ executable willj-dev-ghpages
   other-modules:       Site,
                        Site.Common,
                        Site.Config,
+                       Site.Page,
                        Site.Pandoc,
+                       Site.Project,
                        Site.Utopia,
                        Site.Utopia.Terms,
                        Site.ConceptualFP,
@@ -40,4 +42,6 @@ executable willj-dev-ghpages
                        skylighting,
                        skylighting-core,
                        text,
-                       yaml
+                       yaml,
+                       blaze-markup,
+                       blaze-html
