@@ -1,67 +1,102 @@
-{-# LANGUAGE RankNTypes, OverloadedStrings #-}
 
+-- | Functions ending with ' use the underlying resource; others use the `Item` passed to the function
 module Site.Pandoc where
-  
-import Site.Config (configCompiler, config_rst, rst_prefix, rst_suffix)
 
-import Data.Text (Text)
 import qualified Data.Text as T
-import Hakyll.Core.Compiler (Compiler, getResourceBody, makeItem, debugCompiler)
-import Hakyll.Core.Item (Item (itemBody))
-import Hakyll.Web.Pandoc
-  ( defaultHakyllReaderOptions,
-    defaultHakyllWriterOptions,
-  )
-import Hakyll.Web.Template.Context (Context, field, defaultContext)
-import Text.Pandoc.Class (PandocPure, getLog, runPure)
-import Text.Pandoc.Options (ReaderOptions, WriterOptions (writerWrapText), WrapOption (WrapNone))
-import Text.Pandoc.Readers.RST (readRST)
-import Text.Pandoc.Writers.HTML (writeHtml5String)
-import Text.Pandoc.Logging (LogMessage, showLogMessage)
-import Text.Pandoc.Shared (headerShift)
-import Hakyll.Web.Template (loadAndApplyTemplate)
-import Data.Functor ((<&>))
+import Data.Text (Text)
 
-myReaderOptions :: ReaderOptions
-myReaderOptions = defaultHakyllReaderOptions
+import Hakyll
+import qualified System.FilePath as FPL -- FilePath Local, for files on the current machine
+import Text.Blaze.Html.Renderer.String (renderHtml)
+import Text.Pandoc
+import Text.Pandoc.Shared (headerShift, inlineListToIdentifier, stringify)
+import Text.Pandoc.Writers.Shared (toTableOfContents)
 
-myWriterOptions :: WriterOptions
-myWriterOptions = defaultHakyllWriterOptions {writerWrapText = WrapNone}
+import Site.Common
 
-rstContext :: forall a. Context a
-rstContext = rstPrefixField <> rstSuffixField
+-- | Apply the base RST template then parse it through Pandoc, using default reader options
+compilePandocRST :: Item String -> Compiler (Item Pandoc)
+compilePandocRST = compilePandocRSTWith defaultHakyllReaderOptions
+
+-- | Apply the base RST template then parse it through Pandoc, using default reader options
+compilePandocRST' :: Compiler (Item Pandoc)
+compilePandocRST' = compilePandocRSTWith' defaultHakyllReaderOptions
+
+-- | Apply the base RST template to the current resource then parse it through Pandoc, using given reader options
+compilePandocRSTWith' :: ReaderOptions -> Compiler (Item Pandoc)
+compilePandocRSTWith' ropt = getResourceBody >>= compilePandocRSTWith ropt
+
+-- | Apply the base RST template then parse it through Pandoc, using given reader options
+compilePandocRSTWith :: ReaderOptions -> Item String -> Compiler (Item Pandoc)
+compilePandocRSTWith ropt rstItem = do
+  preprocRST <- T.pack . itemBody <$> applyRSTTemplate 
+  parsedPandoc <- compilePandocPure (headerShift 1 <$> readRST ropt preprocRST)
+  makeItem parsedPandoc
   where
-    rstPrefixField = rstField "rst-prefix" rst_prefix
-    rstSuffixField = rstField "rst-suffix" rst_suffix
+    applyRSTTemplate = loadAndApplyTemplate "templates/base.rst" defaultContext rstItem
 
-    rstField n f = field n (const $ f . config_rst <$> configCompiler)
+-- | Compile a Pandoc document to HTML, using default writer options
+compileHTMLPandoc :: Item Pandoc -> Compiler String
+compileHTMLPandoc = compileHTMLPandocWith myDefaultWriterOptions
 
-rstCompiler :: Item String -> Compiler String
-rstCompiler rstItem = applyRSTTemplate >>= compilePandoc <&> T.unpack
+-- | Compile a Pandoc document to HTML, using given writer options
+compileHTMLPandocWith :: WriterOptions -> Item Pandoc -> Compiler String
+compileHTMLPandocWith wopt docItem = compilePandocPure $ T.unpack <$> writeHtml5String wopt (itemBody docItem)
+
+-- | Compile a Pandoc document using default writer options, with attached page metadata for templating
+compilePandocPage :: Item Pandoc -> Compiler CompiledPage
+compilePandocPage = compilePandocPageWith myDefaultWriterOptions
+
+-- | Compile a Pandoc document using given writer options, with attached page metadata for templating
+compilePandocPageWith :: WriterOptions -> Item Pandoc -> Compiler CompiledPage
+compilePandocPageWith wopt docItem = do
+  title <- getMetadataField' pageIdentifier "title"
+  blurb <- getMetadataField pageIdentifier "blurb"
+  (toc, htmlBody) <- compilePandocPure runPandoc
+  bodyItem <- makeItem htmlBody
+  return $ CompiledPage title pageId blurb bodyItem toc
   where
-    applyRSTTemplate :: Compiler Text
-    applyRSTTemplate = T.pack . itemBody <$>
-      loadAndApplyTemplate "templates/base.rst" (rstContext <> defaultContext ) rstItem
+    -- note: this is the full Hakyll Identifier (i.e. file path), not what I call a page-id
+    pageIdentifier = itemIdentifier docItem
+    pageId = FPL.takeBaseName $ toFilePath pageIdentifier
+    doc = itemBody docItem
 
-    pandocPureRSTtoHTML5 :: Text -> PandocPure Text
-    pandocPureRSTtoHTML5 rst = readRST myReaderOptions rst
-      >>= writeHtml5String myWriterOptions . headerShift 1
+    runPandoc = do
+      toc <- pandocContents doc
+      htmlBody <- writeHtml5 wopt (addAnchorLinks doc)
+      return (T.unpack toc, renderHtml htmlBody)
 
-    compilePandocPure :: PandocPure Text -> Compiler Text
-    compilePandocPure p = either (fail . pandocErrorMsg) pandocLogger (runPure pWithLogs)
-      where
-        pandocErrorMsg err = "Site.Terms.compileTermDefinitionPandoc: pandoc failed: " ++ show err
+    pandocContents (Pandoc meta blocks) = writeHtml5String wopt (Pandoc meta [toTableOfContents wopt blocks])
 
-        pWithLogs = (,) <$> getLog <*> p
+myDefaultWriterOptions :: WriterOptions
+myDefaultWriterOptions = defaultHakyllWriterOptions { writerWrapText = WrapNone }
 
-        pandocLogger :: ([LogMessage], Text) -> Compiler Text
-        pandocLogger (logs, out) = do
-          sequence_ (debugCompiler . T.unpack . showLogMessage <$> logs)
-          return out
+compilePandocPure :: PandocPure a -> Compiler a
+compilePandocPure p = either (fail . pandocErrorMsg) pandocLogger (runPure $ pair getLog p)
+  where
+    pandocErrorMsg err = "Site.Pandoc.compilePandocPure: pandoc failed: " ++ show err
 
-    compilePandoc = compilePandocPure . pandocPureRSTtoHTML5
+    pandocLogger (logs, out) = do
+      sequence_ (debugCompiler . T.unpack . showLogMessage <$> logs)
+      return out
 
+pair :: Applicative m => m a -> m b -> m (a, b)
+pair x y = (,) <$> x <*> y
 
--- Compiler for pages/*.rst
-pageCompiler :: Compiler (Item String)
-pageCompiler = getResourceBody >>= rstCompiler >>= makeItem
+addAnchorLinks :: Pandoc -> Pandoc
+addAnchorLinks (Pandoc m bs) = Pandoc m (addInlineAnchor <$> bs)
+  where
+    addInlineAnchor :: Block -> Block
+    addInlineAnchor (Header l a ils) = Header l a (ils ++ [anchorLink ils])
+    addInlineAnchor (Div a divBs) = Div a (addInlineAnchor <$> divBs)
+    addInlineAnchor b = b
+
+    anchorLink :: [Inline] -> Inline
+    anchorLink hInlines = Link attr [Str "anchor"] ("#" <> anchorId hInlines, anchorTitle hInlines)
+      where attr = ("", ["anchor"], [])
+
+    anchorId :: [Inline] -> Text
+    anchorId = inlineListToIdentifier emptyExtensions
+
+    anchorTitle :: [Inline] -> Text
+    anchorTitle = stringify

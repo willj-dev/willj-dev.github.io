@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" prefix="og: https://ogp.me/ns#">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Enable autoscaling for smol screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- OpenGraph metadata for link previews -->
+    <meta property="og:title" content="Appendix: Right Folds From The Left">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://willj.dev//conceptual-fp/appendix-foldr.html">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="willj.dev">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Noto+Sans+Mono|Material+Icons">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <title>Appendix: Right Folds From The Left - willj.dev</title>
+  </head>
+
+  <body id="page-body" class="dark-mode">
+    <header>
+      <h1 id="header-path" class="header-element">
+        <a id="header-root" href="../">willj.dev</a>
+        <span class="header-sep">/</span>
+        <a href="../conceptual-fp">conceptual-fp</a>
+        <span class="header-sep">/</span>
+        <a id="title" href="../conceptual-fp/appendix-foldr.html">Appendix: Right Folds From The Left</a></h1>
+      <div class="header-fill"></div>
+    </header>
+    <main><div id="page-container">
+  <div id="page-toc" class="contents">
+    <div id="next-page">
+      Previous page: <a href="./appendix-lang.html">Appendix: Language-Specific Caveats</a>
+    </div>
+    <ul></ul></div>
+  <div id="page-content">
+    <p>Here we are going to look into how to implement a right fold generically, given only a left fold and no other information about the data structure. The idea is that we fold the structure up, from the left, <em>into a function</em>, where the resulting function is designed to evaluate the right-most values first. Here’s what that looks like:</p><div class="sourceCode" id="cb1"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">foldr </span><span class="op">:</span> <span class="dt">Foldable</span> t <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> b</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>foldr f z t <span class="ot">=</span> (foldl foo bar t) z <span class="kw">where</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    foo <span class="ot">=</span> _</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    bar <span class="ot">=</span> _</span></code></pre></div><p>This is pretty much a direct translation of the idea above: we left-fold (somehow) the structure <code class="sourceCode pseudoml">t</code> into a function that evaluates from the right, then kick it off with the given starting value. Now we just need to figure out what to use for <code class="sourceCode pseudoml">foo</code> and <code class="sourceCode pseudoml">bar</code>! Let’s start by looking at their types, to see if they give us any clues. We know that <code class="sourceCode pseudoml">foldl foo bar t</code> must be a function, and it should have type <code class="sourceCode pseudoml">b <span class="ot">-&gt;</span> b</code>. If we compare that to the type of <code class="sourceCode pseudoml">foldl</code>,</p><div class="sourceCode" id="cb2"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">foldl </span><span class="op">:</span> <span class="dt">Foldable</span> t <span class="ot">=&gt;</span> (c <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> c <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> c</span></code></pre></div><p>in order to have the correct result type, we must have</p><div class="sourceCode" id="cb3"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">foo </span><span class="op">:</span> (b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> (b <span class="ot">-&gt;</span> b)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ot">bar </span><span class="op">:</span> (b <span class="ot">-&gt;</span> b)</span></code></pre></div><p>The second one is easy: whenever you need a value that fits that type signature, it almost certainly should be the identity function <code class="sourceCode pseudoml">id</code>. What about <code class="sourceCode pseudoml">foo</code>? Well let’s treat it as a function of two arguments:</p><div class="sourceCode" id="cb4"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">foo </span><span class="op">:</span> (b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> (b <span class="ot">-&gt;</span> b)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>foo g x <span class="ot">=</span> _</span></code></pre></div><p>At this point, let’s consider what gadgets we have available to us. We haven’t yet used <code class="sourceCode pseudoml"><span class="ot">f </span><span class="op">:</span> a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b</code>, and now we also have <code class="sourceCode pseudoml"><span class="ot">g </span><span class="op">:</span> b <span class="ot">-&gt;</span> b</code> and <code class="sourceCode pseudoml"><span class="ot">x </span><span class="op">:</span> a</code>. In general, unless you have a good reason, you want to try to use all of the variables you have handy. Interestingly, <code class="sourceCode pseudoml">f x</code> will have type <code class="sourceCode pseudoml">b <span class="ot">-&gt;</span> b</code>, so what if we just compose that with <code class="sourceCode pseudoml">g</code>?</p><div class="sourceCode" id="cb5"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">foldr </span><span class="op">:</span> <span class="dt">Foldable</span> t <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> b</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    foldr f z t <span class="ot">=</span> (foldl foo id t) z <span class="kw">where</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        foo g x <span class="ot">=</span> g <span class="op">.</span> f x</span></code></pre></div><p>If you try this out, you’ll find that this definition works exactly as we wanted it to! This is actually somewhat amazing, which is a pretty common occurrence with “type-driven development” as this method is usually called. We could have arrived at the same result if we sat down and worked out exactly what it means to “left-fold a structure into a function that executes a right-fold”, but that would have required a lot more noodling.</p><p>To be honest, though, we cheated a little bit. Doing the composition in <code class="sourceCode pseudoml">foo</code> the other way around would have typechecked, but produces the wrong results:</p><div class="sourceCode" id="cb6"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ot">notFoldr </span><span class="op">:</span> <span class="dt">Foldable</span> t <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> b</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    notFoldr f z t <span class="ot">=</span> (foldl foo id t) z <span class="kw">where</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        foo g x <span class="ot">=</span> f x <span class="op">.</span> g</span></code></pre></div><p>If you work out an example, this turns out to look like a right fold…but for a reversed input! This is the price of type-driven development: sometimes there is more than one choice to fill in a value for a given type, and the only way to determine which choice is correct is by testing it out yourself. Static type checking is not a substitute for <em>all</em> tests!</p>
+  </div>
+</div>
+</main>
+    <footer>
+      <span id="site-source" class="footer-element">
+        <a href="https://github.com/willj-dev/willj-dev.github.io/">Site Source</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="site-source" class="footer-element">
+        <a href="https://github.com/willj-dev/willj-dev.github.io/tree/main/content/pages\conceptual-fp\appendix-foldr.rst">Page Source</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <div id="dark-mode" class="footer-element light-mode-only">Dark Mode</div>
+      <div id="light-mode" class="footer-element dark-mode-only">Light Mode</div>
+      <div class="footer-fill"></div>
+      <span id="built-with" class="footer-element">
+        Built with <a href="https://jaspervdj.be/hakyll">Hakyll</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="hosted-by" class="footer-element">
+        Hosted by <a href="https://pages.github.com">GitHub Pages</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="colors-credit" class="footer-element">
+        <a href="https://github.com/chriskempson/base16">Base16</a> color scheme:
+        <a href="https://github.com/chriskempson/base16-tomorrow-scheme">
+          Tomorrow<span class="dark-mode-only"> Night</span>
+        </a>
+      </span>
+    </footer>
+  </body>
+  <script src="../js/colorMode.js"></script>
+</html>

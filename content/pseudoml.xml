@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd" [
+  <!ENTITY symbolops "\-!#\$&#37;&amp;\*\+/&lt;=&gt;\?&#92;@\^\|~\.:">
+]>
+
+<!--
+  This syntax definition is a stripped-down version of KDE's Haskell syntax by Nicholas Wu:
+  https://github.com/KDE/syntax-highlighting/blob/master/data/syntax/haskell.xml
+-->
+
+<language name="PseudoML" version="1" kateversion="5.53" section="Sources" extensions="*.pseudoml" mimetype="text/x-pseudoml" author="Will Johnson (maintainer@willj.dev)" license="GPLv3" indenter="haskell" style="haskell">
+  <highlighting>
+    <list name="keywords">
+      <item>type</item>
+      <item>typeclass</item>
+      <item>instance</item>
+      <item>data</item>
+      <item>where</item>
+      <item>let</item>
+      <item>in</item>
+      <item>if</item>
+      <item>then</item>
+      <item>else</item>
+      <item>as</item>
+      <item>using</item>
+    </list>
+    <contexts>
+      <context attribute="Normal" lineEndContext="#stay" name="code">
+        <IncludeRules context="FindComment"/>
+
+        <WordDetect attribute="Keyword" context="import" String="import"/>
+        <keyword attribute="Keyword"          context="#stay" String="keywords" />
+        <RegExpr attribute="Special"          context="#stay" String="(::|=&gt;|-&gt;|&lt;-|=)(?![&symbolops;])" />
+        <RegExpr attribute="Signature"        context="#stay" String="\s*[a-z_][a-zA-Z0-9_']*\s*(?=:([^&symbolops;]|$))|\s*(\([&symbolops;]*\))*\s*(?=:[^&symbolops;])" />
+        <RegExpr attribute="Function"         context="#stay" String="([A-Z][a-zA-Z0-9_']*\.)*[a-z_][a-zA-Z0-9_']*" />
+        <RegExpr attribute="Operator"         context="#stay" String="([A-Z][a-zA-Z0-9_']*\.)*[&symbolops;]+" />
+        <RegExpr attribute="Type"             context="#stay" String="([A-Z][a-zA-Z0-9_']*\.)*[A-Z][a-zA-Z0-9_']*|'(?![A-Z]')([A-Z][a-zA-Z0-9_']*\.)*[A-Z][a-zA-Z0-9_']*" />
+
+        <RegExpr    attribute="Float"   context="#stay" String ="\d+\.\d+([Ee][+-]?\d+)?|\d+[Ee][+-]?\d+"/>
+        <RegExpr    attribute="Octal"   context="#stay" String="0[Oo][0-7]+"/>
+        <RegExpr    attribute="Hex"     context="#stay" String="0[Xx][0-9A-Fa-f]+"/>
+        <Int        attribute="Decimal" context="#stay" />
+        <DetectChar attribute="Char"    context="char" char="'" />
+        <DetectChar attribute="String"  context="string" char="&quot;" />
+
+        <DetectChar attribute="Function Infix" context="infix" char="`"/>
+        <Detect2Chars attribute="EnumFromTo" context="#stay" char ="." char1="." />
+        <DetectChar attribute="EnumFromTo" context="#stay" char="‥" />
+      </context>
+      
+      <context attribute="Normal" lineEndContext="#pop" name="FindComment">
+        <Detect2Chars attribute="Comment" context="comments" char="{" char1="-" beginRegion="BlockComment"/>
+        <RegExpr attribute="Comment" context="comment" String="--+(?![&symbolops;])"/>
+      </context>
+      <context attribute="Comment" lineEndContext="#pop" name="comment">
+        <DetectSpaces attribute="Comment" />
+        <IncludeRules context="##Comments" />
+        <DetectIdentifier attribute="Comment" />
+      </context>
+      <context attribute="Comment" lineEndContext="#stay" name="comments">
+        <DetectSpaces attribute="Comment" />
+        <Detect2Chars attribute="Comment" context="comments" char="{" char1="-" beginRegion="BlockComment" />
+        <Detect2Chars attribute="Comment" context="#pop" char="-" char1="}" endRegion="BlockComment" />
+        <IncludeRules context="##Comments" />
+        <DetectIdentifier attribute="Comment" />
+      </context>
+      
+      <context attribute="Normal" lineEndContext="#pop" name="import">
+        <DetectSpaces attribute="Normal" />
+        <keyword attribute="Keyword"          context="#stay" String="import_keywords" />
+        <RegExpr attribute="Function"         context="#stay" String="([A-Z][a-zA-Z0-9_']*\.)*[a-z][a-zA-Z0-9_']*" />
+        <RegExpr attribute="Type"             context="#stay" String="([A-Z][a-zA-Z0-9_']*\.)*[A-Z][a-zA-Z0-9_']*" />
+
+        <IncludeRules context="FindComment" />
+      </context>
+      
+      <context attribute="Char" lineEndContext="#pop" name="char">
+        <DetectChar attribute="Char" context="#pop" char="'" />
+        <RegExpr attribute="Char" context="#stay" String="\\." />
+      </context>
+      <context attribute="String" lineEndContext="#stay" name="string">
+        <DetectChar attribute="String" context="#pop" char="&quot;" />
+        <RegExpr attribute="String" context="#stay" String="\\." />
+      </context>
+      
+      <context attribute="Function Infix" lineEndContext="#stay" name="infix">
+        <DetectChar attribute="Function Infix" context="#pop" char="`"/>
+        <DetectIdentifier attribute="Function Infix"/>
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal"           defStyleNum="dsNormal"   spellChecking="false" />
+      <itemData name="Comment"          defStyleNum="dsComment" />
+
+      <itemData name="Keyword"          defStyleNum="dsKeyword"  spellChecking="false" />
+
+      <itemData name="Signature"        defStyleNum="dsOthers"  spellChecking="false" />
+      <itemData name="Function"         defStyleNum="dsNormal"   spellChecking="false" />
+      <itemData name="Operator"         defStyleNum="dsOperator" spellChecking="false" />
+      <itemData name="Type"             defStyleNum="dsDataType" spellChecking="false" />
+      <itemData name="Special"          defStyleNum="dsOthers"  spellChecking="false" />
+
+      <itemData name="Octal"            defStyleNum="dsBaseN"    spellChecking="false" />
+      <itemData name="Hex"              defStyleNum="dsBaseN"    spellChecking="false" />
+      <itemData name="Decimal"          defStyleNum="dsDecVal"   spellChecking="false" />
+      <itemData name="Float"            defStyleNum="dsFloat"    spellChecking="false" />
+      <itemData name="Char"             defStyleNum="dsChar"     spellChecking="false" />
+      <itemData name="String"           defStyleNum="dsString" />
+
+      <itemData name="Function Infix"   defStyleNum="dsOthers"   spellChecking="false" />
+      <itemData name="EnumFromTo"       defStyleNum="dsOthers"   spellChecking="false" />
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="1"/>
+    <comments>
+      <comment name="singleLine" start="--" />
+      <comment name="multiLine" start="{-" end="-}" region="BlockComment" />
+    </comments>
+    <keywords casesensitive="1" />
+  </general>
+</language>

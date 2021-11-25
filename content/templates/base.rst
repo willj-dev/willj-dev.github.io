@@ -1,3 +1,4 @@
-$rst-prefix$
+
+.. role:: raw-hakyll(raw)
+
 $body$
-$rst-suffix$

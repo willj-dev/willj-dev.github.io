@@ -1,33 +1,25 @@
-{-# LANGUAGE OverloadedStrings #-}
+module Site (site) where
 
+import qualified Data.ByteString      as SBS
+import qualified Data.ByteString.Lazy as LBS
 import Hakyll
 
-import Site.Pandoc (pageCompiler)
+import Site.Common
+import Site.ConceptualFP
+import Site.Project
+import Site.Utopia
 
-import qualified Data.ByteString as SBS
-import qualified Data.ByteString.Lazy as LBS
-import System.FilePath (takeFileName, splitDirectories)
-import System.FilePath.Posix (joinPath) -- always use '/' to make site paths
-import Data.Foldable (foldl')
-import Site.Config (makeItemWith)
-
-hakyllConfig :: Configuration
-hakyllConfig =
-  defaultConfiguration
-    { destinationDirectory = "docs",
-      providerDirectory = "content"
-    }
-
-main :: IO ()
-main = hakyllWith hakyllConfig $ do
+site :: Rules ()
+site = do
   loadTemplates
   compileNotFound
   loadSiteConfig
   copyFiles
   compileSass
-  compileIndex
 
-loadTemplates, compileNotFound, loadSiteConfig, copyFiles, compileSass, compileIndex :: Rules ()
+  sequence [utopiaRules, conceptualFPRules] >>= compileIndex
+
+loadTemplates, compileNotFound, loadSiteConfig, copyFiles, compileSass :: Rules ()
 
 loadTemplates = match "templates/*" $ compile templateBodyCompiler
 
@@ -53,17 +45,24 @@ compileSass = match "css/main.scss" $
     route $ setExtension "css"
     compile sassCompiler
 
-compileIndex = match "index.rst" $ do
+compileIndex :: [ProjectMetadata] -> Rules ()
+compileIndex projs = match "index.html" $ do
   route $ setExtension "html"
-  compile $
-    pageCompiler
-      >>= loadAndApplyTemplate "templates/index.html" defaultContext
-      >>= loadAndApplyTemplate "templates/base.html" (pageDirsContext <> defaultContext)
-      >>= relativizeUrls
+  compile $ getResourceBody
+    >>= applyAsTemplate projectsContext
+    >>= loadAndApplyTemplate "templates/index.html" defaultContext
+    >>= loadAndApplyTemplate "templates/base.html" defaultContext
+    >>= relativizeUrls
+  where
+    projectsContext = listField "projects" projectContext projectItems
 
-filenameOnlyRoute, htmlExtensionRoute :: Routes
-filenameOnlyRoute = customRoute (takeFileName . toFilePath)
-htmlExtensionRoute = setExtension "html"
+    projectContext = mconcat [projTitleField, projIdField, projBlurbField]
+    projTitleField = field "project-title" (return . proj_title . itemBody)
+    projIdField = field "project-id" (return . proj_id . itemBody)
+    projBlurbField = field "blurb" (return . proj_blurb . itemBody)
+    
+    projectItems = return $ makeProjectItem <$> projs
+    makeProjectItem = makeItemWith (\(ProjectMetadata _ pid _) -> fromFilePath $ "__page_" ++ pid)
 
 sassCompiler :: Compiler (Item String)
 sassCompiler = getResourceString >>= withItemBody callSass
@@ -74,22 +73,3 @@ withSassIncludes :: Rules () -> Rules ()
 withSassIncludes sassRules = do
   deps <- makePatternDependency "css/_*.scss"
   rulesExtraDependencies [deps] sassRules
-
-pageDirsContext :: forall a. Context a
-pageDirsContext = listField "page-dirs" pageDirContext pageDirsCompiler
-  where
-    pageDirContext = mconcat [cumulativeDirField, currentDirField]
-    cumulativeDirField = field "cumulative-dir" (return . fst . itemBody)
-    currentDirField = field "current-dir" (return . snd . itemBody)
-
-    pageDirsCompiler = foldPageDirs . toFilePath <$> getUnderlying
-    foldPageDirs itemPath = foldl' foldFn [] (init $ splitDirectories itemPath)
-
-    foldFn :: [Item (String, String)] -> FilePath -> [Item (String, String)]
-    foldFn [] rootDir = [makeItemWith pageDirIdentifier (rootDir, rootDir)]
-    foldFn dirs nextDir = dirs ++ [
-      makeItemWith pageDirIdentifier (joinPath [fst . itemBody $ last dirs, nextDir], nextDir)
-      ]
-
-    pageDirIdentifier (cd, _) = fromFilePath $ "__page_dir_" ++ cd
-
