@@ -6,24 +6,24 @@ blurb: >
 
 The Corporation to End Capitalism
 
-*Disclaimer: this document needs a lawyer because I’m not sure exactly which financial services a fraternal order (which is the main arm of the MU’s first phase of existence: The Millennial Utopian Society) is allowed to conduct directly. Plenty provide their own insurance services (e.g. Thrivent), but since we want to be able to make rent payments and so forth on our members’ behalf, I’m not exactly sure whether or not special banking/finance regulations apply and would prevent us from doing this with any 501c exemptions.*
+*Disclaimer: this document needs a lawyer because I’m not sure exactly which financial services we are allowed to conduct directly. Plenty of "benefit societies" provide their own insurance services (e.g. Thrivent), but since we want to be able to make rent payments and so forth on our members’ behalf, I’m not exactly sure whether or not special banking/finance regulations apply and would prevent us from doing this with any 501c exemptions.*
 
 Mission
 *************************************************
 
-The mission of Utopian Capital is to support the development of a just society by managing the capital assets of the Millennial Utopian Society (MUS), and any of its individual members, with their permission and on their behalf. This will support the continuing provision of equal rights under the `Millennial Social Code`_ (MSC) to the largest possible population.
+The mission of Utopian Capital is to support the development of a just society by managing the capital assets of the Millennial Utopian society (MU), and any of its individual members, with their permission and on their behalf. This will support the continuing provision of equal rights under the `Millennial Social Code`_ (MSC) to the largest possible population.
 
 Business Model
 *************************************************
 
-MUS will attract and retain new members by building a solid foundation of public trust. This is accomplished by:
+MU will attract and retain new members by building a solid foundation of public trust. This is accomplished by:
 
 - maintaining complete transparency in our governance and financial activity;
 - maintaining a reputation for being faithful to our mission;
 - providing each member an equal share in the company; and
 - offering members access to employment opportunities in company governance and other activities in support of our mission.
 
-Revenue to fund the operations of UC, including wages paid to employees of MUS or its subsidiaries, will come from:
+Revenue to fund the operations of MU, including wages paid to employees or its subsidiaries, will come from:
 
 - interest on responsibly managed capital investments;
 - annually renegotiable member fees; and
@@ -87,7 +87,9 @@ Some of these services may be limited until we have a large enough member base t
 I doubt it.
 ===================================
 
-That's fine! But it's also not a question. Anyway, no one's making you join. Keep reading to see for yourself how it works, and check out the documentation to get more details about our long term vision!
+That's fine! But it's also not a question. Anyway, no one's making you join. Keep reading to see for yourself how it works, and check out `the documentation`_ to get more details about our long term vision!
+
+.. _the documentation: ./index.html
 
 How does membership work?
 ===================================
@@ -106,7 +108,7 @@ In order of preference:
 1) Directly employing enough people who are involved in producing those goods or providing those services, in sufficient numbers to guarantee free and equal access to all members
 2) Directly paying non-members, on a member’s behalf, for basic goods and services we cannot provide ourselves
 3) Immediate reimbursement of any costs for basic goods or services that members must pay out of pocket
-4) Keeping enough cash set aside to give to members if they cannot reasonably and practically acquire basic goods or services in any other way (See also: Cash Disbursement as a Last Resort)
+4) Keeping enough cash set aside to give to members if they cannot reasonably and practically acquire basic goods or services in any other way (See also: `Cash Handouts as a Last Resort`_)
 
 What if I already have my own access to housing, health insurance, or any other MU service?
 ============================================================================================
@@ -117,14 +119,14 @@ Entirely at your option, you may give us the responsibility for managing the pay
 
 The reason this works is because we use our member fees to make responsible investments which have a stable rate of return. By taking responsibility for managing members' usual expenses, we make more cash available for those investments. The profits from those investments provide additional support for our services and allow us to increase the number of members we can support.
 
-Of course, many people are not able to afford even their current expenses, through no fault of their own, because of random chance (like where they were born) or because they are one of the many victims of an abusive and exploitative capitalist system. Our financial strategy is designed to at least guarantee that our current members will have equal access to our services regardless of their personal circumstances. Unfortunately, even an uncommonly successful investment strategy will probably take generations until it grows to the point that we can responsibly support our services for everyone who wants them. Thus, when we are negotiating member fees with a prospective member, we will invite them (entirely at their option) to pay fees in excess of what they might reasonably expect us to pay on their behalf. This will never have any bearing on access to services, but it is profoundly appreciated because it proves that more privileged members are nonetheless willing to volunteer more of their own money in support of equal rights for every person. They may receive, at most, a financially negligible token of our thanks for their commitment to our mission.
+Of course, many people are not able to afford even their current expenses, through no fault of their own, because of random chance (like where they were born) or because they are one of the many victims of an abusive and exploitative capitalist system. Our financial strategy is designed to at least guarantee that our current members will have equal access to our services regardless of their personal circumstances. Unfortunately, even an uncommonly successful investment strategy will probably take generations until it grows to the point that we can responsibly support our services for everyone who wants them. Thus, when we are negotiating member fees with a prospective member, we will invite them (*entirely at their option*) to pay fees in excess of what they might reasonably expect us to pay on their behalf. This will never have any bearing on access to services, but it is profoundly appreciated because it proves that more privileged members are nonetheless willing to volunteer more of their own money in support of equal rights for every person. They may receive, at most, a financially negligible token of our thanks for their commitment to our mission.
 
 What if no one wants to pay excess member fees?
 ========================================================
 
 This would be disappointing, because it constrains the rate at which we can expand our services to a larger population. It is also unlikely, because it is our belief that most people will be willing to contribute at least a tiny bit more than they actually need. In fact, even in capitalism this isn’t unprecedented, because otherwise insurance companies wouldn’t work!
 
-In any event, one of the key principles of our expansion plan is to only start a new round of applications when we can be reasonably sure that any new members could be supported with the resources we already have. This is, incidentally, exactly the difference between an insurance company and a Ponzi scheme. Without this protection, we would immediately be trapped in a death spiral of desperate recruitment, unmanageable growth, and a complete loss of trust in our ability to succeed in our mission.
+In any event, one of the key principles of our expansion plan is to only start a new round of applications when we can be reasonably sure that any new members could be supported *with the resources we already have*. This is, incidentally, exactly the difference between an insurance company and a Ponzi scheme. Without this protection, we would immediately be trapped in a death spiral of desperate recruitment, unmanageable growth, and a complete loss of trust in our ability to succeed in our mission.
 
 The key observation is that people only ever willingly give away money under three conditions:
 - they can afford to;
@@ -157,16 +159,18 @@ We can, however, keep track of aggregated benefit usage information (like how mu
 
 If we think it's possible that a member is defrauding us, we will gather the evidence we found and ask them if they can explain the discrepancy. If they are able to demonstrate that they weren't acting out of harmful intent or negligence, we'll just have to adjust our own expectations to accommodate the glitch. If we nevertheless strongly suspect that the member is being dishonest, we will report our suspicions to the local authorities so that they can complete a more thorough investigation with a legal search warrant and due process.
 
-If we are forced to take this path, we will only seek reasonable recovery of financial losses resulting directly from fraudulent activity. MULLC will never, directly or indirectly, attempt to pursue a prison sentence against any person for any reason whatsoever. Furthermore, conviction of intentional or negligent financial abuse of MULLC as a whole is the only circumstance in which we will revoke a person's membership.
+If we are forced to take this path, we will **only** seek reasonable recovery of financial losses resulting directly from fraudulent activity. MULLC will never, directly or indirectly, attempt to pursue a prison sentence against any person for any reason whatsoever. Furthermore, conviction of intentional or negligent financial abuse of MULLC as a whole is the **only** circumstance in which we will revoke a person's membership.
 
 Cash Handouts as a Last Resort
 ''''''''''''''''''''''''''''''''
 
 Whenever possible, we strive to directly employ enough people to provide basic goods and services equally to all members; directly pay on a member’s behalf for basic goods and services provided by non-members; or immediately reimburse any out-of-pocket costs for basic goods and services that present an undue financial burden. This allows us to make sure that our funds are actually used for the purpose we expect.
 
-This is not quite enough, though; if we do not provide a certain service, and there is no practical way to directly pay on a member’s behalf, we should not expect all members to have enough cash on hand to pay for that service out-of-pocket before we reimburse them. In such a case, there is no option except to simply give out cash, and we must accept the inevitable fact that some of this cash will be used for goods or services we didn’t intend. (See also: Benefit Abuse.)
+This is not quite enough, though; if we do not provide a certain service, and there is no practical way to directly pay on a member’s behalf, we should not expect all members to have enough cash on hand to pay for that service out-of-pocket before we reimburse them. In such a case, there is no option except to simply give out cash, and we must accept the inevitable fact that some of this cash will be used for goods or services we didn’t intend. (See also: `Benefit Abuse`_.)
 
-One important thing we do not do is use coercive tactics (like hounding members for receipts or, god forbid, employing debt collectors) to ensure repayment of any cash we don’t believe was used in good faith. One of the first things we must accept is that it is simply not possible in a large enough society to make sure that every single dollar goes exactly to the place we want it to. This was discussed in more detail above, as it applies to public data monitoring for investigation of egregious fraudulent use of MULLC funds.
+.. _Benefit Abuse: ./selected-principles.html#benefit-abuse
+
+One important thing we **do not** do is use coercive tactics (like hounding members for receipts or, god forbid, employing debt collectors) to ensure repayment of any cash we don’t believe was used in good faith. One of the first things we must accept is that it is simply not possible in a large enough society to make sure that every single dollar goes exactly to the place we want it to. This was discussed in more detail above, as it applies to public data monitoring for investigation of egregious fraudulent use of MULLC funds.
 
 We use a few strategies to minimize the risk for abuse, even though we know that this risk cannot be completely eliminated:
 
@@ -220,7 +224,7 @@ By making sure that all of its members have equal access to basic goods and serv
 What exactly does "equal access to housing" mean?
 ========================================================
 
-Excellent question! Hopefully it goes without saying that we are not trying to create a world where everyone lives in an identical box with an identical bed and an identical dog. We also don’t really think that humans are quite cut out for universal communal living (unless they really want to). Besides, this would fail to provide adequate privacy which we believe is a fundamental right. So what do we mean?
+Excellent question! Hopefully it goes without saying that we are not trying to create a world where everyone lives in an identical box with an identical bed and an identical dog. We also don’t really think that humans are quite cut out for universal communal living (unless they really want to). Besides, this would fail to provide adequate privacy which we believe is a fundamental right. So what *do* we mean?
 
 - figure out median housing costs in a given area
 - figure out approximate desirability levels

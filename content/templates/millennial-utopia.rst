@@ -23,10 +23,15 @@ $body$
 
 .. _Selected Utopian Social Principles: ./selected-principles.html
 
+.. _Salad Consumer:
+.. _Salad Consumers:
+  ./selected-principles.html#work-ethic
+
 .. _Transitioning From Capitalism: ./transition.html
 
 .. _Equitable Management and Distribution of Shared Resources: ./managing-shared-resources.html
 
+.. _MULLC:
 .. _Utopian Capital: ./utopian-capital.html
 
 .. _Implementation Ideas: ./implementation-ideas.html

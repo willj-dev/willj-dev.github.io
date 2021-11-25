@@ -4,20 +4,22 @@ blurb: >
   This is the template for our own internal governance, as well as being a model for any modern representative democracy, from PTA meetings to nation-states.
 ------------------------
 
-This document defines a governmental structure which is founded on the principles of direct democracy and proportional representation. The primary duty of this government is to uphold and defend The Millennial Social Code equally for all persons. Any resources generated in excess of those required to fulfill this duty are to be fairly, openly, and reasonably allocated for the enjoyment and enlightenment of individual citizens and humanity as a whole.
+This document defines a governmental structure which is founded on the principles of direct democracy and proportional representation. The primary duty of this government is to uphold and defend the `Millennial Social Code`_ (MSC) equally for all persons. Any resources generated in excess of those required to fulfill this duty are to be fairly, openly, and reasonably allocated for the enjoyment and enlightenment of individual citizens and humanity as a whole.
 
 Article 1 - Council Structure & Election Process
 *************************************************
 
-The government is organized into three governmental councils: the Legislative Council (LC); the Executive Council (EC); and the Judicial Council (JC). Any person elected to a governmental council is called a governmental officer. Each council may select or draft its own rules of parliamentary procedure.
+The government is organized into three *governmental councils*: the Legislative Council (LC); the Executive Council (EC); and the Judicial Council (JC). Any person elected to a governmental council is called a *governmental officer*. Each council may select or draft its own rules of parliamentary procedure.
 
 Election of any officer is by ranked-choice voting with instant runoff, where each vote is allocated equally to each citizen represented by that officer.
 
-The process of determining the number of seats in a governmental council, and which citizens vote for which seats, is called representative apportionment. This is undertaken every eight years, beginning with a census. Census surveys may request more information than is strictly necessary to apportion representation (i.e. names and addresses), but providing this additional information must be entirely voluntary. Any apportionment (such as into geographical districts) must ensure, to the greatest practical extent, that each officer represents an equal number of citizens, and that that officer’s electorate is fairly representative of the population as a whole.
+The process of determining the number of seats in a governmental council, and which citizens vote for which seats, is called *representative apportionment*. This is undertaken every eight years, beginning with a census. Census surveys may request more information than is strictly necessary to apportion representation (i.e. names and addresses), but providing this additional information must be entirely voluntary. Any apportionment (such as into geographical districts) must ensure, to the greatest practical extent, that each officer represents an equal number of citizens, and that that officer’s electorate is fairly representative of the population as a whole. Economists Emmanuelle Auriol and Robert J. Gary-Bobo have already explored this question in `On the optimal number of representatives`_ (2011), which may serve as a place to start.
 
-The length of any single term of office may be no longer than four years. No person may serve in two elected positions at once. Each person is limited to sixteen years (not necessarily consecutive) in any elected office. All citizens who may vote for a particular office are eligible for election to that office, and any governmental office must be held by a citizen.
+.. _On the optimal number of representatives: http://idei.fr/sites/default/files/medias/doc/by/auriol/representatives.pdf
 
-Any normally scheduled election for members of a government council must be completed with enough time for the incoming council to appoint a Chair before the previous term ends. The Chair of a council is ultimately responsible for directing the management of that council’s business. A Chair is appointed by a simple majority of its council members, with the approval of another council. Any Chair may be replaced prematurely by two-thirds vote of any two government councils. The specific duties of each council’s Chair, and which councils may approve their appointment, are provided below.
+The length of any single term of office may be no longer than four years. No person may serve in two elected positions at once. Each person is limited to sixteen years (not necessarily consecutive) in any elected office. All citizens who may vote for a particular office are eligible for election to that office, and any governmental office must be held by a citizen of that government.
+
+Any normally scheduled election for members of a government council must be completed with enough time for the incoming council to appoint a Chair before the previous term ends. The Chair of a council is ultimately responsible for directing the management of that council’s business. A Chair is appointed by a simple majority of its council members, and approved by another council (as specified below). Any Chair may be replaced prematurely by two-thirds vote of any two government councils. The specific duties of each council’s Chair, and which councils may approve their appointment, are provided below.
 
 Article 2 - Legislative Council
 *************************************************
@@ -26,22 +28,16 @@ The LC drafts laws and sends them to the EC for final approval and implementatio
 
 The Chair of the Legislative Council is called its Speaker. Appointment of the Speaker is approved by the Judicial Council.
 
-Laws are passed by proportional, direct representation in a unicameral legislature. Maintain an odd number of seats to prevent ties. Needs to have a method for determining fair and reasonable limits on representation (how many people per representative) and apportionment (how to decide who votes for which seats).
-
-Can remove elected judges with consent of the chief executive; can remove executives with the consent of the high court. Approves executive cabinet nominees. Sets budgets for executive departments, salaries for essential jobs, minimum salaries for nonessential jobs.
-
-Robert’s Rules of Order, or a sufficiently modernized offshoot, for parliamentary procedure.
+The LC can remove elected judges with consent of the chief executive, and it can remove executives with the consent of the high court. Approves executive cabinet nominees. Sets budgets for executive departments, salaries for essential jobs, minimum salaries for nonessential jobs.
 
 Article 3 - Executive Council
 *************************************************
 
 The primary duty of the Executive Council (EC) is to approve and implement the laws passed by the Legislative Council. It also approves the Judicial Council’s appointment of its own chair, and the Legislative Council’s early replacement of its chair. 
 
-The Chair of the Executive Council is called the Chief Executive, and has ultimate authority for implementing governmental programs in fulfillment of its duties. Any Chief Executive must be appointed by the ExThe Chief Executive may appoint other members of the Executive Council as a Director of any Executive Department defined by law, subject to the approval and consent of the Legislative Council. 
+The Chair of the Executive Council is called the Chief Executive, and has ultimate authority for implementing governmental programs in fulfillment of its duties. The Chief Executive may appoint other Executive Councillors as Directors of any Executive Department defined by law, subject to the approval and consent of the Legislative Council. Directors are divided between managing distribution of basic goods/services and jobs to maintain them; and allocation of excess production for government-sponsored research/art, and salaries for the market of nonessential goods and services.
 
-Elected Chief Executive (irony!) and Directors to run executive departments. Confirms or vetoes each law passed by the legislature.
-
-Directors are divided between managing distribution of basic goods/services and jobs to maintain them; and allocation of excess production for government-sponsored research/art, and salaries for the market of nonessential goods and services.
+The EC is responsible for confirming or vetoing each law passed by the LC, and then implementing those laws subject to the oversight of the JC.
 
 Article 4 - Judicial Council
 *************************************************
