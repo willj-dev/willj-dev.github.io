@@ -41,6 +41,14 @@
 
   #page-content {
     flex: 0 1 48em;
+
+    ul, ol {
+      padding: 0 0 0 1em;
+
+      ul, ol {
+        margin-left: 1em;
+      }
+    }
   }
 
   @media (max-width: 425px) {
@@ -55,10 +63,6 @@
       border-right: none;
       border-bottom-width: 1px;
       border-bottom-style: solid;
-    }
-
-    #page-content {
-      padding-right: 2em;
     }
   }
 }

@@ -20,7 +20,7 @@ Type declarations and assignments look like this:
    myCharList : String
    myCharList = ['H', 'e', 'l', 'l', 'o']
 
-The `type` keyword creates a *type synonym*; this is just a different label, sometimes to save on keyboard work for a frequently-used but complex type name, or sometimes as a form of documentation (as in `type UserId = String`). Brand new types are declared with `data`:
+The `type` keyword creates a *type synonym*; this is just a different label, sometimes to save on keyboard work for a frequently-used but complex type name, or sometimes as a form of documentation (as in `type UserId = String`). Brand new types are declared with `data`\:
 
 .. code:: pseudoml
 
@@ -115,7 +115,7 @@ The `map` function is the usual: it takes a function `(a -> b)` and a list `[a]`
 Recursion
 ---------
 
-Recursion is much more important in functional programming than in imperative programming, because recursion is the primary way to implement loops (in addition to the various other uses that it has in common with non-functional code). We will have much more to say about recursion later on (see Part `5 <#part:recursion>`__), but for now we can go over some basic examples to get us started.
+Recursion is much more important in functional programming than in imperative programming, because recursion is the primary way to implement loops (in addition to the various other uses that it has in common with non-functional code). We will have much more to say about recursion later on (see `Recursion Schemes`_), but for now we can go over some basic examples to get us started.
 
 Here’s how we might implement `map` over lists:
 

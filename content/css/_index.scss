@@ -7,7 +7,6 @@
     margin: 0.5em;
     width: 30vw;
     min-width: 256px;
-
     min-height: 256px;
 
     .card-title {
@@ -21,10 +20,11 @@
 
   @media (max-width: 425px) {
     flex-direction: column;
+    align-items: stretch;
 
     .project-card {
       margin: 0;
-      width: 256px;
+      width: auto;
       margin-bottom: 1em;
     }
   }
