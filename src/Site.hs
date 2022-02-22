@@ -8,6 +8,7 @@ import Site.Common
 import Site.ConceptualFP
 import Site.Project
 import Site.Utopia
+import Site.Pandoc (compilePandocRST', compileHTMLPandoc)
 
 site :: Rules ()
 site = do
@@ -48,8 +49,9 @@ compileSass = match "css/main.scss" $
 compileIndex :: [ProjectMetadata] -> Rules ()
 compileIndex projs = match "pages/home.rst" $ do
   route $ constRoute "index.html"
-  compile $ getResourceBody
-    >>= loadAndApplyTemplate "templates/index.html" (projectsContext <> defaultContext)
+  compile $ compilePandocRST' >>= compileHTMLPandoc >>= makeItem
+    >>= loadAndApplyTemplate "templates/home.html" (projectsContext <> defaultContext)
+    >>= loadAndApplyTemplate "templates/index.html" defaultContext
     >>= loadAndApplyTemplate "templates/base.html" defaultContext
     >>= relativizeUrls
   where
