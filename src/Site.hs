@@ -46,11 +46,10 @@ compileSass = match "css/main.scss" $
     compile sassCompiler
 
 compileIndex :: [ProjectMetadata] -> Rules ()
-compileIndex projs = match "index.html" $ do
-  route $ setExtension "html"
+compileIndex projs = match "pages/home.rst" $ do
+  route $ constRoute "index.html"
   compile $ getResourceBody
-    >>= applyAsTemplate projectsContext
-    >>= loadAndApplyTemplate "templates/index.html" defaultContext
+    >>= loadAndApplyTemplate "templates/index.html" (projectsContext <> defaultContext)
     >>= loadAndApplyTemplate "templates/base.html" defaultContext
     >>= relativizeUrls
   where
