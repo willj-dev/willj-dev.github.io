@@ -9,8 +9,14 @@ import qualified System.FilePath as FPL -- FilePath Local, for files on the curr
 
 import Site.Common hiding (CompiledPage(..))
 
-pageIdentifier :: ProjectId -> PageId -> Identifier
-pageIdentifier projId pgId = fromFilePath $ FPL.joinPath ["pages", projId, pgId ++ ".rst"]
+pageIdentifierRST :: ProjectId -> PageId -> Identifier 
+pageIdentifierRST = pageIdentifier "rst"
+
+pageIdentifierTeX :: ProjectId -> PageId -> Identifier
+pageIdentifierTeX = pageIdentifier "tex"
+
+pageIdentifier :: String -> ProjectId -> PageId -> Identifier
+pageIdentifier ext projId pgId = fromFilePath $ FPL.joinPath ["pages", projId, pgId ++ "." ++ ext]
 
 pageId :: Identifier -> PageId
 pageId = FPL.takeBaseName . toFilePath
@@ -26,7 +32,6 @@ makePageMetadata pg = do
   title     <- getMetadataField' pg "title"
   blurb     <- getMetadataField pg "blurb"
   return $ Item (addIdSuffix pg "_md") (PageMetadata (pageId pg) title blurb)
-
 
 pageMetadataContext :: Context PageMetadata
 pageMetadataContext =

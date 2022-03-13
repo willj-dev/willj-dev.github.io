@@ -6,6 +6,7 @@ import Hakyll
 
 import Site.Common
 import Site.ConceptualFP
+import Site.GeometricUniverse
 import Site.Project
 import Site.Utopia
 import Site.Pandoc (compilePandocRST', compileHTMLPandoc)
@@ -18,7 +19,7 @@ site = do
   copyFiles
   compileSass
 
-  sequence [utopiaRules, conceptualFPRules] >>= compileIndex
+  sequence [utopiaRules, conceptualFPRules, guRules] >>= compileIndex
 
 loadTemplates, compileNotFound, loadSiteConfig, copyFiles, compileSass :: Rules ()
 
@@ -49,7 +50,7 @@ compileSass = match "css/main.scss" $
 compileIndex :: [ProjectMetadata] -> Rules ()
 compileIndex projs = match "pages/home.rst" $ do
   route $ constRoute "index.html"
-  compile $ compilePandocRST' >>= compileHTMLPandoc >>= makeItem
+  compile $ dbg projs >> compilePandocRST' >>= compileHTMLPandoc >>= makeItem
     >>= loadAndApplyTemplate "templates/home.html" (projectsContext <> defaultContext)
     >>= loadAndApplyTemplate "templates/index.html" defaultContext
     >>= loadAndApplyTemplate "templates/base.html" defaultContext

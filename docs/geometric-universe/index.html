@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" prefix="og: https://ogp.me/ns#">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Enable autoscaling for smol screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- OpenGraph metadata for link previews -->
+    <meta property="og:title" content="The Geometric Universe">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://willj.dev//geometric-universe/index.html">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="willj.dev">
+
+    <!-- MathJax -->
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Noto+Sans+Mono|Material+Icons">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <title>The Geometric Universe - willj.dev</title>
+  </head>
+
+  <body id="page-body" class="dark-mode">
+    <header>
+      <h1 id="header-path" class="header-element">
+        <a id="header-root" href="../">willj.dev</a>
+        <span class="header-sep">/</span>
+        <a href="../geometric-universe">geometric-universe</a>
+        <span class="header-sep">/</span>
+        </h1>
+      <div class="header-fill"></div>
+    </header>
+    <main><div id="index-container">
+  <div id="index-content">
+    <p>The goal of these pages is to provide a “museum tour” of the state-of-the-art mathematical framework that describes the fundamental behavior of the universe, which I have not very humbly decided to refer to as the <strong>Geometric Universe Hypothesis</strong>. In general, I will not be going into proofs, but I will be sure to point out where they can be found<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p><p>An important point to remember as we move along is that all of our equations are “museum pieces” in the sense that they look nice, and the math checks out, but they are essentially impossible to use in practice. The hypothesis we’re building up to is basically an algorithm for writing down a large number of <em>absolutely gnarly</em> differential equations. We can hand wave away many of these by doing an equally large number of <em>completely preposterous</em> integrals. There’s still a good chance that what you’re left with could only be solved numerically, and that could take long enough that the sun will have gone out, and humanity will be doing better things on different planets (if we managed not to fizzle out on Earth). Physicists dislike intractable differential equations as much as anyone else, and so in many</p><p>Understanding the math is not required to follow along, but it will certainly help if you are on cordial terms with algebra, and perhaps even have a passing acquaintance with calculus. If you are out of practice reading text with equations in it, fear not! When you encounter an equation (or, equivalently, unfamiliar technical jargon) in the wild, the trick is to use a particular reading strategy that usually isn’t needed outside The Literature. Don’t panic! Take a moment to stare at the equation/term; if it doesn’t mean anything to you, it might come up later, and these things often make more sense when you see it used in context a few times. Just put a mental sticky note on it and move on, keeping an eye out for anywhere else it shows up in case that yields hints. It will feel very slow at first, but I promise the payoff of knowing how to read technical literature without becoming overwhelmed is a pretty sweet skill to have in your back pocket if you ever find yourself wanting to read up on an unfamiliar topic (it happens, I swear!). With practice it becomes second nature—it is, in fact, one of the unspoken basic skills / secret arts of grad school. In any event, on ten-point scales for some parameters I just made up, I promise not to exceed a 2 in complicated notation; 1 in tedious derivation; or a 3 in jargon-to-prose ratio!</p><p>We should also take a moment to address the common narrative that theoretical physics is made of two fundamentally incompatible mathematical frameworks. In a sense this is true, and we will see it later on; we can formulate our hypothesis at either a <em>global scale</em> (with a Lagrangian in discrete variables) or a <em>local scale</em> (as a Lagrange density of (quantum) fields). But the development of the technique of <em>renormalization</em> into a rigorous mathematical discipline</p><p>To be clear, I am not trying to overturn any paradigms or anything; the content here should agree with the treatments given in university classes. In fact, there are already many great books that provide a narrative account of modern physics; I first discovered the subject through Steven Hawking’s <em>A Brief(er) History of Time</em>. However, to my knowledge, no one has given a recent, full-blown, accessibly-technical account of the "physical axioms" that we can treat as fundamental to the universe, from the metaphysical boundary (what does that even mean, anyway?) out to where physics starts to bleed into other scientific disciplines. I have always longed for a version of those books with a <em>bit</em> more math - not so much as to need a degree, but enough to feel a bit closer to the “actual machinery”. Now that I can actually claim to be familiar with the math in question, I might as well just write it myself!</p><p>The mathematical framework I use is also fairly well established; mathematicians call it the <a href="https://en.wikipedia.org/wiki/Clifford_algebra">Clifford Algebra</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, specialized for physics as the <a href="https://en.wikipedia.org/wiki/Geometric_algebra">Geometric Algebra</a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Almost all of the results here are quoted from <em>Geometric Algebra for Physicists</em>, by Chris Doran and Anthony Lasenby<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. It is equivalent to the notation that can be found in academic journals and textbooks (collectively, <em>The Literature</em>), but has a number of subtle generalizations and bonus features that make it easy to write things aesthetically. It has not seen widespread adoption simply because people who do physics for their actual job don’t have time to learn a new notation which, after all, <em>is still equivalent to the notation they’re used to</em>! We can use it here without guilt because this is, in many respects, more of an art project than a science report.</p><p>As a warm-up, here’s this note, which you are not required to understand at this point but which may be of interest to anyone who does. The only thing here that I cannot find in any other sources is the idea to identify the local conformal scale symmetry with particle spin via the 2D Euclidean plane “embedded” in 3+1 spacetime dimensions. This could very well be because it is simply wrong, or because I did not look hard enough; in any event, that was for me the last funky-shaped puzzle piece that gave me the idea to formulate the main result of this project: the Geometric Universe Hypothesis.</p><p>Before getting to that, though, we should take care of some metaphysical groundwork. The goal is to be as precise as possible; to that end, we want to make sure we have a really good idea of what we mean when we say things like “perfectly controlled conditions”, and for that matter, what even is “reality” anyway?</p><section class="footnotes" role="doc-endnotes"><hr /><ol><li id="fn1" role="doc-endnote"><p>Though it seems inevitable that I will eventually write appendices just as an exercise to make sure I understand something. I promise to at least keep the main narrative free of long derivations!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li><li id="fn2" role="doc-endnote"><p>Developed in the 1870s by W. K. Clifford, now a mature topic in algebra theory.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li><li id="fn3" role="doc-endnote"><p>Developed in the 1950s by David Hestenes.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li><li id="fn4" role="doc-endnote"><p>Cambridge, 2003. I will cite pages like “(D&amp;L, pg 481)”, sections like “(D&amp;L, sec 13.5.4)”, and so on.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li></ol></section>
+  </div>
+  <h2 id="project-contents">Contents</h2>
+  <dl id="project-contents" class="contents">
+  
+    <dt class="project-page"><a href="./metaphysics.html">Metaphysics</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./universe.html">The Geometric Universe Hypothesis</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./algebra.html">Geometric Algebra</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./physics.html">Geometric Physics</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./science.html">Science Near and Far from the Geometric Regime</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+</dl>
+</div>
+</main>
+    <footer>
+      <span id="site-source" class="footer-element">
+        <a href="https://github.com/willj-dev/willj-dev.github.io/">Site Source</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="site-source" class="footer-element">
+        <a href="https://github.com/willj-dev/willj-dev.github.io/tree/main/content/pages/geometric-universe/index.tex">Page Source</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <div id="dark-mode" class="footer-element light-mode-only">Dark Mode</div>
+      <div id="light-mode" class="footer-element dark-mode-only">Light Mode</div>
+      <div class="footer-fill"></div>
+      <span id="built-with" class="footer-element">
+        Built with <a href="https://jaspervdj.be/hakyll">Hakyll</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="hosted-by" class="footer-element">
+        Hosted by <a href="https://pages.github.com">GitHub Pages</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="colors-credit" class="footer-element">
+        <a href="https://github.com/chriskempson/base16">Base16</a> color scheme:
+        <a href="https://github.com/chriskempson/base16-tomorrow-scheme">
+          Tomorrow<span class="dark-mode-only"> Night</span>
+        </a>
+      </span>
+    </footer>
+  </body>
+  <script src="../js/colorMode.js"></script>
+</html>
