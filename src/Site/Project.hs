@@ -23,31 +23,31 @@ projectIdContext = field "project-id" (const currentProjectId)
 
 -- | A matcher for 'pages/project-id/index.*'
 matchProjectIndex :: ProjectId -> Rules () -> Rules ()
-matchProjectIndex pid = match (fromGlob $ "pages/" ++ pid ++ "/index.*")
+matchProjectIndex pid = match (fromGlob $ "pages/" ++ pid ++ "/index.md")
 
 -- | A matcher for everything in 'pages/project-id/', except for the index
 matchProjectPages :: ProjectId -> Rules () -> Rules ()
 matchProjectPages pid = match (projectPagesGlob .&&. notProjectIndex)
   where
-    projectPagesGlob = fromGlob $ "pages/" ++ pid ++ "/*"
-    notProjectIndex = complement . fromGlob $ "pages/" ++ pid ++ "/index.*"
+    projectPagesGlob = fromGlob $ "pages/" ++ pid ++ "/*.md"
+    notProjectIndex = complement . fromGlob $ "pages/" ++ pid ++ "/index.md"
 
 -- | Apply templates for a project's index page
-applyProjectIndexTemplates :: [PageId] -> String -> Item String -> Compiler (Item String)
-applyProjectIndexTemplates pgIds ext pageBodyHTMLItem = do
+applyProjectIndexTemplates :: [PageId] -> Item String -> Compiler (Item String)
+applyProjectIndexTemplates pgIds pageBodyHTMLItem = do
   pcc <- projectContentsContext <$> currentProjectId
   loadAndApplyTemplate "templates/index.html" (pcc <> defaultContext) pageBodyHTMLItem
     >>= loadAndApplyTemplate "templates/base.html" baseContext
     >>= relativizeUrls
   where
     projectContentsContext pid = listField "project-contents" pageMetadataContext $
-      sequence (makePageMetadata . pageIdentifier ext pid <$> pgIds)
+      sequence (makePageMetadata . pageIdentifier pid <$> pgIds)
     baseContext  = projectIdContext <> defaultContext
 
-projectMetadata :: (MonadFail m, MonadMetadata m) => ProjectId -> String -> m ProjectMetadata
-projectMetadata pid ext = do
+projectMetadata :: (MonadFail m, MonadMetadata m) => ProjectId -> m ProjectMetadata
+projectMetadata pid = do
   title <- getMetadataField' projIndexIdentifier "title"
   blurb <- getMetadataField' projIndexIdentifier "blurb"
   return $ ProjectMetadata pid title blurb
   where
-    projIndexIdentifier = pageIdentifier ext pid "index"
+    projIndexIdentifier = pageIdentifier pid "index"

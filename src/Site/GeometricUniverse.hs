@@ -23,7 +23,7 @@ guRules = do
   loadTemplates
   compilePages
   compileIndex
-  projectMetadata guProjectId "md"
+  projectMetadata guProjectId
 
 loadTemplates, compilePages :: Rules ()
 loadTemplates = match "templates/geometric-universe/*" $ compile templateBodyCompiler
@@ -39,7 +39,7 @@ compileIndex = matchProjectIndex guProjectId $ do
     >>= compilePandocMarkdown
     >>= compileHTMLPandoc
     >>= makeItem
-    >>= applyProjectIndexTemplates pageOrder "md"
+    >>= applyProjectIndexTemplates pageOrder
 
 guMDCompiler :: Compiler CompiledPage
 guMDCompiler = getResourceBody
