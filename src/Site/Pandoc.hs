@@ -1,4 +1,3 @@
-
 -- | Functions ending with ' use the underlying resource; others use the `Item` passed to the function
 module Site.Pandoc where
 
@@ -9,37 +8,27 @@ import Hakyll
 import qualified System.FilePath as FPL -- FilePath Local, for files on the current machine
 import Text.Blaze.Html.Renderer.String (renderHtml)
 import Text.Pandoc
-import Text.Pandoc.Shared (headerShift, inlineListToIdentifier, stringify)
+import Text.Pandoc.Shared (inlineListToIdentifier, stringify)
 import Text.Pandoc.Writers.Shared (toTableOfContents)
 
 import Site.Common
 
--- | Apply the base RST template then parse it through Pandoc, using default reader options
-compilePandocRST :: Item String -> Compiler (Item Pandoc)
-compilePandocRST = compilePandocRSTWith defaultHakyllReaderOptions
+-- | Apply the base markdown template then parse it through Pandoc, using default reader options
+compilePandocMarkdown :: Item String -> Compiler (Item Pandoc)
+compilePandocMarkdown = compilePandocMarkdownWith defaultHakyllReaderOptions
 
--- | Apply the base RST template then parse it through Pandoc, using default reader options
-compilePandocRST' :: Compiler (Item Pandoc)
-compilePandocRST' = compilePandocRSTWith' defaultHakyllReaderOptions
+-- | Apply the base markdown template then parse it through Pandoc, using default reader options
+compilePandocMarkdown' :: Compiler (Item Pandoc)
+compilePandocMarkdown' = compilePandocMarkdownWith' defaultHakyllReaderOptions
 
--- | Apply the base RST template to the current resource then parse it through Pandoc, using given reader options
-compilePandocRSTWith' :: ReaderOptions -> Compiler (Item Pandoc)
-compilePandocRSTWith' ropt = getResourceBody >>= compilePandocRSTWith ropt
+-- | Apply the base markdown template to the current resource then parse it through Pandoc, using given reader options
+compilePandocMarkdownWith' :: ReaderOptions -> Compiler (Item Pandoc)
+compilePandocMarkdownWith' ropt = getResourceBody >>= compilePandocMarkdownWith ropt
 
--- | Apply the base RST template then parse it through Pandoc, using given reader options
-compilePandocRSTWith :: ReaderOptions -> Item String -> Compiler (Item Pandoc)
-compilePandocRSTWith ropt rstItem = do
-  preprocRST <- T.pack . itemBody <$> applyRSTTemplate
-  parsedPandoc <- compilePandocPure (headerShift 1 <$> readRST ropt preprocRST)
-  makeItem parsedPandoc
-  where
-    applyRSTTemplate = loadAndApplyTemplate "templates/base.rst" defaultContext rstItem
-
--- | Apply the base RST template then parse it through Pandoc, using given reader options
-compilePandocTeXWith :: ReaderOptions -> Item String -> Compiler (Item Pandoc)
-compilePandocTeXWith ropt texItem = do
-  let texString = T.pack . itemBody $ texItem
-  parsedPandoc <- compilePandocPure (headerShift 1 <$> readLaTeX ropt texString)
+-- | Apply the base markdown template then parse it through Pandoc, using given reader options
+compilePandocMarkdownWith :: ReaderOptions -> Item String -> Compiler (Item Pandoc)
+compilePandocMarkdownWith ropt mdItem = do
+  parsedPandoc <- compilePandocPure $ readMarkdown ropt (T.pack . itemBody $ mdItem)
   makeItem parsedPandoc
 
 -- | Compile a Pandoc document to HTML, using default writer options

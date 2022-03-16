@@ -9,14 +9,13 @@ To do:
 - define resources, shared resources, and private resources
 - define money
 - define a market and various forms it can take
-  - open market
-  - free market
-  - horizontal integration of unrelated resources ("concentrated"/"distributed")
-  - vertical integration of related resources ("flat"/"tall")
-  - how those patterns interact
+    - open market
+    - free market
+    - horizontal integration of unrelated resources ("concentrated"/"distributed")
+    - vertical integration of related resources ("flat"/"tall")
+    - how those patterns interact
 
-Private Enterprise in a Free Market
-*************************************************
+## Private Enterprise in a Free Market
 
 Someone realizes that roller coasters are cool, and lots of people will want to ride them, but they don’t have enough money to fund the project themselves. They decide to get a loan to purchase the property and materials, and pay operating costs and employee salaries until these can be covered by ticket sales alone. But first, they need to do some research in order to convince whoever they ask for money that it will actually be a sound investment.
 
@@ -37,8 +36,7 @@ Another way that capitalism can exert a corruptive influence is by making wealth
 
 While this line of reasoning is deeply disingenuous, it is not without a kernel of truth: there isn’t really one person, or even any one consistent group of people, to whom we can attribute blame for an economic system that has developed over the entire course of human civilization. In fact, as in all things, we can probably even accept that most humans who have participated in the capitalist system were not doing so out of evil intent, and frequently acted in the genuine best interest of society as a whole. Unfortunately, no matter how genuinely beneficial some new economic policy may be, there will always be someone who is sufficiently intelligent and evil to manipulate it, as long as we stay distracted trying to plug these holes with policies that implicitly support the system which allows them to exist, we will be unable to fix the root cause. The fundamental core principle of capitalism is that wealth equals success, and with the benefit of hindsight, we can see that this is a complete lie.
 
-Private Enterprise in the Millennial Utopia
-*************************************************
+## Private Enterprise in the Millennial Utopia
 
 Suppose we have a hypothetical society in which everyone (somehow) works together with a central government to provide universal access to a basic standard of living, and any excess production is channeled into science and art. This is a suitable society if the entire population is willing to live like monks, but eventually someone will want to, for instance, ride a roller coaster, which (usually) doesn’t fall under either of these categories. The phrase "government-designed roller coaster" sounds like the setup for a joke, and indeed it is hard to imagine a convincing reason why the government needs to directly manage anything that doesn’t qualify as a critical good or service in the interest of universal equal rights.
 
@@ -46,13 +44,11 @@ On the other hand, throwing money at anyone who says "roller coasters sound cool
 
 The exact nature of that "conversion" process is a somewhat intricate matter called monetary theory. The general shape of it should be apparent as we get into some details, but it is useful to start with some general points. Hopefully it is obvious that it would be difficult to convince people to take part in an economy where they might be paid in half a carrot or a bar of soap, depending on whatever the government happened to find extras of that day. Instead, we use money: an arbitrary measure of abstract value, and one of the most powerful and dangerous tools that humans have ever invented. The way that it is managed today is, like the rest of the economy, a massive kludge that doesn’t really work the way it’s supposed to. Recently, inventing new currencies (e.g. bitcoin) has become quite fashionable, but these do not really serve the purpose we need. A healthy monetary system needs to be supported by widespread adoption and trust in the organization that issues it. This immediately makes cryptocurrency unworkable for a serious, long-term program which needs a stable economic foundation; no one wants to live in an economy subject to wild fluctuations because of Internet memes! We must be content to run our economy on an established, nationally-backed currency, and only slowly start replacing the fuel with something more modern if that turns out to be in the best interest of the MSC.
 
-Business Licensing and Provisioning
-=======================================
+### Business Licensing and Provisioning
 
 To do
 
-Salaries
-=======================================
+### Salaries
 
 To do
 

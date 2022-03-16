@@ -34,7 +34,7 @@ utopiaRules = do
   compileJs
   compilePages
   compileIndex
-  projectMetadata muProjectId "rst"
+  projectMetadata muProjectId "md"
 
 loadTemplates, compileJs, compilePages :: Rules ()
 loadTemplates = match "templates/millennial-utopia/*" $ compile templateBodyCompiler
@@ -50,22 +50,22 @@ compilePages = matchProjectPages muProjectId $ do
   route tailHTMLRoute
   compile $ do
     config <- config_utopia <$> configCompiler
-    utopiaRSTCompiler >>= applyUtopiaTemplates config
+    utopiaMDCompiler >>= applyUtopiaTemplates config
 
 compileIndex :: Rules ()
 compileIndex = matchProjectIndex muProjectId $ do
   route tailHTMLRoute
   compile $ getResourceBody
-    >>= loadAndApplyTemplate "templates/millennial-utopia.rst" defaultContext
-    >>= compilePandocRST
+    >>= loadAndApplyTemplate "templates/millennial-utopia/base.md" defaultContext
+    >>= compilePandocMarkdown
     >>= compileHTMLPandoc
     >>= makeItem
-    >>= applyProjectIndexTemplates pageOrder "rst"
+    >>= applyProjectIndexTemplates pageOrder "md"
 
-utopiaRSTCompiler :: Compiler CompiledPage
-utopiaRSTCompiler = getResourceBody
-  >>= loadAndApplyTemplate "templates/millennial-utopia.rst" defaultContext
-  >>= compilePandocRST
+utopiaMDCompiler :: Compiler CompiledPage
+utopiaMDCompiler = getResourceBody
+  >>= loadAndApplyTemplate "templates/millennial-utopia/base.md" defaultContext
+  >>= compilePandocMarkdown
   >>= compilePandocPage
 
 applyUtopiaTemplates :: UtopiaConfig -> CompiledPage -> Compiler (Item String)

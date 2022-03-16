@@ -9,7 +9,7 @@ import Site.ConceptualFP
 import Site.GeometricUniverse
 import Site.Project
 import Site.Utopia
-import Site.Pandoc (compilePandocRST', compileHTMLPandoc)
+import Site.Pandoc (compilePandocMarkdown', compileHTMLPandoc)
 
 site :: Rules ()
 site = do
@@ -48,9 +48,9 @@ compileSass = match "css/main.scss" $
     compile sassCompiler
 
 compileIndex :: [ProjectMetadata] -> Rules ()
-compileIndex projs = match "pages/home.rst" $ do
+compileIndex projs = match "pages/home.md" $ do
   route $ constRoute "index.html"
-  compile $ dbg projs >> compilePandocRST' >>= compileHTMLPandoc >>= makeItem
+  compile $ dbg projs >> compilePandocMarkdown' >>= compileHTMLPandoc >>= makeItem
     >>= loadAndApplyTemplate "templates/home.html" (projectsContext <> defaultContext)
     >>= loadAndApplyTemplate "templates/index.html" defaultContext
     >>= loadAndApplyTemplate "templates/base.html" defaultContext

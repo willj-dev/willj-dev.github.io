@@ -23,27 +23,27 @@ guRules = do
   loadTemplates
   compilePages
   compileIndex
-  projectMetadata guProjectId "tex"
+  projectMetadata guProjectId "md"
 
 loadTemplates, compilePages :: Rules ()
 loadTemplates = match "templates/geometric-universe/*" $ compile templateBodyCompiler
 
 compilePages = matchProjectPages guProjectId $ do
   route tailHTMLRoute
-  compile $ guRSTCompiler >>= applyGUTemplates
+  compile $ guMDCompiler >>= applyGUTemplates
 
 compileIndex :: Rules ()
 compileIndex = matchProjectIndex guProjectId $ do
   route tailHTMLRoute
   compile $ getResourceBody
-    >>= compilePandocTeXWith defaultHakyllReaderOptions
+    >>= compilePandocMarkdown
     >>= compileHTMLPandoc
     >>= makeItem
-    >>= applyProjectIndexTemplates pageOrder "tex"
+    >>= applyProjectIndexTemplates pageOrder "md"
 
-guRSTCompiler :: Compiler CompiledPage
-guRSTCompiler = getResourceBody
-  >>= compilePandocTeXWith defaultHakyllReaderOptions
+guMDCompiler :: Compiler CompiledPage
+guMDCompiler = getResourceBody
+  >>= compilePandocMarkdown
   >>= compilePandocPage
 
 applyGUTemplates :: CompiledPage -> Compiler (Item String)

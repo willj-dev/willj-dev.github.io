@@ -9,6 +9,7 @@ import qualified Data.Text.Lazy as TL
 import Hakyll
 import Skylighting
 import Text.Pandoc
+import Text.Pandoc.Walk (walk)
 
 import Site.Common
 import Site.Pandoc
@@ -27,11 +28,24 @@ loadPseudoMLSyntax = match "pseudoml.xml" $ compile syntaxCompiler
       ]
 
 compilePandocWithPseudoML :: Item String -> Compiler CompiledPage
-compilePandocWithPseudoML rstItem = do
+compilePandocWithPseudoML item = do
   woptPseudoML <- wopt <$> (unWB <$> loadBody "pseudoml.xml")
-  compilePandocRST rstItem >>= compilePandocPageWith woptPseudoML
+  pd <- compilePandocMarkdownWith ropt item
+  compilePandocPageWith woptPseudoML (addInlinePseudoMLClasses <$> pd)
   where
+    ropt = defaultHakyllReaderOptions { readerIndentedCodeClasses = ["pseudoml"] }
     wopt s = myDefaultWriterOptions { writerSyntaxMap = M.insert "PseudoML" s defaultSyntaxMap }
+
+-- | Adds the "pseudoml" class to any inline `Code` elements, as long as they don't have any other classes
+addInlinePseudoMLClasses :: Pandoc -> Pandoc
+addInlinePseudoMLClasses (Pandoc m bs) = Pandoc m (addInlineCodeClassesToBlock <$> bs)
+  where
+    addInlineCodeClassesToBlock :: Block -> Block
+    addInlineCodeClassesToBlock = walk addCodeClasses
+
+    addCodeClasses :: Inline -> Inline
+    addCodeClasses (Code (ident, [], kvs) t) = Code (ident, ["pseudoml"], kvs) t
+    addCodeClasses i = i
 
 -- Need a bit of misdirection here because Hakyll has a Writable instance for
 -- a lazy bytestring, but not for Binary.

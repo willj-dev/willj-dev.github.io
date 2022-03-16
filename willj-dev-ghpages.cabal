@@ -41,6 +41,7 @@ executable willj-dev-ghpages
                        hakyll,
                        mtl,
                        pandoc,
+                       pandoc-types,
                        skylighting,
                        skylighting-core,
                        text,
