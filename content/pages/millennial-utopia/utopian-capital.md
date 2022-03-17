@@ -10,7 +10,7 @@ The Corporation to End Capitalism
 
 ## Mission
 
-The mission of Utopian Capital is to support the development of a just society by managing the capital assets of the Millennial Utopian society (MU), and any of its individual members, with their permission and on their behalf. This will support the continuing provision of equal rights under the [Millennial Social Code][] (MSC) to the largest possible population.
+The mission of Utopian Capital is to support the development of a just society by managing the capital assets of the Millennial Utopian society (MU), and any of its individual members, with their permission and on their behalf. This will support the continuing provision of equal rights under the [Millennial Social Code][msc] (MSC) to the largest possible population.
 
 ## Business Model
 

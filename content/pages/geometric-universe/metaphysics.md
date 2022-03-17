@@ -4,7 +4,7 @@ title: Metaphysics
 
 ## Reality, the Mind-Body Problem, and Science
 
-We should start with the *really* fundamental stuff so that we can properly interpret the statement that the "universe" is "geometric". Following Descartes' example, we'll start with the *mind*, and, specifically, *me* ^[Not to play favorites or anything; it's just that if we're talking about whether people exist, it makes sense to start with the person making that claim!]:
+We should start with the *really* fundamental stuff so that we can properly interpret the statement that the "universe" is "geometric". Following Descartes' example, we'll start with the *mind*, and, specifically, *me* ^[For our present purposes, "me" and "I" should be understood to refer to *the reader*, not the author.]:
 
 The Doctrine of Existence
 :   I exist, and perceive the world around me as well as my own existence. This thing-that-perceives-itself is my *mind*, and it is apparently attached to a particular human body on a particular planet in a particular solar system, and so on.
@@ -34,7 +34,7 @@ If science in general is the study of patterns in objective reality, mathematics
 
 Humans have a limited amount of "processing space", so we invented *algebra*: a set of rules for representing and manipulating mathematical concepts in writing. The particular set of fundamental rules we choose (*axioms*) affects the kinds of things it is possible to write or prove; in fact, we generally just say that the set of axioms *defines an algebra*. The algebra that most people learn in grade school has its own scary technical name, and there is a whole ecosystem of important algebras; we will be focusing on one in particular, the *geometric algebra*.
 
-We should also briefly mention an important and frequently misunderstood feature of mathematics: G\"odel's *incompleteness theorems*. It amounts to saying that no matter what axioms we start with for our mathematical language, it is always possible to find a statement that cannot be proven or disproven from those axioms. This sounds somewhat dire, but we can give it a more palatable interpretation: "We can write down only those things that we know how to write down." The incompleteness theorems specifically refer to the incompleteness of the *written rules*, and really we should not be particularly surprised by this result; humans have to invent new words for things all the time, so it makes sense to accept that we can always discover new mathematical structures that can't be expressed using our existing rules!
+We should also briefly mention an important and frequently misunderstood feature of mathematics: Gödel's *incompleteness theorems*. It amounts to saying that no matter what axioms we start with for our mathematical language, it is always possible to find a statement that cannot be proven or disproven from those axioms. This sounds somewhat dire, but we can give it a more palatable interpretation: "We can write down only those things that we know how to write down." The incompleteness theorems specifically refer to the incompleteness of the *written rules*, and really we should not be particularly surprised by this result; humans have to invent new words for things all the time, so it makes sense to accept that we can always discover new mathematical structures that can't be expressed using our existing rules!
 
 ## Scale Dependence of Observation
 
