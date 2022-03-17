@@ -38,11 +38,8 @@ compilePandocWithPseudoML item = do
 
 -- | Adds the "pseudoml" class to any inline `Code` elements, as long as they don't have any other classes
 addInlinePseudoMLClasses :: Pandoc -> Pandoc
-addInlinePseudoMLClasses (Pandoc m bs) = Pandoc m (addInlineCodeClassesToBlock <$> bs)
+addInlinePseudoMLClasses = walk addCodeClasses
   where
-    addInlineCodeClassesToBlock :: Block -> Block
-    addInlineCodeClassesToBlock = walk addCodeClasses
-
     addCodeClasses :: Inline -> Inline
     addCodeClasses (Code (ident, [], kvs) t) = Code (ident, ["pseudoml"], kvs) t
     addCodeClasses i = i
