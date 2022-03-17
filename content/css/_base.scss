@@ -74,10 +74,17 @@ body {
     justify-content: stretch;
 
     font-family: 'Alegreya', serif;
-    font-size: 18px;
+    font-size: 18px; // this font is kinda small
+
     code {
       font-family: 'Cascadia Code', monospace;
+      font-size: 14px; // this font is kinda big
     }
+
+    p > code {
+      padding: 0 0.25em; // inline code is a bit cramped
+    }
+
     a.anchor {
       font-family: 'Material Icons';
       font-size: 0.6em;
