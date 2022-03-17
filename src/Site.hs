@@ -19,7 +19,7 @@ site = do
   copyFiles
   compileSass
 
-  sequence [utopiaRules, conceptualFPRules] >>= compileIndex
+  sequence [utopiaRules, conceptualFPRules, guRules] >>= compileIndex
 
 loadTemplates, compileNotFound, loadSiteConfig, copyFiles, compileSass :: Rules ()
 
