@@ -1,3 +1,62 @@
 rst:
   prefix: ''
   suffix: ''
+utopia:
+  rst:
+    prefix: |
+      .. default-role:: term-link
+
+      ..  For some reason, the :class: option sets the span class to the roleName, regardless
+          of what is actually specified in the field body. Probably a Pandoc bug!
+      .. role:: term-link
+          :class: asdf-see-comment-above
+    suffix: |
+      .. _A Millennial Utopia: /a-millennial-utopia.html
+      .. _Selected Utopian Social Principles: /selected-principles.html
+      .. _The Millennial Utopian Constitution: /constitution.html
+      .. _The Millennial Social Code: /msc.html
+      .. _Transitioning From Capitalism: /transition.html
+      .. _Equitable Management and Distribution of Shared Resources: /managing-shared-resources.html
+      .. _Proving MU Viability: /proving-mu-viability.html
+  terms:
+    - term: person
+      alternatives: [persons]
+      definition: |
+        A *person* is any individual who can demonstrate agency and recognize it in other persons.
+    - term: agency
+      alternatives: []
+      definition: |
+        *Agency* is a person\'s ability to freely choose for themselves how to act.
+    - term: adult
+      alternatives: [adults]
+      definition: |
+        An *adult* is any human who is able to exercise complete personal agency responsibly and independently.
+    - term: child
+      alternatives: [children]
+      definition: |
+        A *child* is any human from birth until they can be considered an adult.
+    - term: guardian
+      alternatives: [guardians]
+      definition: |
+        A child\'s *guardian* is an adult who is permitted to exercise agency on a child\'s behalf.
+        
+        By default, both biological parents and all living direct ancestors are a child\'s guardians.
+    - term: society
+      alternatives: []
+      definition: |
+        A *society* is a system of cooperation by mutual consent between individual persons. It may be explicitly defined by laws, or implicitly upheld by its members.
+    - term: rights
+      alternatives: []
+      definition: |
+        *Rights* define the level of agency a society allows to an individual person.
+    - term: just
+      alternatives: []
+      definition: |
+        A *just* society is one which guarantees the same rights equally to all persons.
+    - term: government
+      alternatives: []
+      definition: |
+        A *government* is any organization which is entrusted by a society to:
+
+        * support the rights of its citizens by managing shared resources; and
+        * defend those rights by enacting legitimate punishments upon persons who commit crimes.

@@ -1,8 +1,9 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, RankNTypes #-}
 
 import Hakyll
 
 import Site.Pandoc (pageCompiler)
+import Site.Utopia (utopiaRules)
 
 import qualified Data.ByteString as SBS
 import qualified Data.ByteString.Lazy as LBS
@@ -23,6 +24,7 @@ main = hakyllWith hakyllConfig $ do
   copyFiles
   compileSass
   compileIndex
+  utopiaRules
 
 loadTemplates, compileNotFound, loadSiteConfig, copyFiles, compileSass, compileIndex :: Rules ()
 

@@ -1,0 +1,55 @@
+$term-link-underline: rgba(80, 80, 80, 0.5);
+
+#page-container {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0em 1em;
+
+    #page-content {
+        flex: 0 1 48em;
+
+        .term-link {
+            border-bottom: 1px dashed $term-link-underline;
+
+            &:hover {
+                border-bottom: 2px dashed $term-link-underline;
+            }
+        }
+    }
+
+    #term-list {
+        margin-left: 2em;
+        flex: 0 0 32em;
+
+        #term-card-container {
+            position: sticky;
+            top: 0px;
+
+            display: flex;
+            flex-flow: column nowrap;
+        }
+
+        .term-card {
+            margin-top: 1em;
+            padding: 1em;
+
+            display: none;
+            border: 1px solid #e0e0e0;
+
+            // hovering over a term causes its definition card to lift
+            &.active-term {
+                display: block;
+
+                // this shadow spec is stolen from MDC cards: https://material.io/components/cards
+                box-shadow:
+                    0 2px 1px -1px rgba(0, 0, 0, 0.2),
+                    0 1px 1px 0px rgba(0, 0, 0, 0.14),
+                    0 1px 3px 0px rgba(0, 0, 0, 0.12);
+            }
+
+            &.pinned-term {
+                display: block;
+            }
+        }
+    }
+}
