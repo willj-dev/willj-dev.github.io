@@ -39,12 +39,15 @@ utopiaRules = do
 loadTemplates, compileJs, compilePages :: Rules ()
 loadTemplates = match "templates/millennial-utopia/*" $ compile templateBodyCompiler
 
-compileJs = match "js/millennial-utopia/*.js" $ do
+compileJs = return ()
+{- TODO: bring back term definitions, but for the whole site, and without requiring "highlighting" in the markdown
+match "js/millennial-utopia/*.js" $ do
   route idRoute
   compile $ do
     config <- config_utopia <$> configCompiler
     jsTemplate <- getResourceBody
     applyAsTemplate (termsContext config) jsTemplate
+-}
 
 compilePages = matchProjectPages muProjectId $ do
   route tailHTMLRoute
@@ -74,7 +77,7 @@ applyUtopiaTemplates config (CompiledPage t _ _ pageHTMLItem toc) =
     >>= loadAndApplyTemplate "templates/base.html" baseContext
     >>= relativizeUrls
     where
-      pageContext = constField "toc" toc <> termsContext config <> defaultContext
+      pageContext = constField "toc" toc {- TODO <> termsContext config -} <> defaultContext
       baseContext = projectIdContext <> headerTitleContext <> defaultContext
       headerTitleContext = constField "header-title" t
 

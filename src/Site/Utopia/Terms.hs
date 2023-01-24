@@ -6,10 +6,9 @@ import Site.Common
 import Site.Config
 import Site.Pandoc
 
--- | Term definition is compiled as markdown with the Utopia template (i.e. support
--- for custom roles and link targets). Term alternatives (plurals, etc) are compiled
--- into a list field, which is used in the terms JS to support pinning/hovering over
--- terms in the article body.
+-- | Term definition is compiled as markdown with the Utopia template. Term alternatives
+-- (plurals, etc) are compiled into a list field, which is used in the terms JS to support
+-- pinning/hovering over terms in the article body.
 termContext :: Context Term
 termContext = mconcat [termField, defnField, altsField]
   where
