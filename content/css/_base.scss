@@ -72,6 +72,9 @@ body {
     justify-content: stretch;
 
     font-family: 'Noto Serif', serif;
+    code {
+      font-family: 'Noto Sans Mono', monospace;
+    }
 
     .card {
       @include card.shadow;
