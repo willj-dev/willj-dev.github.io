@@ -27,14 +27,16 @@ body {
     @include colors.apply-base16-colors(colors.$base16-tomorrow);
   }
 
+  h1, h2, h3, h4, main .contents {
+    font-family: 'Alegreya Sans', sans-serif;
+  }
+
   header {
     flex: 0 0 auto;
     
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
-    font-family: 'Noto Sans', sans-serif;
 
     #header-path {
       margin-left: 32px;
@@ -71,9 +73,10 @@ body {
     align-items: flex-start;
     justify-content: stretch;
 
-    font-family: 'Noto Serif', serif;
+    font-family: 'Alegreya', serif;
+    font-size: 18px;
     code {
-      font-family: 'Noto Sans Mono', monospace;
+      font-family: 'Cascadia Code', monospace;
     }
     a.anchor {
       font-family: 'Material Icons';
