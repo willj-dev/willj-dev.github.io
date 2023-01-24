@@ -156,44 +156,44 @@ The MU Executive Council (EC) is responsible for implementing the laws passed by
 Here is a possible (and not necessarily exhaustive) list of executive departments and their respective duties.
 
 * Transparency and Citizen Support
-    * Maintain availability of public data
-    * Identity services
-    * Social workers
-    * Public defenders
-    * Emergency services
-    * IT and digital security
-    * "Public services customer hotline"
+  * Maintain availability of public data
+  * Identity services
+  * Social workers
+  * Public defenders
+  * Emergency services
+  * IT and digital security
+  * "Public services customer hotline"
 * Housing and Utilities
-    * Maintain housing database
-    * Plan housing development/refurbishment
-    * Handle housing applications
-    * Manage and maintain adequate short term housing
+  * Maintain housing database
+  * Plan housing development/refurbishment
+  * Handle housing applications
+  * Manage and maintain adequate short term housing
 * Personal Health
-    * Medical providers
-    * Nutrition (i.e. basic groceries)
-    * Rehabilitation
+  * Medical providers
+  * Nutrition (i.e. basic groceries)
+  * Rehabilitation
 * Disaster Preparedness and Recovery
 * Environmental Rehabilitation and Management
-    * Waste collection and reclaiming
-    * Raw resources (e.g. mining)
-    * Parks, wilderness reserves
+  * Waste collection and reclaiming
+  * Raw resources (e.g. mining)
+  * Parks, wilderness reserves
 * Education
 * Social Development
-    * Public funding for science and art
-    * Approving applications and salaries for private businesses
-    * Managing payment system for market goods and services
-    * Maintaining centralized database of both critical and market job data to inform planning
-    * Maintaining employment records
+  * Public funding for science and art
+  * Approving applications and salaries for private businesses
+  * Managing payment system for market goods and services
+  * Maintaining centralized database of both critical and market job data to inform planning
+  * Maintaining employment records
 * Government Management
-    * Maintain interdepartmental communication and availability of data (e.g. ensuring that resource needs for each department are properly reported to the department which manages that resource)
-    * Office management for all branches of government
-    * Maintaining the official codified law
-    * Certification and authentication of official documents (warrants, records, …)
+  * Maintain interdepartmental communication and availability of data (e.g. ensuring that resource needs for each department are properly reported to the department which manages that resource)
+  * Office management for all branches of government
+  * Maintaining the official codified law
+  * Certification and authentication of official documents (warrants, records, …)
 * Capital Relations
-    * Director of Capital Relations is the CFO of MULLC
-    * MULLC financiers and lawyers
-    * National government outreach/lobbying
-    * PM sales and marketing
+  * Director of Capital Relations is the CFO of MULLC
+  * MULLC financiers and lawyers
+  * National government outreach/lobbying
+  * PM sales and marketing
 
 Transitioning From Consumer Capitalism
 *************************************************

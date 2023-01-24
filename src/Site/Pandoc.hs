@@ -92,7 +92,7 @@ addAnchorLinks (Pandoc m bs) = Pandoc m (addInlineAnchor <$> bs)
     addInlineAnchor b = b
 
     anchorLink :: [Inline] -> Inline
-    anchorLink hInlines = Link attr [Str "anchor"] ("#" <> anchorId hInlines, anchorTitle hInlines)
+    anchorLink hInlines = Link attr [Str "link"] ("#" <> anchorId hInlines, anchorTitle hInlines)
       where attr = ("", ["anchor"], [])
 
     anchorId :: [Inline] -> Text

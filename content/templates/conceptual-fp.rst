@@ -14,6 +14,8 @@ $body$
 
 .. _PseudoML Syntax: ./basic-concepts.html#pseudoml-syntax
 
+.. _Recursion Schemes: ./recursion-schemes.html
+
 .. _Language-Specific Caveats: ./appendix-lang.html
 
 .. _Right Folds from the Left: ./appendix-foldr.html
