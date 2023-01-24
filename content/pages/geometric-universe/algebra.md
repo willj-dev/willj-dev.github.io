@@ -2,9 +2,11 @@
 title: Geometric Algebra
 ------------------------
 
-Alright, we have put off the math long enough!
-
 ## Fundamentals
+
+- distributive law / linearity
+- letting go of commutativity
+- 
 
 ## Scalar Algebra; Vector Algebra; Complex Numbers and Beyond
 
