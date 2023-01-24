@@ -62,6 +62,6 @@ rstCompiler rstItem = applyRSTTemplate >>= compilePandoc <&> T.unpack
     compilePandoc = compilePandocPure . pandocPureRSTtoHTML5
 
 
--- Compiler for pages/*.rst
-pageCompiler :: Compiler (Item String)
-pageCompiler = getResourceBody >>= rstCompiler >>= makeItem
+-- Compiles RST from the current resource body, rather than an arbitrary string
+rstBodyCompiler :: Compiler (Item String)
+rstBodyCompiler = getResourceBody >>= rstCompiler >>= makeItem

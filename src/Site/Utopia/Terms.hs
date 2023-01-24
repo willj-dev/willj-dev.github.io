@@ -3,20 +3,14 @@
 
 module Site.Utopia.Terms (pageContext) where
 
-import Hakyll.Core.Compiler
-  ( Compiler,
-  )
-import Hakyll.Core.Identifier (fromFilePath)
-import Hakyll.Core.Item (Item (itemBody))
-import Hakyll.Web.Template.Context
-  ( Context,
-    defaultContext,
-    field,
-    listField,
-    listFieldWith,
-  )
+import Site.Common
 import Site.Config
 import Site.Pandoc (rstCompiler, rstContext)
+
+import Hakyll.Core.Compiler (Compiler)
+import Hakyll.Core.Identifier (fromFilePath)
+import Hakyll.Core.Item (Item (itemBody))
+import Hakyll.Web.Template.Context (Context, defaultContext, field, listField, listFieldWith)
 
 -- Context for pages/*.rst, with the term list and RST prefix/suffix
 pageContext :: Context String

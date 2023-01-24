@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd" [
+  <!ENTITY symbolops "\-!#\$&#37;&amp;\*\+/&lt;=&gt;\?&#92;@\^\|~\.:">
+]>
+
+<!--
+  This syntax definition is based on KDE's Haskell syntax by Nicholas Wu:
+  https://github.com/KDE/syntax-highlighting/blob/master/data/syntax/haskell.xml
+-->
+
+<language name="PseudoML" version="1" kateversion="5.53" section="Sources" extensions="*.pseudoml" mimetype="text/x-pseudoml" author="Will Johnson (maintainer@willj.dev)" license="GPLv3" indenter="haskell" style="haskell">
+  <highlighting>
+    <list name="keywords">
+      <item>type</item>
+      <item>typeclass</item>
+      <item>instance</item>
+      <item>data</item>
+      <item>where</item>
+      <item>let</item>
+      <item>in</item>
+      <item>if</item>
+      <item>then</item>
+      <item>else</item>
+      <item>as</item>
+      <item>using</item>
+    </list>
+    <contexts>
+      
+    </contexts>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="1"/>
+    <comments>
+      <comment name="singleLine" start="--" />
+      <comment name="multiLine" start="{-" end="-}" region="BlockComment" />
+    </comments>
+    <keywords casesensitive="1" />
+  </general>
+</language>
