@@ -7,15 +7,19 @@ body {
     flex-flow: column nowrap;
     margin: 0;
 
+    #dark-mode, #light-mode {
+        padding: 1em;
+        cursor: pointer;
+        width: 80px;
+    }
+
     &.dark-mode {
         background-color: colors.$solarized_base03;
         color: colors.$solarized_base0;
 
         #dark-mode { display: none; } // don't show dark mode toggle in dark mode
         #light-mode {
-            padding: 1em;
             background-color: colors.$solarized_base02;
-            cursor: pointer;
         }
 
         #header-root, #header-title {
@@ -29,9 +33,7 @@ body {
 
         #light-mode { display: none; } // don't show light mode toggle in light mode
         #dark-mode {
-            padding: 1em;
             background-color: colors.$solarized_base2;
-            cursor: pointer;
         }
 
         #header-root, #header-title {
