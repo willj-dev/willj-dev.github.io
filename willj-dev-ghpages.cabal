@@ -24,7 +24,9 @@ executable willj-dev-ghpages
                        Site.Utopia,
                        Site.Utopia.Terms,
                        Site.ConceptualFP,
-                       Site.ConceptualFP.PseudoML
+                       Site.ConceptualFP.PseudoML,
+                       Site.GeometricUniverse,
+                       Debug
   hs-source-dirs:      src
   default-language:    Haskell2010
   default-extensions:  OverloadedStrings, RankNTypes

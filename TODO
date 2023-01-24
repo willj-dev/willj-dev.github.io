@@ -1,1 +1,2 @@
 * haddock doc pages for site!
+* too much hard coding around file extensions---so a project has to use all tex, or all rst, but not a mix. This should be cleaner.

@@ -29,11 +29,18 @@ compilePandocRSTWith' ropt = getResourceBody >>= compilePandocRSTWith ropt
 -- | Apply the base RST template then parse it through Pandoc, using given reader options
 compilePandocRSTWith :: ReaderOptions -> Item String -> Compiler (Item Pandoc)
 compilePandocRSTWith ropt rstItem = do
-  preprocRST <- T.pack . itemBody <$> applyRSTTemplate 
+  preprocRST <- T.pack . itemBody <$> applyRSTTemplate
   parsedPandoc <- compilePandocPure (headerShift 1 <$> readRST ropt preprocRST)
   makeItem parsedPandoc
   where
     applyRSTTemplate = loadAndApplyTemplate "templates/base.rst" defaultContext rstItem
+
+-- | Apply the base RST template then parse it through Pandoc, using given reader options
+compilePandocTeXWith :: ReaderOptions -> Item String -> Compiler (Item Pandoc)
+compilePandocTeXWith ropt texItem = do
+  let texString = T.pack . itemBody $ texItem
+  parsedPandoc <- compilePandocPure (headerShift 1 <$> readLaTeX ropt texString)
+  makeItem parsedPandoc
 
 -- | Compile a Pandoc document to HTML, using default writer options
 compileHTMLPandoc :: Item Pandoc -> Compiler String
@@ -69,7 +76,10 @@ compilePandocPageWith wopt docItem = do
     pandocContents (Pandoc meta blocks) = writeHtml5String wopt (Pandoc meta [toTableOfContents wopt blocks])
 
 myDefaultWriterOptions :: WriterOptions
-myDefaultWriterOptions = defaultHakyllWriterOptions { writerWrapText = WrapNone }
+myDefaultWriterOptions = defaultHakyllWriterOptions 
+  { writerWrapText = WrapNone
+  , writerHTMLMathMethod = MathJax ""
+  }
 
 compilePandocPure :: PandocPure a -> Compiler a
 compilePandocPure p = either (fail . pandocErrorMsg) pandocLogger (runPure $ pair getLog p)
@@ -83,6 +93,7 @@ compilePandocPure p = either (fail . pandocErrorMsg) pandocLogger (runPure $ pai
 pair :: Applicative m => m a -> m b -> m (a, b)
 pair x y = (,) <$> x <*> y
 
+-- | Adds anchor links (which appear as clickable "link" icons) to section headers
 addAnchorLinks :: Pandoc -> Pandoc
 addAnchorLinks (Pandoc m bs) = Pandoc m (addInlineAnchor <$> bs)
   where

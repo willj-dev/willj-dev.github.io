@@ -34,7 +34,7 @@ utopiaRules = do
   compileJs
   compilePages
   compileIndex
-  projectMetadata muProjectId
+  projectMetadata muProjectId "rst"
 
 loadTemplates, compileJs, compilePages :: Rules ()
 loadTemplates = match "templates/millennial-utopia/*" $ compile templateBodyCompiler
@@ -60,7 +60,7 @@ compileIndex = matchProjectIndex muProjectId $ do
     >>= compilePandocRST
     >>= compileHTMLPandoc
     >>= makeItem
-    >>= applyProjectIndexTemplates pageOrder
+    >>= applyProjectIndexTemplates pageOrder "rst"
 
 utopiaRSTCompiler :: Compiler CompiledPage
 utopiaRSTCompiler = getResourceBody
