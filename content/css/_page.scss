@@ -2,20 +2,17 @@
 #page-container {
   display: flex;
   flex-flow: row nowrap;
+  align-items: flex-start;
+  position: relative;
 
   #page-toc {
-    padding: 0;
-    margin: 0;
+    position: sticky;
+    top: 2em;
 
-    > ul {
-      position: sticky;
-      top: 2em;
-      
-      padding: 2em 2em 2em 0;
-      margin: 0 2em 0 0;
-      border-right-width: 1px;
-      border-right-style: solid;
-    }
+    padding: 2em 2em 2em 0;
+    margin: 0 2em 0 0;
+    border-right-width: 1px;
+    border-right-style: solid;
 
     ul {
       list-style-type: none;
@@ -44,20 +41,20 @@
 
   @media (max-width: 425px) {
     flex-direction: column;
+    align-items: stretch;
     padding: 0;
 
     #page-toc {
-      margin: 0;
-      padding: 0;
-  
-      > ul {
-        position: static;
-        padding: 0 0 2em 0;
-        margin: 0 0 2em 0;
-        border-right: none;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-      }
+      position: static;
+      padding: 0 0 2em 0;
+      margin: 0 0 2em 0;
+      border-right: none;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+    }
+
+    #page-content {
+      padding-right: 2em;
     }
   }
 }

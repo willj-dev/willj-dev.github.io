@@ -22,7 +22,11 @@
       <div class="header-fill"></div>
     </header>
     <main><div id="page-container">
-  <div id="page-toc"><ul></ul></div>
+  <div id="page-toc">
+    <div id="next-page">
+      Previous page: <a href="./appendix-lang.html">Appendix: Language-Specific Caveats</a>
+    </div>
+    <ul></ul></div>
   <div id="page-content">
     <p>Here we are going to look into how to implement a right fold generically, given only a left fold and no other information about the data structure. The idea is that we fold the structure up, from the left, <em>into a function</em>, where the resulting function is designed to evaluate the right-most values first. Here’s what that looks like:</p><div class="sourceCode" id="cb1"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">foldr </span><span class="op">:</span> <span class="dt">Foldable</span> t <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> b</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>foldr f z t <span class="ot">=</span> (foldl foo bar t) z <span class="kw">where</span></span>

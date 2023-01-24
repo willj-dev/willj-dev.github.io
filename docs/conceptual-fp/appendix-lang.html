@@ -22,7 +22,15 @@
       <div class="header-fill"></div>
     </header>
     <main><div id="page-container">
-  <div id="page-toc"><ul><li><a href="#scala-cats">Scala / <code>cats</code></a></li><li><a href="#haskell">Haskell</a></li><li><a href="#typescript-fp-ts">TypeScript / <code>fp-ts</code></a></li><li><a href="#idris">Idris</a></li></ul></div>
+  <div id="page-toc">
+    <div id="next-page">
+      Previous page: <a href="./advanced-typeclasses.html">Advanced Typeclasses</a>
+    </div>
+    <ul><li><a href="#scala-cats">Scala / <code>cats</code></a></li><li><a href="#haskell">Haskell</a></li><li><a href="#typescript-fp-ts">TypeScript / <code>fp-ts</code></a></li><li><a href="#idris">Idris</a></li></ul>
+    <div id="next-page">
+      Next page: <a href="./appendix-foldr.html">Appendix: Right Folds From The Left</a>
+    </div>
+    </div>
   <div id="page-content">
     <p>Here we will discuss some “gotchas” or signficant syntactic deviations from some popular programming languages that might catch the inexperienced reader off-guard if they try to apply the concepts above to that language. Once again, the goal is not to teach a specific language; this is just a collection of warnings and disclaimers that would otherwise have cluttered the main narrative.</p><h2 id="scala-cats">Scala / <code>cats</code></h2><ul><li>typeclasses via implicits/traits</li></ul><h2 id="haskell">Haskell</h2><ul><li>type name translations (Maybe vs Optional, etc)</li><li>data vs newtype</li><li>newtype for re-implementing typeclasses</li><li>dangers with laziness (e.g. foldr vs foldl)</li><li>reader, writer, state defined in terms of their transformers</li></ul><h2 id="typescript-fp-ts">TypeScript / <code>fp-ts</code></h2><ul><li>syntax difficulties</li><li>type name translations (Option vs Optional, etc)</li></ul><h2 id="idris">Idris</h2><ul><li>labelled interfaces</li></ul>
   </div>
