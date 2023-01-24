@@ -66,20 +66,20 @@ As you can see, the first thing to be evaluated is $0 + 1$, and we proceed down 
 When this is evaluated, we get
 
 ```plain
-   sumr [1, 2, 4, 8]
-   foldr (+) 0 [1, 2, 4, 8]
-   (1 + (foldr (+) 0 [2, 4, 8]))
-   (1 + (2 + (foldr (+) 0 [4, 8])))
-   (1 + (2 + (4 + (foldr (+) 0 [8]))))
-   (1 + (2 + (4 + (8 + (foldr (+) 0 [])))))
-   (1 + (2 + (4 + (8 + 0))))
+sumr [1, 2, 4, 8]
+foldr (+) 0 [1, 2, 4, 8]
+(1 + (foldr (+) 0 [2, 4, 8]))
+(1 + (2 + (foldr (+) 0 [4, 8])))
+(1 + (2 + (4 + (foldr (+) 0 [8]))))
+(1 + (2 + (4 + (8 + (foldr (+) 0 [])))))
+(1 + (2 + (4 + (8 + 0))))
 ```
 
 Unsurprisingly, now we're starting on the right! This ends up evaluating to the same result, but that is only the case for *associative* operations. You may recall from math class that this has to do with how we group a series of operations; if we just write $0 + 1 + 2 + 4 + 8$ there are five different $+$s that we could choose to evaluate first. Of course, with addition, it doesn't matter; any way we group the operations comes out to the same result. We call functions with this property associative. On the other hand, subtraction is definitely not associative:
 
 ```plain
-   ((((0 - 1) - 2) - 4) - 8) = -15
-   (1 - (2 - (4 - (8 - 0)))) = -5
+((((0 - 1) - 2) - 4) - 8) = -15
+(1 - (2 - (4 - (8 - 0)))) = -5
 ```
 
 In this case, `foldl` and `foldr` give different results! This isn't actually that big of a deal though---if you know which side you're starting from, you can always define your folding function appropriately (and perhaps reverse your list) in order to get the result you want. It turns out, though, that sometimes it does matter which fold you choose!
@@ -125,15 +125,13 @@ This can be read a couple of different ways. Usually the one folks see first tre
         (<>)  = (+)
 
     sum : [Int] -> Int
-    sum xs = foldl (<> using Prod)
+    sum xs = foldl (<> using Sum)
 
 Notice that I have named the instance; this can sometimes be useful, because there may be multiple ways for a given data type to implement a typeclass. Such as:
 
-.. code:: pseudoml
-
-   instance Monoid Int as Product
-       empty = 1
-       (<>)  = (*)
+    instance Monoid Int as Product
+        empty = 1
+        (<>)  = (*)
 
 Each of these specifies a particular way that integers can be stuck together. With these examples handy, we can write down the *monoid laws*:
 
