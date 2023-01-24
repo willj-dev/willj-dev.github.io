@@ -1,8 +1,8 @@
 ------------------------
 title: Implementation Ideas
+blurb: >
+  Little widgets and knick knacks that would help make MU transition seamless, but aren't really worth mentioning anywhere else
 ------------------------
-
-Little widgets and knick knacks that would help make MU transition seamless, but aren't really worth mentioning anywhere else
 
 PM data sync
 *************************************************

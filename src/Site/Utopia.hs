@@ -1,22 +1,32 @@
 
 module Site.Utopia (utopiaRules) where
 
-import Hakyll.Core.Compiler (Compiler, getResourceBody)
-import Hakyll.Core.Identifier (Identifier, fromFilePath)
-import Hakyll.Core.Item (Item)
-import Hakyll.Core.Routes (idRoute)
-import Hakyll.Core.Rules ( compile, match, Rules, route )
-import Hakyll.Web.Template (templateBodyCompiler, loadAndApplyTemplate, applyAsTemplate)
-import Hakyll.Web.Template.Context (Context, listField, defaultContext)
-import Hakyll.Web.Html.RelativizeUrls (relativizeUrls)
+import Hakyll
 
 import Site.Common
-import Site.Config (UtopiaConfig(utopia_rst), Config (config_utopia), configCompiler, Term (Term), utopia_terms)
-import Site.Pandoc (rstContext, TOCCompiler, rstBodyTOCCompiler)
-import Site.Utopia.Terms (termContext)
+import Site.Config
+import Site.Pandoc
+import Site.Project
+import Site.Utopia.Terms
 
-indexId :: Identifier
-indexId = "pages/millennial-utopia/index.rst"
+muProjectId :: ProjectId
+muProjectId = "millennial-utopia"
+
+-- Not really a "read this before that" as in ConceptualFP, but just a
+-- non-arbitrary order with "fundamentals" earlier on
+pageOrder :: [PageId]
+pageOrder =
+  [ "msc"
+  , "constitution"
+  , "proving-mu-viability"
+  , "a-millennial-utopia"
+  , "selected-principles"
+  , "transition"
+  , "managing-shared-resources"
+  , "utopian-capital"
+  , "implementation-ideas"
+  , "marketing-ideas"
+  ]
 
 utopiaRules :: Rules ProjectMetadata
 utopiaRules = do
@@ -24,9 +34,9 @@ utopiaRules = do
   compileJs
   compilePages
   compileIndex
-  projectMetadata indexId
+  projectMetadata muProjectId
 
-loadTemplates, compileJs, compilePages, compileIndex :: Rules ()
+loadTemplates, compileJs, compilePages :: Rules ()
 loadTemplates = match "templates/millennial-utopia/*" $ compile templateBodyCompiler
 
 compileJs = match "js/millennial-utopia/*.js" $ do
@@ -34,36 +44,43 @@ compileJs = match "js/millennial-utopia/*.js" $ do
   compile $ do
     config <- config_utopia <$> configCompiler
     jsTemplate <- getResourceBody
-    applyAsTemplate (utopiaContext config) jsTemplate
+    applyAsTemplate (termsContext config) jsTemplate
 
-compilePages = matchGlobExceptIndex "pages/millennial-utopia/*.rst" $ do
+compilePages = matchProjectPages muProjectId $ do
   route tailHTMLRoute
   compile $ do
     config <- config_utopia <$> configCompiler
-    (toc, body) <- utopiaRSTCompiler config
-    applyUtopiaTemplates config toc body
+    utopiaRSTCompiler >>= applyUtopiaTemplates config
 
-compileIndex = matchOnly indexId $ do
+compileIndex :: Rules ()
+compileIndex = matchProjectIndex muProjectId $ do
   route tailHTMLRoute
-  compile $ configCompiler >>= utopiaRSTCompiler . config_utopia >>= applyIndexTemplates True . snd
+  compile $ getResourceBody
+    >>= loadAndApplyTemplate "templates/millennial-utopia.rst" defaultContext
+    >>= compilePandocRST
+    >>= compileHTMLPandoc
+    >>= makeItem
+    >>= applyProjectIndexTemplates pageOrder
 
-utopiaRSTCompiler :: UtopiaConfig -> TOCCompiler (Item String)
-utopiaRSTCompiler = rstBodyTOCCompiler . utopia_rst
+utopiaRSTCompiler :: Compiler CompiledPage
+utopiaRSTCompiler = getResourceBody
+  >>= loadAndApplyTemplate "templates/millennial-utopia.rst" defaultContext
+  >>= compilePandocRST
+  >>= compilePandocPage
 
-applyUtopiaTemplates :: UtopiaConfig -> Context String -> Item String -> Compiler (Item String)
-applyUtopiaTemplates config tocContext pageHTMLItem =
-  loadAndApplyTemplate "templates/millennial-utopia/page.html" (tocContext <> utopiaContext config) pageHTMLItem
+applyUtopiaTemplates :: UtopiaConfig -> CompiledPage -> Compiler (Item String)
+applyUtopiaTemplates config (CompiledPage t _ _ pageHTMLItem toc) =
+  loadAndApplyTemplate "templates/millennial-utopia/page.html" pageContext pageHTMLItem
     >>= loadAndApplyTemplate "templates/base.html" baseContext
     >>= relativizeUrls
     where
+      pageContext = constField "toc" toc <> termsContext config <> defaultContext
       baseContext = projectIdContext <> headerTitleContext <> defaultContext
+      headerTitleContext = constField "header-title" t
 
--- term list; RST prefix/suffix for custom roles and link targets
-utopiaContext :: UtopiaConfig -> Context String
-utopiaContext config = mconcat [termsField, utopiaRSTContext, defaultContext]
+-- term list
+termsContext :: UtopiaConfig -> Context String
+termsContext config = listField "terms" termContext termItems
   where
-    termsField = listField "terms" termContext termItems
     termItems = return $ makeTermItem <$> utopia_terms config
     makeTermItem = makeItemWith (\(Term term _ _) -> fromFilePath $ "__term_" ++ term)
-
-    utopiaRSTContext = rstContext (utopia_rst config)

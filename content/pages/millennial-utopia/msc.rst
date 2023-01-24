@@ -1,11 +1,14 @@
 -----------------------
 title: The Millennial Social Code
+blurb: >
+  Rights which should belong to every person in any high-technology society.
 -----------------------
 
+.. _r3m:
 .. _Section 1:
 
 Section 1 - Rights for the Third Millennium
-*************************************************
+******************************************************
 
 These `rights` belong equally to every `person` in any `high-technology` human `society`. It is the duty of all persons to extend the status and rights of personhood to the largest possible number of individuals.
 

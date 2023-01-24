@@ -1,5 +1,7 @@
 ------------------------
 title: Utopian Capital, LLC
+blurb: >
+  The Corporation to End Capitalism: our first step on the transition process
 ------------------------
 
 The Corporation to End Capitalism
@@ -9,7 +11,7 @@ The Corporation to End Capitalism
 Mission
 *************************************************
 
-The mission of Utopian Capital is to support the development of a just society by managing the capital assets of the Millennial Utopian Society (MUS), and any of its individual members, with their permission and on their behalf. This will support the continuing provision of equal rights under The Millennial Social Code (MSC) to the largest possible population.
+The mission of Utopian Capital is to support the development of a just society by managing the capital assets of the Millennial Utopian Society (MUS), and any of its individual members, with their permission and on their behalf. This will support the continuing provision of equal rights under the `Millennial Social Code`_ (MSC) to the largest possible population.
 
 Business Model
 *************************************************
@@ -37,7 +39,7 @@ UC is wholly owned and operated by the MU.
 Corporate Structure
 *************************************************
 
-The activities of UC are defined, implemented, and adjudicated according to the constitution and laws of the Millennial Utopian Government (MUG), which is the governing body of the MUS.
+The activities of UC are defined, implemented, and adjudicated according to the `constitution`_ and laws of the Millennial Utopian Government (MUG), which is the governing body of the MUS.
 
 The CEO of UC is the Director of Capital Relations (DCR) of the MUG, who is required to be a lawful member of the MUG Executive Council’s Board of Directors (ECBD). The ECBD will also appoint two other executive officers of UC:
 
@@ -56,8 +58,11 @@ Yep, you read that right! It is our belief that a just society which guarantees 
 
 For many this idea conjures unpleasant visions of angry masses wielding pitchforks and seizing the means of production (whatever that means). In fact this sort of recklessly violent revolution stopped being possible the moment we split the atom. There is simply no utopia that is worth risking a conflict that could threaten humanity's very survival.
 
-So how do we go about instituting radical, systemic change? By convincing people it's possible, and then convincing them to vote for it! Mutual Utopia is both a public demonstration that a post-capitalism society is possible, and a template on which to model legal reforms within an existing government.
+So how do we go about instituting radical, systemic change? By convincing people it's possible, and then convincing them to vote for it! Utopian Capital is both a public demonstration that a post-capitalism society is possible, and a template on which to model legal reforms within an existing government.
+
 Doesn't owning a share of a corporation make you a capitalist?
+====================================================================
+
 Right you are! Unfortunately, for the reasons mentioned above, it is not possible to institute reform by forming an independent government and declaring our own legitimacy. This would result in, at best, a padded cell. We must play by the rules, but that doesn't mean that we can't be a bit tricky.
 
 MU wants to demonstrate to the entire world that a post-capitalism society can guarantee universal equal rights and be governed with complete transparency while still maintaining an open market for nonessential goods and services. The way to do that is by building a prototype with capitalist training wheels, then building a bigger and more comprehensive model once we have enough capital. (Irony, right?)

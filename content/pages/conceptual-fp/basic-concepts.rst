@@ -3,7 +3,7 @@ title: Basic Concepts
 ------------------------
 
 PseudoML Syntax
----------------
+-----------------
 
 Type declarations and assignments look like this:
 
@@ -20,7 +20,7 @@ Type declarations and assignments look like this:
    myCharList : String
    myCharList = ['H', 'e', 'l', 'l', 'o']
 
-The :pseudoml:`type` keyword creates a *type synonym*; this is just a different label, sometimes to save on keyboard work for a frequently-used but complex type name, or sometimes as a form of documentation (as in :pseudoml:`type UserId = String`). Brand new types are declared with :pseudoml:`data`:
+The `type` keyword creates a *type synonym*; this is just a different label, sometimes to save on keyboard work for a frequently-used but complex type name, or sometimes as a form of documentation (as in `type UserId = String`). Brand new types are declared with `data`:
 
 .. code:: pseudoml
 
@@ -40,9 +40,9 @@ Functions are defined like so:
    stringLength ""     = 0
    stringLength (_::s) = 1 + stringLength s
 
-Note the *pattern matching* on the left-hand side of the :pseudoml:`=`. This should be read as ":pseudoml:`stringLength` called with an empty string returns 0; otherwise, we know it isn’t empty, so discard the head of the list and add 1 to the length of the remainder."
+Note the *pattern matching* on the left-hand side of the `=`. This should be read as "`stringLength` called with an empty string returns 0; otherwise, we know it isn’t empty, so discard the head of the list and add 1 to the length of the remainder."
 
-Function application (that is, "calling" a function) is achieved by simply listing the arguments after the function name, as in :pseudoml:`f x y z` which calls a function :pseudoml:`f` with three arguments. Arguments are always applied from left to right:
+Function application (that is, "calling" a function) is achieved by simply listing the arguments after the function name, as in `f x y z` which calls a function `f` with three arguments. Arguments are always applied from left to right:
 
 .. code:: pseudoml
 
@@ -77,20 +77,20 @@ but that gets tedious quickly if we are chaining several functions together. The
 
    stringHasOddLength = isOdd . stringLength
 
-The :pseudoml:`.` in that definition is itself a function:
+The `.` in that definition is itself a function:
 
 .. code:: pseudoml
 
    (.) : (b -> c) -> (a -> b) -> a -> c
    (f . g) x = f (g x)
 
-It says "take the output of the function on the right, and plug it into the function on the left". Note that the new definition of :pseudoml:`stringHasOddLength` does not actually bind a name for the argument! We *can* do that, as in
+It says "take the output of the function on the right, and plug it into the function on the left". Note that the new definition of `stringHasOddLength` does not actually bind a name for the argument! We *can* do that, as in
 
 .. code:: pseudoml
 
    stringHasOddLength x = (isOdd . stringLength) x
 
-but there is no need. We’re just saying ":pseudoml:`stringHasOddLength` is the result of composing these two functions." This is called, somewhat misleadingly, "point-free style." [1]_ You can do it in ES too:
+but there is no need. We’re just saying "`stringHasOddLength` is the result of composing these two functions." This is called, somewhat misleadingly, "point-free style." [1]_ You can do it in ES too:
 
 .. code:: js
 
@@ -99,7 +99,7 @@ but there is no need. We’re just saying ":pseudoml:`stringHasOddLength` is the
    const isOdd = i => i % 2 === 1;
    const stringHasOddLength = compose(isOdd, stringLength);
 
-If you were to take a static type analysis tool to this code, it would hopefully resolve the type of :pseudoml:`stringHasOddLength` as a function from strings to booleans, despite not having actually used an explicit function definition that binds an argument name.
+If you were to take a static type analysis tool to this code, it would hopefully resolve the type of `stringHasOddLength` as a function from strings to booleans, despite not having actually used an explicit function definition that binds an argument name.
 
 Point-free style is related to the concept of "currying", which is named after a person named Haskell Curry, not the food. If a function takes two arguments, and you feed it only one, the result is a function that takes one argument:
 
@@ -107,7 +107,7 @@ Point-free style is related to the concept of "currying", which is named after a
 
    stringLengths = map stringLength
 
-The :pseudoml:`map` function is the usual: it takes a function :pseudoml:`(a -> b)` and a list :pseudoml:`[a]`, and then returns the result of applying the given function to each element of the list. So if we stare at this definition, since :pseudoml:`stringLength : String -> Int`, we can deduce that :pseudoml:`stringLengths : [String] -> [Int]`.
+The `map` function is the usual: it takes a function `(a -> b)` and a list `[a]`, and then returns the result of applying the given function to each element of the list. So if we stare at this definition, since `stringLength : String -> Int`, we can deduce that `stringLengths : [String] -> [Int]`.
 
 .. [1]
    Mathematicians again. "Point" means "function argument"; "point-free" means "defined without binding a name to the arguments".
@@ -117,7 +117,7 @@ Recursion
 
 Recursion is much more important in functional programming than in imperative programming, because recursion is the primary way to implement loops (in addition to the various other uses that it has in common with non-functional code). We will have much more to say about recursion later on (see Part `5 <#part:recursion>`__), but for now we can go over some basic examples to get us started.
 
-Here’s how we might implement :pseudoml:`map` over lists:
+Here’s how we might implement `map` over lists:
 
 .. code:: pseudoml
 
@@ -125,7 +125,7 @@ Here’s how we might implement :pseudoml:`map` over lists:
    map _ []      = []
    map f (x::xs) = f x :: map f xs
 
-The :pseudoml:`::` constructor sticks an element on the head of a list. The first equation takes care of the base case (stop recursing once we hit the end of the list), and the second one says to apply the function to the head of the list, and then do the same thing on to the remainder.
+The `::` constructor sticks an element on the head of a list. The first equation takes care of the base case (stop recursing once we hit the end of the list), and the second one says to apply the function to the head of the list, and then do the same thing on to the remainder.
 
 Here’s another example, which works rather like Python’s :python:`range()` with one argument:
 
@@ -160,9 +160,9 @@ A *pure function* is a function that does not have any "side effects", such as u
 
 Pure functions are important for a couple of reasons. From a practical standpoint, they are easy to test; without any global state that can be corrupted by another process, or flaky I/O operations, we know that a pure function called with the same arguments will always produce the same result. From the standpoint of implementing a language, we can get a form of memoization for free: results of pure functions can be cached since the compiler can guarantee that there’s no way for the result to change from one call to the next.
 
-Of course, it doesn’t make sense for a language to only support pure functions; the *whole point* of running a program is to get the side effects! Side-effectful operations belong to their own type, :pseudoml:`IO a`. For instance, an :pseudoml:`IO Int` represents an operation that does something unspecified and then returns an :pseudoml:`Int`. They are, therefore, somewhat spooky; running an :pseudoml:`IO` "action" is dangerous if you don’t know where it’s been, since even an innocuous-seeming :pseudoml:`IO Int` could represent the action "wipe the hard drive and then return the number of dirty pictures that this program emailed your grandma".
+Of course, it doesn’t make sense for a language to only support pure functions; the *whole point* of running a program is to get the side effects! Side-effectful operations belong to their own type, `IO a`. For instance, an `IO Int` represents an operation that does something unspecified and then returns an `Int`. They are, therefore, somewhat spooky; running an `IO` "action" is dangerous if you don’t know where it’s been, since even an innocuous-seeming `IO Int` could represent the action "wipe the hard drive and then return the number of dirty pictures that this program emailed your grandma".
 
-To facilitate effective testing (and out of a desire to be tidy), functional programmers generally try to keep as much of their code pure as possible. Consider, for instance, parsing an image file and returning the number of red pixels present in the image. Side effects are only required when reading the file and then printing the result to the console; everything in between is pure operations on the contents of the file, which is just a series of bytes. Folks who are new to functional programming often find the restriction of side effects to :pseudoml:`IO` grating, but that is just after a lifetime of being able to sprinkle side effects around anywhere. Once you get used to structuring your code appropriately, it becomes second nature, and eventually the cavalier attitude of other languages toward side effects starts to feel a bit rude!
+To facilitate effective testing (and out of a desire to be tidy), functional programmers generally try to keep as much of their code pure as possible. Consider, for instance, parsing an image file and returning the number of red pixels present in the image. Side effects are only required when reading the file and then printing the result to the console; everything in between is pure operations on the contents of the file, which is just a series of bytes. Folks who are new to functional programming often find the restriction of side effects to `IO` grating, but that is just after a lifetime of being able to sprinkle side effects around anywhere. Once you get used to structuring your code appropriately, it becomes second nature, and eventually the cavalier attitude of other languages toward side effects starts to feel a bit rude!
 
 .. code:: js
 
@@ -182,7 +182,7 @@ Strictness refers to whether or not a given expression in the source code is act
 
    const everythingIsFine = true || fireAllMissiles();
 
-The expression on the left-hand side of the :pseudoml:`||` is always evaluated, but the right-hand side may not be, if the processor knows by then what the overall expression will evaluate to. On the other hand, most other operations, such as function calls, follow "strict semantics":
+The expression on the left-hand side of the `||` is always evaluated, but the right-hand side may not be, if the processor knows by then what the overall expression will evaluate to. On the other hand, most other operations, such as function calls, follow "strict semantics":
 
 .. code:: js
 
@@ -201,28 +201,28 @@ A term that is frequently used alongside "non-strict" is "lazy". Laziness is a w
    const two = 2;
    const twoThunk = () => 2;
 
-This is done behind the scenes, or else the code would be unacceptably cluttered. Although it makes it somewhat hard to decide whether some code will execute before or after another, the only times where that usually matters (namely, executing side-effectful actions) are wrapped up in the :pseudoml:`IO` monad (more on that later!) which has a sense of "do this before that" built-in to the structure.
+This is done behind the scenes, or else the code would be unacceptably cluttered. Although it makes it somewhat hard to decide whether some code will execute before or after another, the only times where that usually matters (namely, executing side-effectful actions) are wrapped up in the `IO` monad (more on that later!) which has a sense of "do this before that" built-in to the structure.
 
 PseudoML as used here will in general be non-strict, though in the few places where it matters we will point that out. Specific languages have different ways to achieve strictness/non-strictness when that is not the default behavior, so we will leave it up to the reader to determine how to implement that in the wild.
 
 Typeclasses
 -----------
 
-A typeclass is a set of functions that can be overloaded to work with any type. Defining how those functions work on a particular type is called *implementing* that typeclass. The most basic typeclasses are :pseudoml:`Eq`, :pseudoml:`Ord`, and :pseudoml:`Show`, which we will go over here. In the next section, we’ll start getting into some of the meatier examples.
+A typeclass is a set of functions that can be overloaded to work with any type. Defining how those functions work on a particular type is called *implementing* that typeclass. The most basic typeclasses are `Eq`, `Ord`, and `Show`, which we will go over here. In the next section, we’ll start getting into some of the meatier examples.
 
 Languages with this concept usually include several functions in the typeclass definition, many of which may be given a "default" definition in terms of some minimal set that must be implemented. This is entirely for practical purposes; in specific cases, there may be a more efficient way to implement one of the "extra" functions. Such considerations are an implementation detail outside our scope, so we will limit our typeclasses to the minimal set of functions, and define the other ones separately when they are needed.
 
 Eq
 ~~~~~~~~~~~~~~~~
 
-A data type can be made an instance of :pseudoml:`Eq` if its values can be compared as equal or not equal. It is defined like this:
+A data type can be made an instance of `Eq` if its values can be compared as equal or not equal. It is defined like this:
 
 .. code:: pseudoml
 
    typeclass Eq a
        (==) : a -> a -> Bool
 
-This says ":pseudoml:`a` is an instance of :pseudoml:`Eq` if there is an implementation for the :pseudoml:`(==)` function." As an example, consider a data type representing the three primary colors:
+This says "`a` is an instance of `Eq` if there is an implementation for the `(==)` function." As an example, consider a data type representing the three primary colors:
 
 .. code:: pseudoml
 
@@ -244,9 +244,9 @@ Polymorphic functions are written like this:
    elem _ []      = False
    elem e (x::xs) = e == x || elem e xs
 
-The :pseudoml:`=>` notation says that :pseudoml:`a` can be any type, as long as it has an :pseudoml:`Eq` instance. This is a function of two arguments: something to look for in a list, and the list in which to look. The second line says "nothing is in an empty list." The third line says "check the first element in the list; if it is equal to what you’re looking for, return :pseudoml:`True`; otherwise, keep looking in the rest of the list."
+The `=>` notation says that `a` can be any type, as long as it has an `Eq` instance. This is a function of two arguments: something to look for in a list, and the list in which to look. The second line says "nothing is in an empty list." The third line says "check the first element in the list; if it is equal to what you’re looking for, return `True`; otherwise, keep looking in the rest of the list."
 
-Incidentally, how do we compare lists? Two lists are equal if they have the same elements in the same order. This means that we need a way to compare the elements to see if they’re equal too. So we might write :pseudoml:`Eq [a]` like:
+Incidentally, how do we compare lists? Two lists are equal if they have the same elements in the same order. This means that we need a way to compare the elements to see if they’re equal too. So we might write `Eq [a]` like:
 
 .. code:: pseudoml
 
@@ -255,12 +255,12 @@ Incidentally, how do we compare lists? Two lists are equal if they have the same
        (x::xs) == (y::ys) = x == y && xs == ys
        _       == _       = False
 
-This says "two empty lists are equal; two nonempty lists are equal if their heads and tails are equal; otherwise, they are never equal." Note that the :pseudoml:`Eq a` constraint is what lets us use :pseudoml:`x == y`.
+This says "two empty lists are equal; two nonempty lists are equal if their heads and tails are equal; otherwise, they are never equal." Note that the `Eq a` constraint is what lets us use `x == y`.
 
 Ord
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-:pseudoml:`Ord` types support a notion of "ordering". The class is defined like so:
+`Ord` types support a notion of "ordering". The class is defined like so:
 
 .. code:: pseudoml
 
@@ -269,7 +269,7 @@ Ord
    typeclass Eq a => Ord a
        compare : a -> a -> Ordering
 
-Similarly to its use in type signatures, the :pseudoml:`=>` at the top says that in order to be an :pseudoml:`Ord`, the type must also implement :pseudoml:`Eq`. The usual operators like :pseudoml:`<` are then defined in terms of :pseudoml:`compare`; for instance,
+Similarly to its use in type signatures, the `=>` at the top says that in order to be an `Ord`, the type must also implement `Eq`. The usual operators like `<` are then defined in terms of `compare`; for instance,
 
 .. code:: pseudoml
 
@@ -277,7 +277,7 @@ Similarly to its use in type signatures, the :pseudoml:`=>` at the top says that
    x >= y = not (x < y)
    max x y = if x >= y then x else y
 
-One of the nifty examples using :pseudoml:`Ord` is a recursive implementation of the QuickSort algorithm.
+One of the nifty examples using `Ord` is a recursive implementation of the QuickSort algorithm.
 
 .. code:: pseudoml
 
@@ -292,14 +292,14 @@ This is a pretty popular canonical "look at how much cleaner FP is!" example, bu
 Show
 ~~~~~~~~~~~~~~~~~~~~
 
-:pseudoml:`Show` is for types that can be represented as a string:
+`Show` is for types that can be represented as a string:
 
 .. code:: pseudoml
 
    typeclass Show a
        show : a -> String
 
-Most languages also have the ability to generate instances of :pseudoml:`Show` (or equivalent) for you. This is also simplified from the definition you might see in the wild, which is designed to support efficiently building the output string for nested structures. Just for fun, here’s an example instance for lists whose elements are themselves :pseudoml:`Show`\ able.
+Most languages also have the ability to generate instances of `Show` (or equivalent) for you. This is also simplified from the definition you might see in the wild, which is designed to support efficiently building the output string for nested structures. Just for fun, here’s an example instance for lists whose elements are themselves `Show`\ able.
 
 .. code:: pseudoml
 

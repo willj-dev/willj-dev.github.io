@@ -1,39 +1,6 @@
-rst:
-  prefix: ''
-  suffix: ''
-cfp:
-  rst:
-    prefix: |
-      .. For some reason, the :class: option sets the span class to the roleName, regardless
-          of what is actually specified in the field body.
-          Fixed in https://github.com/jgm/pandoc/pull/7700 (not yet released)
-      .. role:: caption
-        :class: asdf-see-comment-above
-      .. role: pseudoml(code)
-        :language: pseudoml
-    suffix: ''
 utopia:
-  rst:
-    prefix: |
-      .. default-role:: term-link
-
-      .. For some reason, the :class: option sets the span class to the roleName, regardless
-          of what is actually specified in the field body.
-          Fixed in https://github.com/jgm/pandoc/pull/7700 (not yet released)
-      .. role:: term-link
-        :class: asdf-see-comment-above
-    suffix: |
-      .. _A Millennial Utopia: ./a-millennial-utopia.html
-      .. _Selected Utopian Social Principles: ./selected-principles.html
-      .. _The Millennial Utopian Constitution: ./constitution.html
-      .. _The Millennial Social Code: ./msc.html
-      .. _Transitioning From Capitalism: ./transition.html
-      .. _Equitable Management and Distribution of Shared Resources: ./managing-shared-resources.html
-      .. _Proving MU Viability: ./proving-mu-viability.html
-      .. _Implementation Ideas: ./implementation-ideas.html
-      .. _Marketing Ideas: ./marketing-ideas.html
   terms:
-    # Note: single quotes in term definitions must be escaped like \\\', because they are compiled to HTML
+    # Note: single quotes in term definitions must be escaped like ', because they are compiled to HTML
     # (so we can't use double quotes to avoid escaping single quotes). The \\ escapes the following
     # single quote in a single-quoted JSON string; the \' escapes the single quote from the the RST compiler.
     - term: person
@@ -43,7 +10,7 @@ utopia:
     - term: agency
       alternatives: []
       definition: |
-        *Agency* is a `person`\\\'s ability to freely choose for themselves how to act.
+        *Agency* is a `person`'s ability to freely choose for themselves how to act.
     - term: adult
       alternatives: [adults]
       definition: |
@@ -55,9 +22,9 @@ utopia:
     - term: guardian
       alternatives: [guardians, guardianship]
       definition: |
-        A `child`\\\'s *guardian* is an `adult` who is permitted to exercise agency on a child\\\'s behalf.
+        A `child`'s *guardian* is an `adult` who is permitted to exercise agency on a child's behalf.
         
-        By default, both biological parents and all living direct ancestors are a child\\\'s guardians.
+        By default, both biological parents and all living direct ancestors are a child's guardians.
     - term: society
       alternatives: []
       definition: |
@@ -84,7 +51,7 @@ utopia:
     - term: citizen
       alternatives: [citizens, citizenship]
       definition: |
-        A *citizen* of a particular `society` is a `person` whose `rights` are guaranteed by that society\\\'s `government`, in return for that person\\\'s implicit assent to abide by any of its `laws`.
+        A *citizen* of a particular `society` is a `person` whose `rights` are guaranteed by that society's `government`, in return for that person's implicit assent to abide by any of its `laws`.
     - term: law
       alternatives: [laws]
       definition: |
@@ -111,7 +78,7 @@ utopia:
       definition: |
         A punishment is *legitimate* if it is enacted by a `government` in response to a `crime` under the following conditions:
 
-        - the crime is proven with `due legal process` to have been committed against an individual `citizen` of that government, or to have significantly affected the government\\\'s ability to provide for the `rights` of its citizens;
+        - the crime is proven with `due legal process` to have been committed against an individual `citizen` of that government, or to have significantly affected the government's ability to provide for the `rights` of its citizens;
         - the crime was defined by `law` at the time it occurred;
         - the punishment is the minimum necessary length and severity to ensure the ongoing protection of the rights of all other citizens;
         - any fines imposed are fairly representative of the damage done or prevented;

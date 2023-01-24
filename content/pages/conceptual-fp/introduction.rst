@@ -2,7 +2,7 @@
 title: Introduction to Functional Programming
 ------------------------
 
-Functional Programming: What And Why
+What And Why
 ============================================
 
 Let's begin at the beginning. Programming languages are an abstraction over instructions that can be run by your CPU. These instructions are fundamentally *imperative*: we are telling the machine to read and write data between memory registers. Low-level languages like C are designed to be very thin, platform-independent wrappers over these instructions, with minimal control structures (for loops, structs) to simplify the work of reading and writing code.
@@ -47,7 +47,7 @@ By contrast, a (purely) functional programming language departs from the imperat
 
 :caption:`(b) An example of declarative style in PseudoML.`
 
-Both examples illustrate breaking the problem down into smaller pieces, but that's where the similarities end. A loop, for instance, is an imperative construct: "repeatedly execute this block of instructions". In functional programming, iterating over a list is generally accomplished by doing something with the head of the list and then recursing through the remainder (as in :pseudoml:`listRemainingTodos`). Pattern matching on function arguments takes the place of if blocks to direct execution. These and other quirks of functional programming are all due to the fundamental difference between imperative and declarative styles.
+Both examples illustrate breaking the problem down into smaller pieces, but that's where the similarities end. A loop, for instance, is an imperative construct: "repeatedly execute this block of instructions". In functional programming, iterating over a list is generally accomplished by doing something with the head of the list and then recursing through the remainder (as in `listRemainingTodos`). Pattern matching on function arguments takes the place of if blocks to direct execution. These and other quirks of functional programming are all due to the fundamental difference between imperative and declarative styles.
 
 That takes care of the "what". Why do people like functional programming? What does it gain over other paradigms? As with all things, it comes down to a combination of personal preference and math.
 
@@ -56,7 +56,7 @@ Personal Preference
 
 People who prefer functional programming tend to be the same set of people who like statically-typed languages with very smart compilers. This is where basically all of the room for different opinions resides; I'll start by going over some of the reasoning behind that preference (as well as some of the arguments against it). Later on, I'll go over how that has to do with functional programming.
 
-First, some definitions. A *type system* is a way of assigning a property called *type* to a given *value* in the programming language. Types are a human construct that tell us something about what a program means: after all, inside the silicon we're just shuffling bits around. But when we have a function called :pseudoml:`stringLength` and let the computer plug any random bits into it, there's a good chance that whatever comes out won't even make sense as an integer, let alone a measure of length!
+First, some definitions. A *type system* is a way of assigning a property called *type* to a given *value* in the programming language. Types are a human construct that tell us something about what a program means: after all, inside the silicon we're just shuffling bits around. But when we have a function called `stringLength` and let the computer plug any random bits into it, there's a good chance that whatever comes out won't even make sense as an integer, let alone a measure of length!
 
 To prevent this kind of faux pas, we tell the compiler (or the compiler infers from usage, if it's a smarty pants) that this function should only be called with one argument, a string, and the return value should only be used like an integer. We are in effect getting some documentation for free: clients can read the type signature of a function and understand quite a lot about its behavior, especially if we can guarantee that there are no "side effects" (more on that later). But that's not all! Static type checking can be considered a form of testing: not only does the compiler guarantee that the function is used correctly, but it can also guarantee that the *definition* of the function upholds the type signature we claimed it should!
 
@@ -78,18 +78,18 @@ Functional programming languages are designed to be very close to the language t
 - Can it be guaranteed that this program won't set my grandma on fire?
 
 
-The language that mathematicians and logicians use to describe and (attempt to) answer these questions is called the *lambda calculus*, which is very much out of the scope of this paper. Atop that framework is a language of types, which lets us say things like "Here is a function called :pseudoml:`stringLength`; if you plug in a string, this will return an integer representing the number of characters in that string; no other inputs are allowed." At this point, a compiler can check things like
+The language that mathematicians and logicians use to describe and (attempt to) answer these questions is called the *lambda calculus*, which is very much out of the scope of this paper. Atop that framework is a language of types, which lets us say things like "Here is a function called `stringLength`; if you plug in a string, this will return an integer representing the number of characters in that string; no other inputs are allowed." At this point, a compiler can check things like
 
-- Reject any program that attempts to plug something other than a string into :pseudoml:`stringLength`
-- Reject any program that attempts to use the output of :pseudoml:`stringLength` as anything other than an integer
-- Reject the program if :pseudoml:`stringLength` returns something other than an integer
-- Reject the program if :pseudoml:`stringLength` does not accept any valid string
+- Reject any program that attempts to plug something other than a string into `stringLength`
+- Reject any program that attempts to use the output of `stringLength` as anything other than an integer
+- Reject the program if `stringLength` returns something other than an integer
+- Reject the program if `stringLength` does not accept any valid string
 
 and (importantly) it is possible to *mathematically prove* that the compiler answers those questions correctly. It is the ultimate in test technology: rather than relying on a mere finite number of example cases as in traditional testing, we can rely on **Mathematical Truth (TM)**!
 
 Now, all that being said, software engineers shouldn't be expected to have math degrees! None of that background is required to actually *use* the FP toolkit, in the same way that we don't need to know the instruction set for the processors in our laptops. It is just a convenience that we can take for granted when we write our code and it compiles.
 
-Functional Programming: Why Not?
+Why Not?
 ============================================
 
 The mathematical heritage of functional programming has given it a reputation for being difficult to understand, or just a research toy for mathematicians and academics. There is a reason why this image developed, but it is not really well-deserved.

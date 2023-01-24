@@ -1,5 +1,7 @@
 ------------------------
 title: Transitioning From Capitalism
+blurb: >
+  A sketch of the transition process from a contemporary consumer-capitalist society to one closer to the MU ideal.
 ------------------------
 
 Here we outline the steps by which we can gradually, peacefully, and non-coercively transition from a contemporary consumer-capitalist society to one which universally and equitably guarantees the Millennial Social Code.

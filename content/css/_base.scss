@@ -75,13 +75,47 @@ body {
     code {
       font-family: 'Noto Sans Mono', monospace;
     }
+    a.anchor {
+      font-family: 'Material Icons';
+      font-size: 0.6em;
+      text-decoration: none;
+
+      position: relative;
+      left: 0.5em;
+      top: 0.15em;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 
     .card {
       @include card.shadow;
     }
 
-    p {
+    p, dl, ul {
       max-width: 48em;
+    }
+
+    // never put bullets on a table of contents or any sublists
+    ul.contents, .contents ul {
+      list-style-type: none;
+    }
+
+    // no padding for the top ul of a table of contents...including if the root of the toc *is* a ul
+    ul.contents, .contents > ul {
+      padding: 0;
+    }
+
+    .contents {
+      dd ~ dt {
+        margin-top: 1em;
+      }
+
+      a {
+        text-decoration: none;
+        font-weight: bold;
+      }
     }
   }
 

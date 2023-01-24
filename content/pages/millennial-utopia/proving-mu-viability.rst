@@ -1,5 +1,7 @@
 ------------------------
 title: Proving MU Viability
+blurb: >
+  Descriptions of important data and parameters that we can use to gauge whether or not the MU would work in a given society, and how to calculate them from existing data
 ------------------------
 
 Definitions of Socioeconomic Parameters

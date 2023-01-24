@@ -1,5 +1,7 @@
 ------------------------
 title: Management and Distribution of Shared Resources
+blurb: >
+  A deeper look at how this problem is solved in a capitalist society, and how we intend to do it better
 ------------------------
 
 To do:

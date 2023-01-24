@@ -11,7 +11,7 @@ Here we are going to look into how to implement a right fold generically, given 
        foo = _
        bar = _
 
-This is pretty much a direct translation of the idea above: we left-fold (somehow) the structure :pseudoml:`t` into a function that evaluates from the right, then kick it off with the given starting value. Now we just need to figure out what to use for :pseudoml:`foo` and :pseudoml:`bar`! Let’s start by looking at their types, to see if they give us any clues. We know that :pseudoml:`foldl foo bar t` must be a function, and it should have type :pseudoml:`b -> b`. If we compare that to the type of :pseudoml:`foldl`,
+This is pretty much a direct translation of the idea above: we left-fold (somehow) the structure `t` into a function that evaluates from the right, then kick it off with the given starting value. Now we just need to figure out what to use for `foo` and `bar`! Let’s start by looking at their types, to see if they give us any clues. We know that `foldl foo bar t` must be a function, and it should have type `b -> b`. If we compare that to the type of `foldl`,
 
 .. code:: pseudoml
 
@@ -24,14 +24,14 @@ in order to have the correct result type, we must have
    foo : (b -> b) -> a -> (b -> b)
    bar : (b -> b)
 
-The second one is easy: whenever you need a value that fits that type signature, it almost certainly should be the identity function :pseudoml:`id`. What about :pseudoml:`foo`? Well let’s treat it as a function of two arguments:
+The second one is easy: whenever you need a value that fits that type signature, it almost certainly should be the identity function `id`. What about `foo`? Well let’s treat it as a function of two arguments:
 
 .. code:: pseudoml
 
    foo : (b -> b) -> a -> (b -> b)
    foo g x = _
 
-At this point, let’s consider what gadgets we have available to us. We haven’t yet used :pseudoml:`f : a -> b -> b`, and now we also have :pseudoml:`g : b -> b` and :pseudoml:`x : a`. In general, unless you have a good reason, you want to try to use all of the variables you have handy. Interestingly, :pseudoml:`f x` will have type :pseudoml:`b -> b`, so what if we just compose that with :pseudoml:`g`?
+At this point, let’s consider what gadgets we have available to us. We haven’t yet used `f : a -> b -> b`, and now we also have `g : b -> b` and `x : a`. In general, unless you have a good reason, you want to try to use all of the variables you have handy. Interestingly, `f x` will have type `b -> b`, so what if we just compose that with `g`?
 
 .. code:: pseudoml
 
@@ -41,7 +41,7 @@ At this point, let’s consider what gadgets we have available to us. We haven�
 
 If you try this out, you’ll find that this definition works exactly as we wanted it to! This is actually somewhat amazing, which is a pretty common occurrence with "type-driven development" as this method is usually called. We could have arrived at the same result if we sat down and worked out exactly what it means to "left-fold a structure into a function that executes a right-fold", but that would have required a lot more noodling.
 
-To be honest, though, we cheated a little bit. Doing the composition in :pseudoml:`foo` the other way around would have typechecked, but produces the wrong results:
+To be honest, though, we cheated a little bit. Doing the composition in `foo` the other way around would have typechecked, but produces the wrong results:
 
 .. code:: pseudoml
 

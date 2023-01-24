@@ -2,22 +2,12 @@ module Site (site) where
 
 import qualified Data.ByteString      as SBS
 import qualified Data.ByteString.Lazy as LBS
-import Hakyll.Core.Compiler (Compiler, getResourceBody, getResourceLBS, getResourceString)
-import Hakyll.Core.File (copyFileCompiler)
-import Hakyll.Core.Identifier.Pattern (fromList)
-import Hakyll.Core.Item (Item (itemBody), withItemBody)
-import Hakyll.Core.Metadata (makePatternDependency)
-import Hakyll.Core.Routes (idRoute, setExtension)
-import Hakyll.Core.Rules (Rules, match, compile, route, rulesExtraDependencies)
-import Hakyll.Core.UnixFilter (unixFilter)
-import Hakyll.Web.Html.RelativizeUrls (relativizeUrls)
-import Hakyll.Web.Template (templateBodyCompiler, loadAndApplyTemplate, applyAsTemplate)
-import Hakyll.Web.Template.Context (defaultContext, listField, field)
-import Hakyll.Core.Identifier (fromFilePath)
+import Hakyll
 
-import Site.Common (makeItemWith, ProjectMetadata(..), applyIndexTemplates)
-import Site.ConceptualFP (conceptualFPRules)
-import Site.Utopia (utopiaRules)
+import Site.Common
+import Site.ConceptualFP
+import Site.Project
+import Site.Utopia
 
 site :: Rules ()
 site = do
@@ -58,18 +48,21 @@ compileSass = match "css/main.scss" $
 compileIndex :: [ProjectMetadata] -> Rules ()
 compileIndex projs = match "index.html" $ do
   route $ setExtension "html"
-  compile $ getResourceBody >>= applyAsTemplate projectsContext >>= applyIndexTemplates False
+  compile $ getResourceBody
+    >>= applyAsTemplate projectsContext
+    >>= loadAndApplyTemplate "templates/index.html" defaultContext
+    >>= loadAndApplyTemplate "templates/base.html" defaultContext
+    >>= relativizeUrls
   where
     projectsContext = listField "projects" projectContext projectItems
 
-    projectContext = mconcat [titleField, idField, blurbField]
-      where
-        titleField = field "title" (return . proj_title . itemBody)
-        idField = field "project-id" (return . proj_id . itemBody)
-        blurbField = field "blurb" (return . proj_blurb . itemBody)
-
+    projectContext = mconcat [projTitleField, projIdField, projBlurbField]
+    projTitleField = field "project-title" (return . proj_title . itemBody)
+    projIdField = field "project-id" (return . proj_id . itemBody)
+    projBlurbField = field "blurb" (return . proj_blurb . itemBody)
+    
     projectItems = return $ makeProjectItem <$> projs
-    makeProjectItem = makeItemWith (\(ProjectMetadata _ pid _) -> fromFilePath $ "__proj_" ++ pid)
+    makeProjectItem = makeItemWith (\(ProjectMetadata _ pid _) -> fromFilePath $ "__page_" ++ pid)
 
 sassCompiler :: Compiler (Item String)
 sassCompiler = getResourceString >>= withItemBody callSass
