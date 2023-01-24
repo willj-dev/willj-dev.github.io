@@ -1,127 +1,152 @@
 @use 'colors';
+@use 'card';
 
 body {
-    height: 100vh;
+  height: 100vh;
+
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 0;
+
+  #dark-mode, #light-mode {
+    padding: 0.5em 1em;
+    cursor: pointer;
+    width: 90px;
+    text-align: center;
+  }
+
+  &.dark-mode {
+    .light-mode-only { display: none; }
+
+    @include colors.apply-base16-colors(colors.$base16-tomorrow-night);
+  }
+
+  &.light-mode {
+    .dark-mode-only { display: none; }
+
+    @include colors.apply-base16-colors(colors.$base16-tomorrow);
+  }
+
+  header {
+    flex: 0 0 auto;
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    font-family: 'Noto Sans', sans-serif;
+
+    #header-path {
+      margin-left: 32px;
+
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      a {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .header-element {
+      margin-right: 1em;
+    }
+
+    .header-fill {
+      flex: 1 1 auto;
+    }
+
+    .header-sep {
+      margin: 0 8px;
+    }
+  }
+
+  main {
+    padding: 0 32px;
+    flex: 1 0 auto;
+    align-items: flex-start;
+    justify-content: stretch;
+
+    font-family: 'Noto Serif', serif;
+    code {
+      font-family: 'Noto Sans Mono', monospace;
+    }
+    a.anchor {
+      font-family: 'Material Icons';
+      font-size: 0.6em;
+      text-decoration: none;
+
+      position: relative;
+      left: 0.5em;
+      top: 0.15em;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .card {
+      @include card.shadow;
+    }
+
+    p, dl, ul {
+      max-width: 48em;
+    }
+
+    // never put bullets on a table of contents or any sublists
+    ul.contents, .contents ul {
+      list-style-type: none;
+    }
+
+    // no padding for the top ul of a table of contents...including if the root of the toc *is* a ul
+    ul.contents, .contents > ul {
+      padding: 0;
+    }
+
+    .contents {
+      dd ~ dt {
+        margin-top: 1em;
+      }
+
+      a {
+        text-decoration: none;
+        font-weight: bold;
+      }
+    }
+  }
+
+  footer {
+    flex: 0 0 auto;
 
     display: flex;
-    flex-flow: column nowrap;
-    margin: 0;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 1em 32px;
 
-    #dark-mode, #light-mode {
-        padding: 0 1em;
-        cursor: pointer;
-        width: 80px;
-        text-align: center;
+    font-family: 'Noto Sans', sans-serif;
+
+    .footer-divider {
+      margin: 0 1em;
     }
 
-    &.dark-mode {
-        background-color: colors.$solarized_base03;
-        color: colors.$solarized_base0;
-
-        #dark-mode { display: none; } // don't show dark mode toggle in dark mode
-        #light-mode {
-            background-color: colors.$solarized_base02;
-        }
-
-        h1, h2, h3, h4, #header-path > a {
-            color: colors.$solarized_base1;
-        }
+    .footer-fill {
+      flex: 1 0 2em;
     }
 
-    &.light-mode {
-        background-color: colors.$solarized_base3;
-        color: colors.$solarized_base00;
+    @media (max-width: 425px) {
+      flex-direction: column;
 
-        #light-mode { display: none; } // don't show light mode toggle in light mode
-        #dark-mode {
-            background-color: colors.$solarized_base2;
-        }
+      .footer-element {
+        margin-bottom: 0.5em;
+      }
 
-        h1, h2, h3, h4, #header-path > a {
-            color: colors.$solarized_base01;
-        }
-
+      .footer-divider, .footer-fill {
+        display: none;
+      }
     }
-
-    a:link {
-        color: colors.$solarized_blue;
-    }
-
-    a:visited {
-        color: colors.$solarized_violet;
-    }
-
-    header {
-        flex: 0 0 auto;
-        
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-
-        font-family: 'Computer Modern Sans', sans-serif;
-
-        #header-path {
-            margin-left: 32px;
-
-            display: flex;
-            flex-flow: row wrap;
-            align-items: center;
-
-            a {
-                text-decoration: none;
-    
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
-
-        .header-element {
-            margin-right: 1em;
-        }
-
-        .header-fill {
-            flex: 1 1 auto;
-        }
-
-        .header-sep {
-            margin: 0 8px;
-        }
-    }
-
-    main {
-        padding: 0 32px;
-        flex: 1 0 auto;
-        align-items: flex-start;
-        justify-content: stretch;
-
-        font-family: 'Computer Modern Serif', serif;
-    }
-
-    footer {
-        flex: 0 0 auto;
-
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        padding: 1em 32px;
-
-        font-family: 'Computer Modern Sans', sans-serif;
-
-        .footer-divider {
-            margin: 0 1em;
-        }
-
-        .footer-fill {
-            flex: 1 1 auto;
-        }
-
-        @media (max-width: 425px) {
-            flex-direction: column;
-
-            .footer-divider {
-                display: none;
-            }
-        }
-    }
+  }
 }

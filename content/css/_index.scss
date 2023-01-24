@@ -1,3 +1,31 @@
-#index-container {
-    
+
+#project-container {
+  display: flex;
+  flex-flow: row wrap;
+
+  .project-card {
+    margin: 0.5em;
+    width: 30vw;
+    min-width: 256px;
+
+    min-height: 256px;
+
+    .card-title {
+      padding: 0 2em;
+    }
+
+    .card-content {
+      padding: 0 2em 2em 2em;
+    }
+  }
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+
+    .project-card {
+      margin: 0;
+      width: 256px;
+      margin-bottom: 1em;
+    }
+  }
 }

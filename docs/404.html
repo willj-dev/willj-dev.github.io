@@ -3,22 +3,32 @@ permalink: /404.html
 ---
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" prefix="og: https://ogp.me/ns#">
 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Enable autoscaling for smol screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Noto+Sans+Mono">
+
+    <!-- OpenGraph metadata for link previews -->
+    <meta property="og:title" content="not found">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://willj.dev//404.html">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="willj.dev">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Noto+Sans+Mono|Material+Icons">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
     <title>not found - willj.dev</title>
   </head>
 
-  
   <body id="page-body" class="dark-mode">
     <header>
       <h1 id="header-path" class="header-element">
         <a id="header-root" href="./">willj.dev</a>
-        <span class="header-sep">/</span><a id="title" href="./404.html">not found</a></h1>
+        <span class="header-sep">/</span>
+        </h1>
       <div class="header-fill"></div>
     </header>
     <main><div id="not-found-container">
@@ -35,8 +45,8 @@ permalink: /404.html
         <a href="https://github.com/willj-dev/willj-dev.github.io/tree/main/content/404.html">Page Source</a>
       </span>
       <span class="footer-divider">|</span>
-      <div id="dark-mode" class="footer-element">Dark Mode</div>
-      <div id="light-mode" class="footer-element">Light Mode</div>
+      <div id="dark-mode" class="footer-element light-mode-only">Dark Mode</div>
+      <div id="light-mode" class="footer-element dark-mode-only">Light Mode</div>
       <div class="footer-fill"></div>
       <span id="built-with" class="footer-element">
         Built with <a href="https://jaspervdj.be/hakyll">Hakyll</a>
@@ -47,7 +57,10 @@ permalink: /404.html
       </span>
       <span class="footer-divider">|</span>
       <span id="colors-credit" class="footer-element">
-        <a href="https://github.com/chriskempson/base16-tomorrow-scheme">Base16</a> color scheme: <a href="https://github.com/chriskempson/base16-tomorrow-scheme">Tomorrow</a>
+        <a href="https://github.com/chriskempson/base16">Base16</a> color scheme:
+        <a href="https://github.com/chriskempson/base16-tomorrow-scheme">
+          Tomorrow<span class="dark-mode-only"> Night</span>
+        </a>
       </span>
     </footer>
   </body>

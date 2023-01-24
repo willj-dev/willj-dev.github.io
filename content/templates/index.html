@@ -1,3 +1,9 @@
 <div id="index-container">
-  $body$
+  <div id="index-content">
+    $body$
+  </div>
+  $if(project-contents)-$
+  <h2 id="project-contents">Contents</h2>
+  $partial("templates/project-contents.html")$
+  $-endif$
 </div>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" prefix="og: https://ogp.me/ns#">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Enable autoscaling for smol screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- OpenGraph metadata for link previews -->
+    <meta property="og:title" content="Conceptual Guide to Functional Programming">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://willj.dev//conceptual-fp/index.html">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="willj.dev">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Serif|Noto+Sans+Mono|Material+Icons">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <title>Conceptual Guide to Functional Programming - willj.dev</title>
+  </head>
+
+  <body id="page-body" class="dark-mode">
+    <header>
+      <h1 id="header-path" class="header-element">
+        <a id="header-root" href="../">willj.dev</a>
+        <span class="header-sep">/</span>
+        <a href="../conceptual-fp">conceptual-fp</a>
+        <span class="header-sep">/</span>
+        </h1>
+      <div class="header-fill"></div>
+    </header>
+    <main><div id="index-container">
+  <div id="index-content">
+    <p>The primary goal of this document is to provide a conceptual overview and motiviation for functional programming concepts in a more or less language-agnostic way.</p><p>Writing a conceptual guide, rather than aiming to teach a particular language, is somewhat quirky. A cynical but not completely inaccurate reader might observe that this choice (a) absolves us from having to attend to messy practical matters (build systems, disagreeable syntax….), and (b) is a marketing decision because no one will pick up “Yet Another Haskell Book: This Time It’ll Make Sense, We Promise!” However, we believe this choice is in the reader’s interest too; to someone who is completely new to functional programming from even a conceptual standpoint, gaining intuition about how programs are organized and composed is difficult to do simultaneously with learning the practical parts like performance concerns and library management.</p><p>Ultimately this is still going to be about programming, so there will be “code” snippets. However, it is important to emphasize again that it is <strong>not</strong> a goal to teach any one programming language. Some examples will be written in languages such as Java or ECMAScript for comparison purposes, since they should be recognizable to most readers. That being said, <a href="./appendix-lang.html">Language-Specific Caveats</a> provides a brief glance over some of the ways in which particular languages deviate from the names or styles introduced below.</p><p>For functional-style snippets, we will be using a syntax inspired by ML-family languages like Haskell because those languages were designed from the ground up to make programming in a functional style as efficient as possible. It is called “PseudoML” because it is sufficient to illustrate concepts, but it lacks many of the features that would make it suitable for parsing by a compiler; it is intended only for human readers. <a href="./basic-concepts.html#pseudoml-syntax">PseudoML Syntax</a> goes over that in more detail, but first we should introduce functional programming in general.</p>
+  </div>
+  <h2 id="project-contents">Contents</h2>
+  <dl id="project-contents" class="contents">
+  
+    <dt class="project-page"><a href="./introduction.html">Introduction to Functional Programming</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./basic-concepts.html">Basic Concepts</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./intermediate-typeclasses.html">Intermediate Typeclasses</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./monad-field-guide.html">Monads: A Field Guide</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./recursion-schemes.html">Recursion Schemes</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./advanced-typeclasses.html">Advanced Typeclasses</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./appendix-lang.html">Appendix: Language-Specific Caveats</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+    <dt class="project-page"><a href="./appendix-foldr.html">Appendix: Right Folds From The Left</a>
+    <dd class="page-blurb"></dd>
+    </dt>
+  
+</dl>
+</div>
+</main>
+    <footer>
+      <span id="site-source" class="footer-element">
+        <a href="https://github.com/willj-dev/willj-dev.github.io/">Site Source</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="site-source" class="footer-element">
+        <a href="https://github.com/willj-dev/willj-dev.github.io/tree/main/content/pages\conceptual-fp\index.rst">Page Source</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <div id="dark-mode" class="footer-element light-mode-only">Dark Mode</div>
+      <div id="light-mode" class="footer-element dark-mode-only">Light Mode</div>
+      <div class="footer-fill"></div>
+      <span id="built-with" class="footer-element">
+        Built with <a href="https://jaspervdj.be/hakyll">Hakyll</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="hosted-by" class="footer-element">
+        Hosted by <a href="https://pages.github.com">GitHub Pages</a>
+      </span>
+      <span class="footer-divider">|</span>
+      <span id="colors-credit" class="footer-element">
+        <a href="https://github.com/chriskempson/base16">Base16</a> color scheme:
+        <a href="https://github.com/chriskempson/base16-tomorrow-scheme">
+          Tomorrow<span class="dark-mode-only"> Night</span>
+        </a>
+      </span>
+    </footer>
+  </body>
+  <script src="../js/colorMode.js"></script>
+</html>
