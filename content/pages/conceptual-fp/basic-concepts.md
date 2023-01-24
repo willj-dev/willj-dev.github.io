@@ -2,6 +2,8 @@
 title: Basic Concepts
 ------------------------
 
+Before we go any further, it is important to introduce the language we will use for examples. It is called PseudoML, because it is based significantly on the syntax used in the ML language family, which also includes Haskell. It is "Pseudo" because it does not have a compiler; it is only used here to illustrate concepts. Readers are encouraged to look into Haskell, or any other real language of their choice, when they wish to actually write code that runs!
+
 ## PseudoML Syntax
 
 Type declarations and assignments look like this:
@@ -153,7 +155,7 @@ function uhoh(stuff, things) {
 uhoh('my stuff', fireAllMissiles());
 ```
 
-Whenever you call a function, the arguments are always evaluated *first*, and then they are passed to the body of the function—regardless of whether the function body even refers to every argument it’s given.
+Whenever you call a function, the arguments are always evaluated *first*, and then they are passed to the body of the function---regardless of whether the function body even refers to every argument it’s given.
 
 A term that is frequently used alongside "non-strict" is "lazy". Laziness is a way to *implement* non-strictness. In a lazy language, all expressions are implicitly replaced by zero-argument functions that *return* the expression’s value, called a "thunk":
 
@@ -199,7 +201,7 @@ Polymorphic functions are written like this:
 
 The `=>` notation says that `a` can be any type, as long as it has an `Eq` instance. This is a function of two arguments: something to look for in a list, and the list in which to look. The second line says "nothing is in an empty list." The third line says "check the first element in the list; if it is equal to what you’re looking for, return `True`; otherwise, keep looking in the rest of the list."
 
-Incidentally, how do we compare lists? Two lists are equal if they have the same elements in the same order. This means that we need a way to compare the elements to see if they’re equal too. So we might write `Eq [a]` like:
+Incidentally, how do we compare lists in this way? Two lists are equal if they have the same elements in the same order. This means that we need a way to compare the elements to see if they’re equal too. So we might write `Eq [a]` like:
 
     instance Eq a => Eq [a]
         []      == []      = True
@@ -213,6 +215,8 @@ This says "two empty lists are equal; two nonempty lists are equal if their head
 `Ord` types support a notion of "ordering". The class is defined like so:
 
     data Ordering = LT | EQ | GT
+
+    -- left as an exercise for the reader: an Eq instance for Ord
 
     typeclass Eq a => Ord a
         compare : a -> a -> Ordering

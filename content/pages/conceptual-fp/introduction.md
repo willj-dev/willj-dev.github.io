@@ -19,9 +19,9 @@ By contrast, a (purely) functional programming language departs from the imperat
           for (let i = 1; i < todos.length; i++) {
               todoMsg += `; ${todos[i]}`;
           }
-          secondPart = `Here are your tasks for the day: ${todoMsg}`;
+          secondPart = "Here are your tasks for the day: ${todoMsg}";
       } else {
-          secondPart = 'Congrats, you're all done for the day!';
+          secondPart = "Congrats, you're all done for the day!";
       }
       return `${firstPart} ${secondPart}`
   }
@@ -52,7 +52,7 @@ People who prefer functional programming tend to be the same set of people who l
 
 First, some definitions. A *type system* is a way of assigning a property called *type* to a given *value* in the programming language. Types are a human construct that tell us something about what a program means: after all, inside the silicon we're just shuffling bits around. But when we have a function called `stringLength` and let the computer plug any random bits into it, there's a good chance that whatever comes out won't even make sense as an integer, let alone a measure of length!
 
-To prevent this kind of faux pas, we tell the compiler (or the compiler infers from usage, if it's a smarty pants) that this function should only be called with one argument, a string, and the return value should only be used like an integer. We are in effect getting some documentation for free: clients can read the type signature of a function and understand quite a lot about its behavior, especially if we can guarantee that there are no "side effects" (more on that later). But that's not all! Static type checking can be considered a form of testing: not only does the compiler guarantee that the function is used correctly, but it can also guarantee that the *definition* of the function upholds the type signature we claimed it should!
+To prevent this kind of faux pas, we tell the compiler (or the compiler infers from usage, if it's a smarty pants) that this function should only be called with one argument, a string, and the return value should only be used like an integer. We are in effect getting some documentation for free: clients can read the type signature of a function and understand quite a lot about its behavior, especially if we can guarantee that there are no "side effects" (more on that later). But that's not all! Static type checking can be considered a form of testing: not only does the compiler guarantee that the function is used correctly, but it can also guarantee that the *definition* of the function upholds the type signature we claimed it should.
 
 Strong static typing isn't a universal solution, though. We are in effect front-loading the work of discovering funny edge cases to compile-time, rather than run-time. Dynamically-typed, interpreted languages like Python and ECMAScript derive a lot of their appeal from the fact that they make it easy to crack out a lot of code *fast*, and as long as it's syntactically correct it will run. With adequate tests, you can be reasonably sure that the code is correct; for small projects or scripts, this is frequently much more efficient.
 

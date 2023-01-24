@@ -28,7 +28,7 @@ You might also think about a functor as a way to apply a function *through* a da
 
 ## Foldable
 
-`Foldable` is the typeclass of data structures that can be traversed, accumulating some result at each point:
+`Foldable` is the typeclass of data structures that can be "folded", accumulating some result at each point:
 
     typeclass Foldable t
         foldl : (b -> a -> b) -> b -> t a -> b
@@ -42,7 +42,7 @@ The `l` at the end of `foldl` indicates that this is a *left fold* ^[This is als
     sum : [Int] -> Int
     sum = foldl (+) 0
 
-Now let's consider what happens when this function is evaluated.
+Now let's consider what happens when this function is evaluated. This next bit isn't code; each line represents a step of "unwrapping" the fold until we get to the point where we only have math left to do:
 
 ```plain
    sum [1, 2, 4, 8]
@@ -149,15 +149,15 @@ The other way to interpret a monoid is as a way to choose between two values wit
         empty = Nothing
         
         Just x <> Just y = Just x
-        x <> Nothing     = x
-        Nothing <> x     = x
+        x <> Nothing     = Just x
+        Nothing <> x     = Just x
 
     instance Monoid (Maybe a) as Last
         empty = Nothing
         
         Just x <> Just y = Just y
-        x <> Nothing     = x
-        Nothing <> x     = x
+        x <> Nothing     = Just x
+        Nothing <> x     = Just x
 
 Here, the `First` instance always chooses the first non-`Nothing` value it was given; likewise, `Last` always chooses the last.
 
@@ -200,7 +200,7 @@ Okay fine, it's a trick question, and presumably you have already figured out th
 
     addXAndY = addTwoIOs x y -- ta da!
 
-The function `liftA2` takes a pure function of two arguments, and turns it into a function over an Applicative. The term *lift* is one that will occur a lot; it's usually given to a function that takes a "plain" function and transforms it into a "special" one—e.g. *lifting* the humble `(+)` into the exciting world of `IO`. "`liftA`" denotes a lift into Applicatives, and "`liftA2`" indicates that it operates on functions of two arguments; once you get over that hurdle, it's easy enough to construct `liftA`$n$ but usually that's excessive. In fact, you've already seen `liftA1`\: it's just functor `map`!
+The function `liftA2` takes a pure function of two arguments, and turns it into a function over two Applicative arguments. The term *lift* is one that will occur a lot; it's usually given to a function that takes a "plain" function and transforms it into a "special" one—e.g. *lifting* the humble `(+)` into the exciting world of `IO`. "`liftA`" denotes a lift into Applicatives, and "`liftA2`" indicates that it operates on functions of two arguments; once you get over that hurdle, it's easy enough to construct `liftA`$n$ but usually that's excessive. In fact, you've already seen `liftA1`\: it's just functor `map`!
 
     liftA1 : (Applicative f) => (a -> b) -> (f a -> f b)
     -- where have I seen this type signature before?
@@ -229,6 +229,46 @@ Which is to say, we lift `f` up into the applicative, (partially!) apply it to `
     (<*>) : (Applicative f) -> f (a -> b) -> f a -> f b
     f <*> x = liftA2 id f x
 
+## Monad
+
+The `Monad` class contains one function, `(>>=)` (pronounced "bind"), on top of what is already present in an `Applicative` (such as `(<*>)` and `pure`).
+
+    typeclass (Applicative m) => Monad m where
+        (>>=) : m a -> (a -> m b) -> m b
+
+This may not seem like a huge innovation at a glance, but in fact monad bind is the main thing that allows us to do useful work in functional languages, which is why we refer primarily to the `IO` *monad* rather than the `IO` functor or applicative. To see why, 
+
 ## Traversable
 
-## Monad
+`Traversable` is used for data structures that can contain multiple actions, which can be performed in a specific order. For instance, given a list of `IO` actions which ask the user to type a word on the console:
+
+    askForWordsThreeTimes : [IO String]
+    askForWordsThreeTimes = [askForWord, askForWord, askForWord]
+
+    askForWord : IO String
+    -- something
+
+The type of `askForWordsThreeTimes` is somewhat inconvenient, though. We really just want *one* action, which contains the results. For this type of situation, we use `traverse`:
+
+    typeclass (Functor t, Foldable t) => Traversable t where
+        traverse : (Applicative f) => (a -> f b) -> t a -> f (t b)
+
+In the type signature for `traverse`, think of `a` as an "input type" and `b` as an "output type". `t a` is a collection of inputs in some structure `t`, and the result is one big action that contains the results in the same structure: `f (t b)`.
+
+There is a helper function `sequence` that can be used if your structure already has a bunch of actions, and you just need to collect them instead of mapping:
+
+    sequence : (Traversable t, Applicative f) : t (f a) -> f (t a)
+
+Using this, we can get
+
+    askForThreeWords : IO [String]
+    askForThreeWords = sequence askForWordsThreeTimes
+
+Note that we're not combining the results in any way; we're just turning, for instance, a list of actions into one action with a list of results. The order in which those actions is performed is always the same for any given structure, which is defined by the `traverse` implementation for that structure. For instance, lists are always evaluated from left to right:
+
+    -- this was mostly borrowed from Haskell's implementation
+    instance Traversable []
+        traverse f = foldr cons_f (pure []) where
+            cons_f x ys = liftA2 (::) (f x) ys
+
+`sequence` can also be used for some funny edge cases, like if you accidentally end up with a `Maybe (IO a)` when you really want an `IO (Maybe a)`.
