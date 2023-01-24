@@ -236,7 +236,20 @@ The `Monad` class contains one function, `(>>=)` (pronounced "bind"), on top of 
     typeclass (Applicative m) => Monad m where
         (>>=) : m a -> (a -> m b) -> m b
 
-This may not seem like a huge innovation at a glance, but in fact monad bind is the main thing that allows us to do useful work in functional languages, which is why we refer primarily to the `IO` *monad* rather than the `IO` functor or applicative. To see why, 
+This may not seem like a huge innovation at a glance, but in fact monad bind is the main thing that allows us to do useful work in functional languages, which is why we refer primarily to the `IO` *monad* rather than the `IO` functor or applicative. To see why, consider an example:
+
+    askForName : IO String
+    askForName = -- ask the user for their name somehow
+
+    printGreeting : String -> IO ()
+    printGreeting name = println ("Hello, " ++ name ++ "!")
+
+Try as we might, there is no way, using only `Functor` or `Applicative` operations, to ask the user for their name and then *chain that result* into `printGreeting`. You may have already deduced how to do this in the `IO` monad:
+
+    askForNameAndGreet :: IO ()
+    askForNameAndGreet = askForName >>= printGreeting
+
+This is why monads are so exceptionally important for making nontrivial functional programs: they let us pipe the results of side-effectful operations into each other. This is basically what an interactive program is all about! Of course, the type of side effects `IO a` is not the only monad, and for other types, the semantics of "what it means for this thing to be a monad" vary. We will be going over many of these in [Monads: A Field Guide](./monad-field-guide.html).
 
 ## Traversable
 
