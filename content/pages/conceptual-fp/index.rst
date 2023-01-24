@@ -11,7 +11,3 @@ Writing a conceptual guide, rather than aiming to teach a particular language, i
 Ultimately this is still going to be about programming, so there will be "code" snippets. However, it is important to emphasize again that it is **not** a goal to teach any one programming language. Some examples will be written in languages such as Java or ECMAScript for comparison purposes, since they should be recognizable to most readers. That being said, `Language-Specific Caveats`_ provides a brief glance over some of the ways in which particular languages deviate from the names or styles introduced below.
 
 For functional-style snippets, we will be using a syntax inspired by ML-family languages like Haskell because those languages were designed from the ground up to make programming in a functional style as efficient as possible. It is called "PseudoML" because it is sufficient to illustrate concepts, but it lacks many of the features that would make it suitable for parsing by a compiler; it is intended only for human readers. `PseudoML Syntax`_ goes over that in more detail, but first we should introduce functional programming in general.
-
-.. class:: next-page
-
-  Next: `Introduction`_

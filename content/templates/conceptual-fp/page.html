@@ -1,13 +1,18 @@
 <div id="page-container">
   <div id="page-toc">
+    $-if(prev-page)$
+    <div id="next-page">
+      Previous page: <a href="./$prev-page$.html">$prev-page-title$</a>
+    </div>
+    $endif-$
+
     $toc$
-    <h1>&mu;&#839;</h1>
-    $if(page-prev)$
 
-    $endif$
-    $if(page-next)$
-
-    $endif$
+    $-if(next-page)$
+    <div id="next-page">
+      Next page: <a href="./$next-page$.html">$next-page-title$</a>
+    </div>
+    $endif-$
   </div>
   <div id="page-content">
     $body$

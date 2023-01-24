@@ -22,6 +22,8 @@ $base16-tomorrow-night: (
   $base16-fg-dark:    list.nth($color-scheme, 5);
   $base16-fg:         list.nth($color-scheme, 6);
 
+  $base16-border:     color.adjust($base16-highlight, $alpha: -0.2);
+
   $base16-accent1:    list.nth($color-scheme, 9);
   $base16-accent2:    list.nth($color-scheme, 10);
   $base16-accent3:    list.nth($color-scheme, 11);
@@ -56,7 +58,7 @@ $base16-tomorrow-night: (
     color: $base16-accent5;
   }
 
-  .term-link, .term-card {
+  .term-link, .term-card, #page-toc > ul {
     border-color: color.adjust($base16-highlight, $alpha: -0.2);
   }
 
