@@ -46,7 +46,7 @@ The CEO of UC is the Director of Capital Relations (DCR) of the MUG, who is requ
 
 These three officers form the Utopian Capital Executive Council, and are responsible for organizing and operating UC in support of its mission.
 
-Q\'s and A\'s
+Q's and A's
 *************************************************
 
 Wait, end capitalism??
@@ -54,15 +54,15 @@ Wait, end capitalism??
 
 Yep, you read that right! It is our belief that a just society which guarantees universal equal rights and access to basic goods and services is not only possible, but even surprisingly easy to achieve, if we can earn and maintain a solid foundation of public trust.
 
-For many this idea conjures unpleasant visions of angry masses wielding pitchforks and seizing the means of production (whatever that means). In fact this sort of recklessly violent revolution stopped being possible the moment we split the atom. There is simply no utopia that is worth risking a conflict that could threaten humanity\'s very survival.
+For many this idea conjures unpleasant visions of angry masses wielding pitchforks and seizing the means of production (whatever that means). In fact this sort of recklessly violent revolution stopped being possible the moment we split the atom. There is simply no utopia that is worth risking a conflict that could threaten humanity's very survival.
 
-So how do we go about instituting radical, systemic change? By convincing people it\'s possible, and then convincing them to vote for it! Mutual Utopia is both a public demonstration that a post-capitalism society is possible, and a template on which to model legal reforms within an existing government.
-Doesn\'t owning a share of a corporation make you a capitalist?
-Right you are! Unfortunately, for the reasons mentioned above, it is not possible to institute reform by forming an independent government and declaring our own legitimacy. This would result in, at best, a padded cell. We must play by the rules, but that doesn\'t mean that we can\'t be a bit tricky.
+So how do we go about instituting radical, systemic change? By convincing people it's possible, and then convincing them to vote for it! Mutual Utopia is both a public demonstration that a post-capitalism society is possible, and a template on which to model legal reforms within an existing government.
+Doesn't owning a share of a corporation make you a capitalist?
+Right you are! Unfortunately, for the reasons mentioned above, it is not possible to institute reform by forming an independent government and declaring our own legitimacy. This would result in, at best, a padded cell. We must play by the rules, but that doesn't mean that we can't be a bit tricky.
 
 MU wants to demonstrate to the entire world that a post-capitalism society can guarantee universal equal rights and be governed with complete transparency while still maintaining an open market for nonessential goods and services. The way to do that is by building a prototype with capitalist training wheels, then building a bigger and more comprehensive model once we have enough capital. (Irony, right?)
 
-If we can keep the demonstration going strong as more and more people join in, eventually enough people will be living a better life in our demo utopia that they\'ll vote to get it installed for real!
+If we can keep the demonstration going strong as more and more people join in, eventually enough people will be living a better life in our demo utopia that they'll vote to get it installed for real!
 
 Okay, whatever. So what do you actually do?
 =================================================
@@ -82,16 +82,16 @@ Some of these services may be limited until we have a large enough member base t
 I doubt it.
 ===================================
 
-That\'s fine! But it\'s also not a question. Anyway, no one\'s making you join. Keep reading to see for yourself how it works, and check out the documentation to get more details about our long term vision!
+That's fine! But it's also not a question. Anyway, no one's making you join. Keep reading to see for yourself how it works, and check out the documentation to get more details about our long term vision!
 
 How does membership work?
 ===================================
 
-Our mission demands that we guarantee universal equal rights, so we cannot only offer membership to people who can already afford the basic services we provide. If we wanted to limit membership to people who don\'t really need it, we\'d have just started a country club.
+Our mission demands that we guarantee universal equal rights, so we cannot only offer membership to people who can already afford the basic services we provide. If we wanted to limit membership to people who don't really need it, we'd have just started a country club.
 
 As a result, we need to make sure that we only offer membership when we are certain we can guarantee equal access to our services, regardless of how much any new member is able or willing to pay. We do this by carefully planning our finances, in much the same way that a capitalist insurance company uses actuarial data to set premiums. Our job is slightly harder, because we need to allow much wider variation in member fees, but it works on similar financial principles. Whenever we are able to offer new membership, we will clearly indicate how many spots are available, and how long the application window is open for. Once the window closes, we will randomly select which applicants we offer membership to, with equal weight given to all applicants regardless of their personal circumstances.
 
-Selected applicants will be invited to interview with a Membership Counselor, and we will endeavor to accommodate any reasonable requests for assistance in completing this interview. The purpose is just to get an idea of the applicant\'s situation and answer any of their questions or concerns. With their permission, we may conduct a background check to verify that they aren\'t misrepresenting anything about their situation, but we\'ll never deny an application based solely on personal circumstances. The only expectation is that the applicant is honest about their situation and how much they are able (and willing) to pay in member fees so that we can plan our own finances accordingly.
+Selected applicants will be invited to interview with a Membership Counselor, and we will endeavor to accommodate any reasonable requests for assistance in completing this interview. The purpose is just to get an idea of the applicant's situation and answer any of their questions or concerns. With their permission, we may conduct a background check to verify that they aren't misrepresenting anything about their situation, but we'll never deny an application based solely on personal circumstances. The only expectation is that the applicant is honest about their situation and how much they are able (and willing) to pay in member fees so that we can plan our own finances accordingly.
 
 How is access to basic goods and services provided?
 ========================================================
@@ -106,11 +106,11 @@ In order of preference:
 What if I already have my own access to housing, health insurance, or any other MU service?
 ============================================================================================
 
-That\'s great! Our basic living standards are rather high compared to those that prevail under capitalism, so congratulations on being successful (or lucky)!
+That's great! Our basic living standards are rather high compared to those that prevail under capitalism, so congratulations on being successful (or lucky)!
 
 Entirely at your option, you may give us the responsibility for managing the payment of your rent, provision and payment of utilities, or any other service that we provide, in exchange for higher member fees that we negotiate together. In most cases, this should not directly affect your finances. For instance, we may agree that you pay us exactly the same amount of rent that you normally pay, and in return we just take care of getting it to your landlord.
 
-The reason this works is because we use our member fees to make responsible investments which have a stable rate of return. By taking responsibility for managing members\' usual expenses, we make more cash available for those investments. The profits from those investments provide additional support for our services and allow us to increase the number of members we can support.
+The reason this works is because we use our member fees to make responsible investments which have a stable rate of return. By taking responsibility for managing members' usual expenses, we make more cash available for those investments. The profits from those investments provide additional support for our services and allow us to increase the number of members we can support.
 
 Of course, many people are not able to afford even their current expenses, through no fault of their own, because of random chance (like where they were born) or because they are one of the many victims of an abusive and exploitative capitalist system. Our financial strategy is designed to at least guarantee that our current members will have equal access to our services regardless of their personal circumstances. Unfortunately, even an uncommonly successful investment strategy will probably take generations until it grows to the point that we can responsibly support our services for everyone who wants them. Thus, when we are negotiating member fees with a prospective member, we will invite them (entirely at their option) to pay fees in excess of what they might reasonably expect us to pay on their behalf. This will never have any bearing on access to services, but it is profoundly appreciated because it proves that more privileged members are nonetheless willing to volunteer more of their own money in support of equal rights for every person. They may receive, at most, a financially negligible token of our thanks for their commitment to our mission.
 
@@ -138,21 +138,21 @@ Membership Interview
 
 This filters out many of the most obvious (and unimaginative) evildoers. Examples of reasons to deny membership include:
 
-- Trying to get membership twice. The background check should verify that the applicant is an actual person who isn\'t already a member.
-- Grossly misrepresenting their ability to pay. We don\'t need (or want) to subject anyone to a full audit, but we should at least be able to make sure that they\'re not hiding that they own a bank.
+- Trying to get membership twice. The background check should verify that the applicant is an actual person who isn't already a member.
+- Grossly misrepresenting their ability to pay. We don't need (or want) to subject anyone to a full audit, but we should at least be able to make sure that they're not hiding that they own a bank.
 
 The full list of reasons we may deny a membership application will always be publicly available, and we will never deny an application for any reason which was not published at the time that application was submitted. We will also always inform a denied applicant exactly why it happened and what they could do to avoid being denied the next time they apply. No one will ever be permanently barred from membership.
 
 Public Data Monitoring
 ''''''''''''''''''''''''''
 
-One of the rights we strive to guarantee universally, equally, and unconditionally is the right to privacy of personal data. We actively avoid maintaining a centralized store of data which directly ties personally identifiable information to benefit usage. Not only would this be unsafe in the event of a breach, but it\'s not even worth any supposed advantage in tracking down abuse. This is because any abuse that is not extreme enough to affect our ability to guarantee equal access to our services is, by definition, not worth noticing. It usually isn\'t even possible in that case to unambiguously differentiate harmful or negligent abuse from accidents or glitches! Many governments and corporations fail to accept this basic fact of life in a large society, and nevertheless embark on expensive and harmful programs of mass surveillance whose benefits are vastly outweighed by the potential for abuse and corruption.
+One of the rights we strive to guarantee universally, equally, and unconditionally is the right to privacy of personal data. We actively avoid maintaining a centralized store of data which directly ties personally identifiable information to benefit usage. Not only would this be unsafe in the event of a breach, but it's not even worth any supposed advantage in tracking down abuse. This is because any abuse that is not extreme enough to affect our ability to guarantee equal access to our services is, by definition, not worth noticing. It usually isn't even possible in that case to unambiguously differentiate harmful or negligent abuse from accidents or glitches! Many governments and corporations fail to accept this basic fact of life in a large society, and nevertheless embark on expensive and harmful programs of mass surveillance whose benefits are vastly outweighed by the potential for abuse and corruption.
 
 We can, however, keep track of aggregated benefit usage information (like how much money we paid for rent in a given week) which cannot be linked to individual persons. We also know how much, on average, we expect to spend to support our members. If we see that there is an ongoing pattern of higher than expected spending, this means that we either need to fix a problem in how we compute expected spending, or someone is abusing our services. Further investigation of the publicly available data should allow us to narrow down the possible source(s) of the money leak.
 
-If we think it\'s possible that a member is defrauding us, we will gather the evidence we found and ask them if they can explain the discrepancy. If they are able to demonstrate that they weren\'t acting out of harmful intent or negligence, we\'ll just have to adjust our own expectations to accommodate the glitch. If we nevertheless strongly suspect that the member is being dishonest, we will report our suspicions to the local authorities so that they can complete a more thorough investigation with a legal search warrant and due process.
+If we think it's possible that a member is defrauding us, we will gather the evidence we found and ask them if they can explain the discrepancy. If they are able to demonstrate that they weren't acting out of harmful intent or negligence, we'll just have to adjust our own expectations to accommodate the glitch. If we nevertheless strongly suspect that the member is being dishonest, we will report our suspicions to the local authorities so that they can complete a more thorough investigation with a legal search warrant and due process.
 
-If we are forced to take this path, we will only seek reasonable recovery of financial losses resulting directly from fraudulent activity. MULLC will never, directly or indirectly, attempt to pursue a prison sentence against any person for any reason whatsoever. Furthermore, conviction of intentional or negligent financial abuse of MULLC as a whole is the only circumstance in which we will revoke a person\'s membership.
+If we are forced to take this path, we will only seek reasonable recovery of financial losses resulting directly from fraudulent activity. MULLC will never, directly or indirectly, attempt to pursue a prison sentence against any person for any reason whatsoever. Furthermore, conviction of intentional or negligent financial abuse of MULLC as a whole is the only circumstance in which we will revoke a person's membership.
 
 Cash Handouts as a Last Resort
 ''''''''''''''''''''''''''''''''
@@ -179,7 +179,7 @@ Employment with MU is available to all members, but is never a requirement of me
 - base wages offered for a range of acceptable levels of skill and experience; and
 - scheduling, location, or other fair and reasonable practical requirements, if applicable.
 
-After an interview to reasonably confirm that the position matches a candidate\'s stated skills and expectations, that candidate is assigned placement priority:
+After an interview to reasonably confirm that the position matches a candidate's stated skills and expectations, that candidate is assigned placement priority:
 - Meets all minimum and preferred skills and applicable practical requirements
 - Meets some preferred skills, and all minimum skills and practical requirements
 - Meets minimum skills and practical requirements
@@ -187,21 +187,21 @@ After an interview to reasonably confirm that the position matches a candidate\'
 
 Candidates will always be given feedback on priority placement and the number of other candidates at each priority level at the time an offer is made. Candidates will also have the opportunity to appeal their priority placement if they can reasonably prove that there was an error on our part or special circumstances that cannot be accommodated by this system. If there are multiple candidates who share the highest priority level, the position will be offered by lottery, with equal weight given to all candidates with the highest priority.
 
-Priority appeals are always treated with respect and fairness, because we realize that this simple \"bucket\" system is not, on its own, a suitable way to rank candidates. In fact, it is rarely possible to objectively compare skill levels at all! Initial placement priority is meant to merely provide a starting point for consideration and feedback, and should always be open to reasonable adjustment on a case by case basis if a candidate can demonstrate that they deserve to be considered equally alongside all other candidates who were given a different priority.
+Priority appeals are always treated with respect and fairness, because we realize that this simple "bucket" system is not, on its own, a suitable way to rank candidates. In fact, it is rarely possible to objectively compare skill levels at all! Initial placement priority is meant to merely provide a starting point for consideration and feedback, and should always be open to reasonable adjustment on a case by case basis if a candidate can demonstrate that they deserve to be considered equally alongside all other candidates who were given a different priority.
 
 Jobs fall into three categories, depending on schedule structure and how wages are paid:
 
 - Free shifts, where an employee has no set schedule, but shares a schedule of shifts with all other employees in the same position, and may sign up for any empty shifts they are willing and able to work at any point before that shift ends. Priority for shifts is given to employees with the least amount of hours worked so far in a given week to ensure that everyone has equal opportunity to work.
 - Set shifts, where an employee is expected to work a prearranged schedule, and is paid at an hourly rate based on the amount of time they work. Shift positions can always temporarily be covered with short notice by another candidate whenever an employee is sick or has an unavoidable conflict.
-- Salaried work, where an employee is paid a consistent weekly stipend. This happens when employee activities don\'t need to occur on a set schedule, or the applicant has a sufficiently high level of skill and experience that they cannot be substituted on short notice.
+- Salaried work, where an employee is paid a consistent weekly stipend. This happens when employee activities don't need to occur on a set schedule, or the applicant has a sufficiently high level of skill and experience that they cannot be substituted on short notice.
 
-After each year of consistent employment, wages are automatically increased by a set amount to reflect the employee\'s additional experience. MU will always make the current base value of yearly raises, and how this value is calculated, publicly available. This base increase can be modified in individual cases under certain circumstances. For instance:
+After each year of consistent employment, wages are automatically increased by a set amount to reflect the employee's additional experience. MU will always make the current base value of yearly raises, and how this value is calculated, publicly available. This base increase can be modified in individual cases under certain circumstances. For instance:
 
 - Jobs with a significantly higher than average risk of personal injury or other adverse conditions will tend to receive significantly increased raises compared to other jobs
-- Jobs which are critical to MU\'s mission to secure universal equal rights and basic services for all persons will tend to receive slightly increased raises compared to other jobs
+- Jobs which are critical to MU's mission to secure universal equal rights and basic services for all persons will tend to receive slightly increased raises compared to other jobs
 - If an employee engages in a provable, long-term pattern of negligence or misconduct, their raise may be limited or withheld (but may never in any circumstance have their actual wages decreased)
 
-MU will always make details about the exact circumstances in which a raise can be modified publicly available, and will never modify a raise arbitrarily or for any reason that was not published at the time the job was originally posted. Employees may also appeal their assigned raise if they have reason to believe it was miscalculated, or if they can demonstrate that their pay deserves a special adjustment. These adjustments can be due to a mistake on our part (such unanticipated changes to employee responsibilities) or other circumstances outside anyone\'s control (such as a global pandemic which makes it more difficult to accomplish their work).
+MU will always make details about the exact circumstances in which a raise can be modified publicly available, and will never modify a raise arbitrarily or for any reason that was not published at the time the job was originally posted. Employees may also appeal their assigned raise if they have reason to believe it was miscalculated, or if they can demonstrate that their pay deserves a special adjustment. These adjustments can be due to a mistake on our part (such unanticipated changes to employee responsibilities) or other circumstances outside anyone's control (such as a global pandemic which makes it more difficult to accomplish their work).
 
 Do you provide debt repayment or relief, or access to credit?
 ===============================================================
@@ -212,7 +212,7 @@ People go into debt for all kinds of reasons, which all basically boil down to: 
 
 By making sure that all of its members have equal access to basic goods and services like housing, groceries, health care, and employment, MU can prevent its members from losing a place to sleep in order to pay off their existing debt. Credit can still be a useful tool for buying extremely expensive nonessential goods or services, but we do not believe that it should ever be necessary to ensure humane living conditions. With these fundamental requirements out of the way, members can put their personal income to work paying off their existing debt.
 
-What exactly does \"equal access to housing\" mean?
+What exactly does "equal access to housing" mean?
 ========================================================
 
 Excellent question! Hopefully it goes without saying that we are not trying to create a world where everyone lives in an identical box with an identical bed and an identical dog. We also don’t really think that humans are quite cut out for universal communal living (unless they really want to). Besides, this would fail to provide adequate privacy which we believe is a fundamental right. So what do we mean?

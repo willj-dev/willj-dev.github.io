@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedStrings, RankNTypes #-}
 
 module Site.Common where
 

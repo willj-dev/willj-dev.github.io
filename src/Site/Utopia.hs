@@ -1,11 +1,5 @@
-{-# LANGUAGE RankNTypes, OverloadedStrings #-}
 
 module Site.Utopia (utopiaRules) where
-
-import Site.Common
-import Site.Config (UtopiaConfig(utopia_rst), Config (config_utopia), configCompiler, Term (Term), utopia_terms)
-import Site.Pandoc (rstBodyCompiler, rstContext, TOCCompiler)
-import Site.Utopia.Terms (termContext)
 
 import Hakyll.Core.Compiler (Compiler, getResourceBody)
 import Hakyll.Core.Identifier (Identifier, fromFilePath)
@@ -15,6 +9,11 @@ import Hakyll.Core.Rules ( compile, match, Rules, route )
 import Hakyll.Web.Template (templateBodyCompiler, loadAndApplyTemplate, applyAsTemplate)
 import Hakyll.Web.Template.Context (Context, listField, defaultContext)
 import Hakyll.Web.Html.RelativizeUrls (relativizeUrls)
+
+import Site.Common
+import Site.Config (UtopiaConfig(utopia_rst), Config (config_utopia), configCompiler, Term (Term), utopia_terms)
+import Site.Pandoc (rstContext, TOCCompiler, rstBodyTOCCompiler)
+import Site.Utopia.Terms (termContext)
 
 indexId :: Identifier
 indexId = "pages/millennial-utopia/index.rst"
@@ -49,7 +48,7 @@ compileIndex = matchOnly indexId $ do
   compile $ configCompiler >>= utopiaRSTCompiler . config_utopia >>= applyIndexTemplates True . snd
 
 utopiaRSTCompiler :: UtopiaConfig -> TOCCompiler (Item String)
-utopiaRSTCompiler = rstBodyCompiler . utopia_rst
+utopiaRSTCompiler = rstBodyTOCCompiler . utopia_rst
 
 applyUtopiaTemplates :: UtopiaConfig -> Context String -> Item String -> Compiler (Item String)
 applyUtopiaTemplates config tocContext pageHTMLItem =

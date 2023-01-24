@@ -48,7 +48,7 @@ Article 4 - Personal Livelihood
 
 Each `person` should have equal access to:
 
-* private long\- or short\-term `residence` which is reliable, sanitary, and safe;
+* private long- or short-term `residence` which is reliable, sanitary, and safe;
 * `basic utilities`; and
 * genuine consideration for any employment they could reasonably perform.
 
