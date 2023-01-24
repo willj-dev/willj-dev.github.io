@@ -1,17 +1,3 @@
 #index-container {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
+    
 }
-
-#under-construction {
-
-    // this shadow spec is stolen from MDC cards: https://material.io/components/cards
-    box-shadow:
-        0 2px 1px -1px rgba(0, 0, 0, 0.2),
-        0 1px 1px 0px rgba(0, 0, 0, 0.14),
-        0 1px 3px 0px rgba(0, 0, 0, 0.12);
-
-    padding: 16px;
-    margin-top: 128px;
-} 

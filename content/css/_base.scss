@@ -1,3 +1,5 @@
+@use 'colors';
+
 body {
     height: 100vh;
 
@@ -5,25 +7,81 @@ body {
     flex-flow: column nowrap;
     margin: 0;
 
-    header {
-        flex: 0 0 auto;
-        align-items: stretch;
-        justify-content: flex-start;
+    &.dark-mode {
+        background-color: colors.$solarized_base03;
+        color: colors.$solarized_base0;
 
-        font-family: 'Computer Modern Sans', sans-serif;
-        padding-left: 1em;
+        #dark-mode { display: none; } // don't show dark mode toggle in dark mode
+        #light-mode {
+            padding: 1em;
+            background-color: colors.$solarized_base02;
+            cursor: pointer;
+        }
 
-        a {
-            text-decoration: none;
-            color: black;
-
-            &:hover {
-                text-decoration: underline;
-            }
+        #header-root, #header-title {
+            color: colors.$solarized_base01;
         }
     }
 
+    &.light-mode {
+        background-color: colors.$solarized_base3;
+        color: colors.$solarized_base00;
+
+        #light-mode { display: none; } // don't show light mode toggle in light mode
+        #dark-mode {
+            padding: 1em;
+            background-color: colors.$solarized_base2;
+            cursor: pointer;
+        }
+
+        #header-root, #header-title {
+            color: colors.$solarized_base01;
+        }
+
+    }
+
+    a:link {
+        color: colors.$solarized_blue;
+    }
+
+    a:visited {
+        color: colors.$solarized_violet;
+    }
+
+    header {
+        flex: 0 0 auto;
+        
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        font-family: 'Computer Modern Sans', sans-serif;
+
+        #header-path {
+            margin-left: 32px;
+
+            a {
+                text-decoration: none;
+                color: colors.$solarized_base1;
+    
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .header-element {
+            margin-right: 1em;
+        }
+
+        .header-fill {
+            flex: 1 1 auto;
+        }
+
+    }
+
     main {
+        padding-left: 32px;
         flex: 1 0 auto;
         align-items: flex-start;
         justify-content: stretch;
@@ -33,17 +91,20 @@ body {
 
     footer {
         flex: 0 0 auto;
-        align-items: stretch;
-        justify-content: flex-end;
 
-        font-family: 'Computer Modern Sans', sans-serif;
-        padding: 1em;
         display: flex;
         flex-flow: row nowrap;
-        justify-content: center;
+        align-items: center;
+        padding: 1em 32px;
+
+        font-family: 'Computer Modern Sans', sans-serif;
 
         .footer-divider {
             margin: 0 1em;
+        }
+
+        .footer-fill {
+            flex: 1 1 auto;
         }
     }
 }
