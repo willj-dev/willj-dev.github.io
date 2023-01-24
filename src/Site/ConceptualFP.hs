@@ -3,7 +3,9 @@
 
 module Site.ConceptualFP (conceptualFPRules) where
 
+import Site.Config (config_cfp, configCompiler, cfp_rst)
 import Site.Common
+import Site.Pandoc (rstBodyCompiler)
 
 import Data.Binary (Binary, encode, get, put)
 import Hakyll.Core.Compiler (Compiler)
@@ -14,7 +16,6 @@ import Hakyll.Core.Writable (Writable, write)
 import Skylighting.Parser (parseSyntaxDefinitionFromText)
 import Skylighting.Types (Syntax)
 import Hakyll.Core.Identifier (Identifier)
-import Site.Pandoc (rstBodyCompiler)
 
 indexId :: Identifier
 indexId = "pages/conceptual-fp/index.rst"
@@ -33,8 +34,12 @@ loadPseudoMLSyntax = match "pseudoml.xml" $ return () -- compile syntaxCompiler
     syntaxCompiler = undefined
 
 compileIndex = matchOnly indexId $ do
-  route $ composeRoutes tailRoute (setExtension "html")
-  compile $ rstBodyCompiler >>= applyIndexTemplates
+  route tailHTMLRoute
+  compile $ do
+    config <- cfp_rst . config_cfp <$> configCompiler
+
+    -- discard pandoc-generated toc, which is irrelevant for index pages
+    rstBodyCompiler config >>= applyIndexTemplates True . snd
 
 -- Need a bit of misdirection here because Hakyll has a Writable instance for
 -- a lazy bytestring, but not for Binary.

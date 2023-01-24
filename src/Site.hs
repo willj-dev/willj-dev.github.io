@@ -1,7 +1,7 @@
 {-# LANGUAGE OverloadedStrings, RankNTypes #-}
 
-import Site.Common
-    ( makeItemWith, ProjectMetadata(..), applyIndexTemplatesWith )
+{-# LANGUAGE OverloadedStrings, RankNTypes #-}
+import Site.Common (makeItemWith, ProjectMetadata(..), applyIndexTemplates)
 import Site.ConceptualFP (conceptualFPRules)
 import Site.Utopia (utopiaRules)
 
@@ -68,7 +68,7 @@ compileSass = match "css/main.scss" $
 compileIndex :: [ProjectMetadata] -> Rules ()
 compileIndex projs = match "index.html" $ do
   route $ setExtension "html"
-  compile $ getResourceBody >>= applyAsTemplate projectsContext >>= applyIndexTemplatesWith defaultContext
+  compile $ getResourceBody >>= applyAsTemplate projectsContext >>= applyIndexTemplates False
   where
     projectsContext = listField "projects" projectContext projectItems
 

@@ -1,20 +1,50 @@
-
-$term-link-underline: rgba(80, 80, 80, 0.5);
+@use 'card';
 
 #page-container {
   display: flex;
   flex-flow: row nowrap;
   padding: 0em 1em;
 
+  #page-toc {
+    padding: 0.7em 1em 0 1em;
+    margin: 0 1em 0 0;
+
+    > ul {
+      position: sticky;
+      top: 2em;
+    }
+
+    ul {
+      list-style-type: none;
+    }
+
+    li {
+      ~ li {
+        margin-top: 0.25em;
+      }
+
+      > ul {
+        margin: 1em 0 1em 1.5em;
+        padding: 0;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+
   #page-content {
     flex: 0 1 48em;
+  }
 
-    .term-link {
-      border-bottom: 1px dashed $term-link-underline;
+  .term-link {
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
 
-      &:hover {
-        border-bottom: 2px dashed $term-link-underline;
-      }
+    &:hover {
+      border-bottom-width: 2px;
     }
   }
 
@@ -24,26 +54,67 @@ $term-link-underline: rgba(80, 80, 80, 0.5);
 
     #term-card-container {
       position: sticky;
-      top: 0px;
+      top: 2em;
 
       display: flex;
       flex-flow: column nowrap;
     }
 
     .term-card {
+      position: relative; // to allow absolute positioning for the close button
       margin-top: 1em;
       padding: 1em;
 
       display: none;
-      border: 1px solid #e0e0e0;
 
       // hovering over a term causes its definition card to lift
       &.active-term {
           display: block;
+          border-width: 1px;
+          border-style: solid;
       }
 
       &.pinned-term {
           display: block;
+      }
+
+      .close-term-card {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        cursor: pointer;
+      }
+    }
+  }
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+    padding: 0;
+
+    #page-toc {
+      margin: 0;
+      padding: 0;
+  
+      > ul {
+        position: static;
+        padding: 0;
+      }
+    }
+
+    #term-list {
+      position: sticky;
+      bottom: 1em;
+      flex: 1 1 auto;
+      margin: 0;
+
+      .term-card {
+        &.active-term, &.pinned-term {
+          display: none;
+        }
+      }
+
+      .term-card:last-child {
+        display: block;
       }
     }
   }
