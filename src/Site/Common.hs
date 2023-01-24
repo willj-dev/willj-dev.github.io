@@ -35,13 +35,6 @@ projectId itemId = case FPL.splitDirectories (toFilePath itemId) of
     [_, pid, _] -> return pid
     _           -> fail $ "could not determine project id for " ++ show itemId
 
-identifierExtension :: MonadFail m => Identifier -> m String
-identifierExtension itemId = case FPL.takeExtension (toFilePath itemId) of
-  "tex" -> return "tex"
-  "rst" -> return "rst"
-  "md" -> return "md"
-  _ -> fail $ "unknown file extension: " ++ show itemId
-
 filenameOnlyRoute, htmlExtensionRoute, tailRoute, tailHTMLRoute :: Routes
 filenameOnlyRoute = customRoute (FPL.takeFileName . toFilePath)
 htmlExtensionRoute = setExtension "html"

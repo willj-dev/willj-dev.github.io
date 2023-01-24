@@ -31,7 +31,7 @@ conceptualFPRules = do
   loadPseudoMLSyntax
   compilePages
   compileIndex
-  projectMetadata cfpProjectId "md"
+  projectMetadata cfpProjectId
 
 loadTemplates, compilePages, compileIndex :: Rules ()
 loadTemplates = match "templates/conceptual-fp/*" $ compile templateBodyCompiler
@@ -50,7 +50,7 @@ compileIndex = matchProjectIndex cfpProjectId $ do
     >>= compilePandocMarkdown
     >>= compileHTMLPandoc
     >>= makeItem
-    >>= applyProjectIndexTemplates pageOrder "md"
+    >>= applyProjectIndexTemplates pageOrder
 
 cfpPageCompiler :: Compiler CompiledPage
 cfpPageCompiler = getResourceBody

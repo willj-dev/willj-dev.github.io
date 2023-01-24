@@ -9,8 +9,8 @@ import qualified System.FilePath as FPL -- FilePath Local, for files on the curr
 
 import Site.Common hiding (CompiledPage(..))
 
-pageIdentifier :: String -> ProjectId -> PageId -> Identifier
-pageIdentifier ext projId pgId = fromFilePath $ FPL.joinPath ["pages", projId, pgId ++ "." ++ ext]
+pageIdentifier :: ProjectId -> PageId -> Identifier
+pageIdentifier projId pgId = fromFilePath $ FPL.joinPath ["pages", projId, pgId ++ ".md"]
 
 pageId :: Identifier -> PageId
 pageId = FPL.takeBaseName . toFilePath
