@@ -1,5 +1,3 @@
-{-# LANGUAGE TupleSections #-}
-
 module Site.Utopia.Terms (termContext) where
 
 import Hakyll
@@ -8,7 +6,7 @@ import Site.Common
 import Site.Config
 import Site.Pandoc
 
--- | Term definition is compiled as RST with the Utopia template (i.e. support
+-- | Term definition is compiled as markdown with the Utopia template (i.e. support
 -- for custom roles and link targets). Term alternatives (plurals, etc) are compiled
 -- into a list field, which is used in the terms JS to support pinning/hovering over
 -- terms in the article body.
@@ -17,16 +15,15 @@ termContext = mconcat [termField, defnField, altsField]
   where
     termField = field "term" (return . term_term . itemBody)
 
-    defnField = field "definition" compileDefinitionRST
+    defnField = field "definition" compileDefinitionMD
 
-    compileDefinitionRST :: Item Term -> Compiler String
-    compileDefinitionRST term = do
-      termDefPandoc <- preprocRST >>= compilePandocRST
+    compileDefinitionMD :: Item Term -> Compiler String
+    compileDefinitionMD term = do
+      termDefPandoc <- preprocMD >>= compilePandocMarkdown
       compileHTMLPandoc termDefPandoc
       where
-        preprocRST =
-          loadAndApplyTemplate "templates/millennial-utopia.rst" defaultContext (term_definition <$> term)
-          >>= loadAndApplyTemplate "templates/base.rst" defaultContext
+        preprocMD =
+          loadAndApplyTemplate "templates/millennial-utopia/base.md" defaultContext (term_definition <$> term)
 
     altsField = listFieldWith "alternatives" altContext altItems
 

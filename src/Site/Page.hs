@@ -1,6 +1,6 @@
 
 -- | Functions and types about `Page`s, which have links to and from other `Page`s in the same `Project`
---   Something is a `Page` iff its Identifier looks like `pages/project-id/page-name.rst`
+--   Something is a `Page` iff its Identifier looks like `pages/project-id/page-name.md`
 
 module Site.Page where
 
@@ -8,12 +8,6 @@ import Hakyll
 import qualified System.FilePath as FPL -- FilePath Local, for files on the current machine
 
 import Site.Common hiding (CompiledPage(..))
-
-pageIdentifierRST :: ProjectId -> PageId -> Identifier 
-pageIdentifierRST = pageIdentifier "rst"
-
-pageIdentifierTeX :: ProjectId -> PageId -> Identifier
-pageIdentifierTeX = pageIdentifier "tex"
 
 pageIdentifier :: String -> ProjectId -> PageId -> Identifier
 pageIdentifier ext projId pgId = fromFilePath $ FPL.joinPath ["pages", projId, pgId ++ "." ++ ext]

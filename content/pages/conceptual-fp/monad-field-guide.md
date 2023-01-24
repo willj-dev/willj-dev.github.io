@@ -4,24 +4,16 @@ title: 'Monads: A Field Guide'
 
 To Do!
 
-Optional
---------
+## Optional
 
-List
-----
+## List
 
-Either
-------
+## Either
 
-IO
----------
+## IO
 
-Reader
-------
+## Reader
 
-Writer
-------
+## Writer
 
-State
------
-
+## State

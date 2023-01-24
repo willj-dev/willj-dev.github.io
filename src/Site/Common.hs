@@ -10,7 +10,7 @@ import qualified System.FilePath.Posix as FPP -- always use '/' to make site rou
 type ProjectId = String
 
 -- | kebab-case id for a page (e.g. "a-millennial-utopia"); the identifier for the file
---   containing a page's content is always at 'pages/$project-id$/$page-id$.rst'
+--   containing a page's content is always at 'pages/$project-id$/$page-id$.md'
 type PageId = String
 
 -- | kebab-case "canonical" section name, which should always exist and be targetable
@@ -39,6 +39,7 @@ identifierExtension :: MonadFail m => Identifier -> m String
 identifierExtension itemId = case FPL.takeExtension (toFilePath itemId) of
   "tex" -> return "tex"
   "rst" -> return "rst"
+  "md" -> return "md"
   _ -> fail $ "unknown file extension: " ++ show itemId
 
 filenameOnlyRoute, htmlExtensionRoute, tailRoute, tailHTMLRoute :: Routes

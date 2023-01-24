@@ -31,7 +31,7 @@ conceptualFPRules = do
   loadPseudoMLSyntax
   compilePages
   compileIndex
-  projectMetadata cfpProjectId "rst"
+  projectMetadata cfpProjectId "md"
 
 loadTemplates, compilePages, compileIndex :: Rules ()
 loadTemplates = match "templates/conceptual-fp/*" $ compile templateBodyCompiler
@@ -39,22 +39,22 @@ loadTemplates = match "templates/conceptual-fp/*" $ compile templateBodyCompiler
 compilePages = matchProjectPages cfpProjectId $ do
   route tailHTMLRoute
   compile $ do
-    pg <- cfpRSTCompiler
+    pg <- cfpPageCompiler
     pn <- compilePageTitles >>= compilePrevNextContext
     applyCFPTemplates pn pg
 
 compileIndex = matchProjectIndex cfpProjectId $ do
   route tailHTMLRoute
   compile $ getResourceBody
-    >>= loadAndApplyTemplate "templates/conceptual-fp.rst" defaultContext
-    >>= compilePandocRST
+    >>= loadAndApplyTemplate "templates/conceptual-fp/base.md" defaultContext
+    >>= compilePandocMarkdown
     >>= compileHTMLPandoc
     >>= makeItem
-    >>= applyProjectIndexTemplates pageOrder "rst"
+    >>= applyProjectIndexTemplates pageOrder "md"
 
-cfpRSTCompiler :: Compiler CompiledPage
-cfpRSTCompiler = getResourceBody
-  >>= loadAndApplyTemplate "templates/conceptual-fp.rst" defaultContext
+cfpPageCompiler :: Compiler CompiledPage
+cfpPageCompiler = getResourceBody
+  >>= loadAndApplyTemplate "templates/conceptual-fp/base.md" defaultContext
   >>= compilePandocWithPseudoML
 
 applyCFPTemplates :: Context String -> CompiledPage -> Compiler (Item String)
@@ -113,7 +113,7 @@ pagePrevNexts = foldl go M.empty $ pnTriples pageOrder
     go pns (mp, n, mn) = M.insert n (prevnext mp mn) pns
 
 compilePageTitles :: Compiler (Map String String)
-compilePageTitles = getAllMetadata "pages/conceptual-fp/*.rst" >>= pageTitlesMap
+compilePageTitles = getAllMetadata "pages/conceptual-fp/*.md" >>= pageTitlesMap
   where
     pageTitlesMap :: [(Identifier, Metadata)] -> Compiler (Map String String)
     pageTitlesMap = extractPageTitles . M.mapKeys identifierBaseName . M.fromList

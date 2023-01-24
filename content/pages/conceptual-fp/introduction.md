@@ -2,17 +2,15 @@
 title: Introduction to Functional Programming
 ------------------------
 
-What And Why
-============================================
+## What And Why
 
 Let's begin at the beginning. Programming languages are an abstraction over instructions that can be run by your CPU. These instructions are fundamentally *imperative*: we are telling the machine to read and write data between memory registers. Low-level languages like C are designed to be very thin, platform-independent wrappers over these instructions, with minimal control structures (for loops, structs) to simplify the work of reading and writing code.
 
 C also allowed giving a name to a repeatable set of instructions that can be called from other parts of the program. These are usually called functions, but *routine* might be a better word. Object-oriented languages like C++ or Java provide an additional level of abstraction over C, but keep the same imperative flavor: a *class* describes a set of data and routines to operate on that data.
 
-By contrast, a (purely) functional programming language departs from the imperative style entirely. They are *declarative*: we describe *what things are* rather than *how to do them*, and the compiler takes care of translating what we write into imperative language. To illustrate the difference, below we show some example code, written in (a) imperative-style ECMAScript and (b) declarative pseudo-ML. 
+By contrast, a (purely) functional programming language departs from the imperative style entirely. They are *declarative*: we describe *what things are* rather than *how to do them*, and the compiler takes care of translating what we write into imperative language. To illustrate the difference, below we show some example code, written in both imperative-style ECMAScript and declarative pseudo-ML.
 
-.. code:: javascript
-
+```js
   function makeGreeting(name, todos) {
       const firstPart = `Hi, ${name}!`;
       let secondPart;
@@ -27,32 +25,28 @@ By contrast, a (purely) functional programming language departs from the imperat
       }
       return `${firstPart} ${secondPart}`
   }
+```
 
-:caption:`(a) An example of imperative style in ECMAScript.`
+```pseudoml
+makeGreeting name todos =
+    sayHello name ++ " " ++ todosMessage todos 
 
-.. code:: pseudoml
+sayHello name = "Hi, " ++ name ++ "!"
 
-  makeGreeting name todos =
-      sayHello name ++ " " ++ todosMessage todos 
+todosMessage []        = "Congrats, you're all done for the day!"
+todosMessage (t :: ts) = todosIntro ++ todosList where
+    todosIntro = "Here are your tasks for the day: " 
+    todosList  = t ++ listRemainingTodos ts
 
-  sayHello name = "Hi, " ++ name ++ "!"
-
-  todosMessage []        = "Congrats, you're all done for the day!"
-  todosMessage (t :: ts) = todosIntro ++ todosList where
-      todosIntro = "Here are your tasks for the day: " 
-      todosList  = t ++ listRemainingTodos ts
-
-  listRemainingTodos []        = "."
-  listRemainingTodos (t :: ts) = "; " ++ t ++ listRemainingTodos ts
-
-:caption:`(b) An example of declarative style in PseudoML.`
+listRemainingTodos []        = "."
+listRemainingTodos (t :: ts) = "; " ++ t ++ listRemainingTodos ts
+```
 
 Both examples illustrate breaking the problem down into smaller pieces, but that's where the similarities end. A loop, for instance, is an imperative construct: "repeatedly execute this block of instructions". In functional programming, iterating over a list is generally accomplished by doing something with the head of the list and then recursing through the remainder (as in `listRemainingTodos`). Pattern matching on function arguments takes the place of if blocks to direct execution. These and other quirks of functional programming are all due to the fundamental difference between imperative and declarative styles.
 
 That takes care of the "what". Why do people like functional programming? What does it gain over other paradigms? As with all things, it comes down to a combination of personal preference and math.
 
-Personal Preference
-''''''''''''''''''''''''''''''''''''''
+### Personal Preference
 
 People who prefer functional programming tend to be the same set of people who like statically-typed languages with very smart compilers. This is where basically all of the room for different opinions resides; I'll start by going over some of the reasoning behind that preference (as well as some of the arguments against it). Later on, I'll go over how that has to do with functional programming.
 
@@ -68,15 +62,13 @@ Statically-typechecked code *drastically* reduces the surface area for runtime e
 
 Long story short, it comes down to: would you rather write possibly correct code really quickly, or really correct code possibly quickly? For various reasons that we'll explore presently, functional programming is an excellent choice for anyone who picks the latter option.
 
-Math
-''''''''''''''''''''''''''''''''''''''
+### Math
 
 Functional programming languages are designed to be very close to the language that mathematicians use to prove things like "does this algorithm terminate?" This makes it possible to write an *exceptionally* smart compiler. Some of the questions that mathematicians might ask are
 
 - Can it be guaranteed that this program doesn't have an infinite loop?
 - Can it be guaranteed that this program will run without an error?
 - Can it be guaranteed that this program won't set my grandma on fire?
-
 
 The language that mathematicians and logicians use to describe and (attempt to) answer these questions is called the *lambda calculus*, which is very much out of the scope of this paper. Atop that framework is a language of types, which lets us say things like "Here is a function called `stringLength`; if you plug in a string, this will return an integer representing the number of characters in that string; no other inputs are allowed." At this point, a compiler can check things like
 
@@ -89,8 +81,7 @@ and (importantly) it is possible to *mathematically prove* that the compiler ans
 
 Now, all that being said, software engineers shouldn't be expected to have math degrees! None of that background is required to actually *use* the FP toolkit, in the same way that we don't need to know the instruction set for the processors in our laptops. It is just a convenience that we can take for granted when we write our code and it compiles.
 
-Why Not?
-============================================
+## Why Not?
 
 The mathematical heritage of functional programming has given it a reputation for being difficult to understand, or just a research toy for mathematicians and academics. There is a reason why this image developed, but it is not really well-deserved.
 

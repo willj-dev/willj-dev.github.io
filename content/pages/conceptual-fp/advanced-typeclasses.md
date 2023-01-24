@@ -2,11 +2,8 @@
 title: Advanced Typeclasses
 ------------------------
 
-Alternative
------------
+## Alternative
 
-MonadPlus
----------
+## MonadPlus
 
-Arrow
------
+## Arrow
