@@ -3,10 +3,12 @@ title: The Geometric Universe Hypothesis
 ------------------------
 
 The Geometric Universe Hypothesis
-:   The *stationary action principle* suffices to explain all observed phenomena under perfectly controlled conditions. We have no idea why.
+:   The *stationary action principle* suffices to explain all observed phenomena under perfectly controlled conditions.
 
 The No Magic Corollary
 :   *That's it!*
+
+Notably, there does not seem to be any *a priori* reason why this is true. Unlike some of the more tautological definitions of physical quantities ("this is true because we defined this thing to be this way"), this seems like an actual prescriptive statement about the universe.
 
 This is enough to connect us to the metaphysics, and from now on we will be focusing entirely on the math. The first thing to do is to define the stationary action principle; later on we will show how we can get from there to, eventually, everything else.
 
