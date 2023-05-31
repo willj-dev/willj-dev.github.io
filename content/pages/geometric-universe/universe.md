@@ -16,7 +16,11 @@ This is enough to connect us to the metaphysics, and from now on we will be focu
 
 $$ \delta S = 0 $$
 
-### Global Formulation
+That's all! Seems simple enough, right? Fortunately (for physics would be quite boring otherwise), this is something like a pandora's box of an equation, and will become significantly more complicated as we start unpacking it. The $S$ is what we refer to as the *action*, which we will be discussing in great detail in just a moment. $\delta S$ means "the variation in the action," as in: "how does the action of this system change if we poke it a little?" Our claim is that, for physical systems, if we poke it a little the action should remain *stationary*: that is, $\delta S = 0$.
+
+Actions corresponding to physical systems can be defined in two different ways: a *global formulation* in terms of particle trajectories that are functions of time, and a *local formulation* in terms of fields that are functions of three spatial coordinates as well as time. These fields end up having wavelike properties; the use of both formulations is in fact a reflection of the fundamental physical concept of wave/particle duality. The two formulations are connected via the process called *renormalization*.
+
+### Global Formulation: Particles
 
 The *global action* is defined as the integral of a function called the *Lagrangian*:
 
@@ -28,7 +32,7 @@ The assumption of global conformal symmetry (or, equivalently, defining the Lagr
 
 - The scale part of the conformal symmetry, notably, is *broken* in a very specific way. From our perspective, this means that the "rules change" as we start looking at smaller distance scales (or larger energy scales). In fact, this happens at a different energy for each of the fundamental forces, with the end result that the farther we zoom in, we seem to go through a series of "scale phases" where one force dominates and the others are either too small to matter (and can be renormalized "into the background", or often even entirely ignored) or so large that they don't matter in an entirely different way (which is the same reason we don't have to take the sun's gravity into account when we calculate the trajectory of a baseball).
 
-### Local Formulation
+### Local Formulation: Fields
 
 Local conformal symmetry 
 
