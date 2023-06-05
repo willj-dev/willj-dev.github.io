@@ -5,6 +5,7 @@ import Hakyll
 import Site.Common
 import Site.Pandoc
 import Site.Project
+import Site.Page
 
 guProjectId :: ProjectId
 guProjectId = "geometric-universe"
@@ -30,7 +31,10 @@ loadTemplates = match "templates/geometric-universe/*" $ compile templateBodyCom
 
 compilePages = matchProjectPages guProjectId $ do
   route tailHTMLRoute
-  compile $ guMDCompiler >>= applyGUTemplates
+  compile $ do
+    pg <- guMDCompiler
+    pn <- compilePageTitles guProjectId >>= compilePrevNextContext pageOrder
+    applyGUTemplates pn pg
 
 compileIndex :: Rules ()
 compileIndex = matchProjectIndex guProjectId $ do
@@ -46,12 +50,12 @@ guMDCompiler = getResourceBody
   >>= compilePandocMarkdown
   >>= compilePandocPage
 
-applyGUTemplates :: CompiledPage -> Compiler (Item String)
-applyGUTemplates (CompiledPage t _ _ pageHTMLItem toc) =
+applyGUTemplates :: Context String -> CompiledPage -> Compiler (Item String)
+applyGUTemplates pnContext (CompiledPage t _ _ pageHTMLItem toc) =
   loadAndApplyTemplate "templates/geometric-universe/page.html" pageContext pageHTMLItem
     >>= loadAndApplyTemplate "templates/base.html" baseContext
     >>= relativizeUrls
     where
-      pageContext = constField "toc" toc <> defaultContext
+      pageContext = constField "toc" toc <> pnContext <> defaultContext
       baseContext = projectIdContext <> headerTitleContext <> defaultContext
       headerTitleContext = constField "header-title" t

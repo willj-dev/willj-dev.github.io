@@ -27,9 +27,8 @@ matchProjectIndex pid = match (fromGlob $ "pages/" ++ pid ++ "/index.md")
 
 -- | A matcher for everything in 'pages/project-id/', except for the index
 matchProjectPages :: ProjectId -> Rules () -> Rules ()
-matchProjectPages pid = match (projectPagesGlob .&&. notProjectIndex)
+matchProjectPages pid = match (projectPagesGlob pid .&&. notProjectIndex)
   where
-    projectPagesGlob = fromGlob $ "pages/" ++ pid ++ "/*.md"
     notProjectIndex = complement . fromGlob $ "pages/" ++ pid ++ "/index.md"
 
 -- | Apply templates for a project's index page
@@ -41,7 +40,7 @@ applyProjectIndexTemplates pgIds pageBodyHTMLItem = do
     >>= relativizeUrls
   where
     projectContentsContext pid = listField "project-contents" pageMetadataContext $
-      sequence (makePageMetadata . pageIdentifier pid <$> pgIds)
+      mapM (makePageMetadata . pageIdentifier pid) pgIds
     baseContext  = projectIdContext <> defaultContext
 
 projectMetadata :: (MonadFail m, MonadMetadata m) => ProjectId -> m ProjectMetadata
