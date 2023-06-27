@@ -39,9 +39,4 @@ $$ k_{PUE128:Ums} = 1.6453109 \times 10^{23} $$
 
 Multiplying Unix millis by this number will give the current "PUE128 time". Coincidentally, this happens to be on the same order as Avogadro’s number, but I’m pretty sure that’s just a fluke.
 
-This defines a universal timeline suitable for computers, but doesn’t really satisfy important "real-life" needs that humans are accustomed to. We will need two more time-shaped systems: a solar calendar tied to orbital reference points (such as the two polar solstices each year), which is divided into 12 months, where each month is made of 4 weeks of 7 days. Unfortunately, Earth doesn’t rotate a whole number of times around its own axis in each orbit; if each day is 24 hours, this means that we will need to 
-
-- Define one day as the amount of time it takes the earth to move through an orbit according to some published source.
-- Then one year is 360 days, with 12 months of 30 days. Divide each day evenly into 24h * 60m * 60s. 
-- How long is that second compared to Gregorian? A bit larger, by about 3/20 of a contemporary second. So, doable.
-- This is enough to construct a universal timeline tied to a specific reference event and scale. 
+This defines a universal timeline suitable for computers, but doesn’t really satisfy important "real-life" needs that humans are accustomed to. Pretty much everyone will still want to use the Gregorian calendar and hours/minutes/seconds in everyday conversation, but we can also overlay more precise solar and lunar calendars for anyone who cares; it is just a matter of mapping important landmarks (time-marks?) onto the underlying universal timeline.
