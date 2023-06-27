@@ -4,6 +4,8 @@ blurb: >
   This is the template for our own internal governance, as well as being a model for any modern representative democracy, from PTA meetings to nation-states.
 ------------------------
 
+Note: This page needs a lot more work, especially around the executive branch.
+
 This document defines a governmental structure which is founded on the principles of direct democracy and proportional representation. The primary duty of this government is to uphold and defend the [Millennial Social Code][msc] (MSC) equally for all persons. Any resources generated in excess of those required to fulfill this duty are to be fairly, openly, and reasonably allocated for the enjoyment and enlightenment of individual citizens and humanity as a whole.
 
 ## Article 1 - Council Structure & Election Process
@@ -40,6 +42,8 @@ Proof of crimes and/or the validity of laws that define them is demonstrated in 
 
 Any crime which may be punished more severely than a fine must be proven before a jury. Search warrants may be issued by a judge with a less rigorous burden of proof than a full criminal trial, but should still be done...judiciously. A search warrant should only be issued if there is reason to believe that that warrant is the only way to obtain critical evidence to prove that a crime has been committed. This is an example of the MSC concept of minimum curtailment of individual rights in order to guarantee the continued equal and universal availability of basic goods and services.
 
+No one can be convicted of a crime that was not illegal at the time it was committed.
+
 ## Article 5 - Constitutional Amendment
 
-To do
+To do - amendments for both this constitution and the MSC
