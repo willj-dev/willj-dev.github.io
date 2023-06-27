@@ -65,7 +65,7 @@ compilePandocPageWith wopt docItem = do
     pandocContents (Pandoc meta blocks) = writeHtml5String wopt (Pandoc meta [toTableOfContents wopt blocks])
 
 myDefaultWriterOptions :: WriterOptions
-myDefaultWriterOptions = defaultHakyllWriterOptions 
+myDefaultWriterOptions = defaultHakyllWriterOptions
   { writerWrapText = WrapNone
   , writerHTMLMathMethod = MathJax ""
   }
@@ -76,7 +76,7 @@ compilePandocPure p = either (fail . pandocErrorMsg) pandocLogger (runPure $ pai
     pandocErrorMsg err = "Site.Pandoc.compilePandocPure: pandoc failed: " ++ show err
 
     pandocLogger (logs, out) = do
-      sequence_ (debugCompiler . T.unpack . showLogMessage <$> logs)
+      mapM_ (debugCompiler . T.unpack . showLogMessage) logs
       return out
 
 pair :: Applicative m => m a -> m b -> m (a, b)
