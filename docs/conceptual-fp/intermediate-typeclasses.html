@@ -77,8 +77,8 @@
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    foldl </span><span class="op">:</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> t a <span class="ot">-&gt;</span> b</span></code></pre></div>
 <p>The <code class="sourceCode pseudoml">l</code> at the end of <code class="sourceCode pseudoml">foldl</code> indicates that this is a <em>left fold</em> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. The words “left” and “right” refer to the head and tail of a list, respectively; in general, left folds start at the “front” of a data structure (they are <em>breadth-first</em>), and right folds start at the “back” (<em>depth-first</em>). What this means is best illustrated by an example. Consider this definition of the <code class="sourceCode pseudoml">sum</code> function, which sums a list of integers:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Foldable</span> []</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    foldl _ acc []     <span class="ot">=</span> acc</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    foldl f acc (<span class="ot">x</span><span class="op">:</span>xs) <span class="ot">=</span> foldl f (f acc x) xs</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    foldl _ acc []          <span class="ot">=</span> acc</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    foldl f acc (x <span class="ot">::</span> xs)   <span class="ot">=</span> foldl f (f acc x) xs</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ot">sum </span><span class="op">:</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sum <span class="ot">=</span> foldl (<span class="op">+</span>) <span class="dv">0</span></span></code></pre></div>
@@ -159,16 +159,16 @@ foldr (+) 0 [1, 2, 4, 8]
 <div class="sourceCode" id="cb15"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Monoid</span> (<span class="dt">Maybe</span> a) <span class="kw">as</span> <span class="dt">First</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    empty <span class="ot">=</span> <span class="dt">Nothing</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Just</span> x <span class="op">&lt;&gt;</span> <span class="dt">Just</span> y <span class="ot">=</span> <span class="dt">Just</span> x</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">&lt;&gt;</span> <span class="dt">Nothing</span>     <span class="ot">=</span> <span class="dt">Just</span> x</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="op">&lt;&gt;</span> x     <span class="ot">=</span> <span class="dt">Just</span> x</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Just</span> x  <span class="op">&lt;&gt;</span> _        <span class="ot">=</span> <span class="dt">Just</span> x</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="op">&lt;&gt;</span> <span class="dt">Just</span> x   <span class="ot">=</span> <span class="dt">Just</span> x</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="op">&lt;&gt;</span> <span class="dt">Nothing</span>  <span class="ot">=</span> <span class="dt">Nothing</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Monoid</span> (<span class="dt">Maybe</span> a) <span class="kw">as</span> <span class="dt">Last</span></span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    empty <span class="ot">=</span> <span class="dt">Nothing</span></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Just</span> x <span class="op">&lt;&gt;</span> <span class="dt">Just</span> y <span class="ot">=</span> <span class="dt">Just</span> y</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    x <span class="op">&lt;&gt;</span> <span class="dt">Nothing</span>     <span class="ot">=</span> <span class="dt">Just</span> x</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="op">&lt;&gt;</span> x     <span class="ot">=</span> <span class="dt">Just</span> x</span></code></pre></div>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    _       <span class="op">&lt;&gt;</span> <span class="dt">Just</span> y   <span class="ot">=</span> <span class="dt">Just</span> y</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Just</span> x  <span class="op">&lt;&gt;</span> <span class="dt">Nothing</span>  <span class="ot">=</span> <span class="dt">Just</span> x</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="op">&lt;&gt;</span> <span class="dt">Nothing</span>  <span class="ot">=</span> <span class="dt">Just</span> x</span></code></pre></div>
 <p>Here, the <code class="sourceCode pseudoml"><span class="dt">First</span></code> instance always chooses the first non-<code class="sourceCode pseudoml"><span class="dt">Nothing</span></code> value it was given; likewise, <code class="sourceCode pseudoml"><span class="dt">Last</span></code> always chooses the last.</p>
 <p>As a final example, <code class="sourceCode pseudoml"><span class="dt">Bool</span></code> also admits two possible monoids:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode pseudoml"><code class="sourceCode pseudoml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Monoid</span> <span class="dt">Bool</span> <span class="kw">as</span> <span class="dt">All</span></span>
@@ -258,7 +258,7 @@ foldr (+) 0 [1, 2, 4, 8]
 <hr />
 <ol>
 <li id="fn1"><p>This is also called a <em>left-associative</em> fold, when there are mathematicians around.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>See <a href="./appendix-foldr.html">Right Folds from the Left</a> for a generic right-fold, if all we have to start with is a left-fold.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>See [Right Folds from the Left][appendix-foldr] for a generic right-fold, if all we have to start with is a left-fold.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
   </div>

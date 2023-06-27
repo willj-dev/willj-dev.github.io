@@ -36,8 +36,8 @@ You might also think about a functor as a way to apply a function *through* a da
 The `l` at the end of `foldl` indicates that this is a *left fold* ^[This is also called a *left-associative* fold, when there are mathematicians around.]. The words "left" and "right" refer to the head and tail of a list, respectively; in general, left folds start at the "front" of a data structure (they are *breadth-first*), and right folds start at the "back" (*depth-first*). What this means is best illustrated by an example. Consider this definition of the `sum` function, which sums a list of integers:
 
     instance Foldable []
-        foldl _ acc []     = acc
-        foldl f acc (x:xs) = foldl f (f acc x) xs
+        foldl _ acc []          = acc
+        foldl f acc (x :: xs)   = foldl f (f acc x) xs
 
     sum : [Int] -> Int
     sum = foldl (+) 0
@@ -54,7 +54,7 @@ Now let's consider what happens when this function is evaluated. This next bit i
    ((((0 + 1) + 2) + 4) + 8)
 ```
 
-As you can see, the first thing to be evaluated is $0 + 1$, and we proceed down the list, evaluating the "left-most" operations first. This implies the existence of a *right fold* ^[See [Right Folds from the Left][] for a generic right-fold, if all we have to start with is a left-fold.]:
+As you can see, the first thing to be evaluated is $0 + 1$, and we proceed down the list, evaluating the "left-most" operations first. This implies the existence of a *right fold* ^[See [Right Folds from the Left][appendix-foldr] for a generic right-fold, if all we have to start with is a left-fold.]:
 
     foldrList : (a -> b -> b) -> b -> [a] -> b
     foldrList _ b [] = b
@@ -148,16 +148,16 @@ The other way to interpret a monoid is as a way to choose between two values wit
     instance Monoid (Maybe a) as First
         empty = Nothing
         
-        Just x <> Just y = Just x
-        x <> Nothing     = Just x
-        Nothing <> x     = Just x
+        Just x  <> _        = Just x
+        Nothing <> Just x   = Just x
+        Nothing <> Nothing  = Nothing
 
     instance Monoid (Maybe a) as Last
         empty = Nothing
         
-        Just x <> Just y = Just y
-        x <> Nothing     = Just x
-        Nothing <> x     = Just x
+        _       <> Just y   = Just y
+        Just x  <> Nothing  = Just x
+        Nothing <> Nothing  = Just x
 
 Here, the `First` instance always chooses the first non-`Nothing` value it was given; likewise, `Last` always chooses the last.
 
