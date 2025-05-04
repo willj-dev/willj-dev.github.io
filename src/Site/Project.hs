@@ -50,3 +50,13 @@ projectMetadata pid = do
   return $ ProjectMetadata pid title blurb
   where
     projIndexIdentifier = pageIdentifier pid "index"
+
+projectContext :: Context ProjectMetadata
+projectContext = mconcat [projTitleField, projIdField, projBlurbField]
+  where
+    projTitleField = field "project-title" (return . proj_title . itemBody)
+    projIdField = field "project-id" (return . proj_id . itemBody)
+    projBlurbField = field "blurb" (return . proj_blurb . itemBody)
+
+makeProjectItem :: ProjectMetadata -> Item ProjectMetadata
+makeProjectItem = makeItemWith (\(ProjectMetadata _ pid _) -> fromFilePath $ "__project_" ++ pid)

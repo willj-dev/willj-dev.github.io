@@ -4,11 +4,9 @@ import qualified Data.ByteString      as SBS
 import qualified Data.ByteString.Lazy as LBS
 import Hakyll
 
-import Site.Common
 import Site.ConceptualFP
 import Site.GeometricUniverse
-import Site.Project
-import Site.Pandoc (compilePandocMarkdown', compileHTMLPandoc)
+import Site.Index
 
 site :: Rules ()
 site = do
@@ -45,25 +43,6 @@ compileSass = match "css/main.scss" $
   withSassIncludes $ do
     route $ setExtension "css"
     compile sassCompiler
-
-compileIndex :: [ProjectMetadata] -> Rules ()
-compileIndex projs = match "pages/home.md" $ do
-  route $ constRoute "index.html"
-  compile $ dbg projs >> compilePandocMarkdown' >>= compileHTMLPandoc >>= makeItem
-    >>= loadAndApplyTemplate "templates/home.html" (projectsContext <> defaultContext)
-    >>= loadAndApplyTemplate "templates/index.html" defaultContext
-    >>= loadAndApplyTemplate "templates/base.html" defaultContext
-    >>= relativizeUrls
-  where
-    projectsContext = listField "projects" projectContext projectItems
-
-    projectContext = mconcat [projTitleField, projIdField, projBlurbField]
-    projTitleField = field "project-title" (return . proj_title . itemBody)
-    projIdField = field "project-id" (return . proj_id . itemBody)
-    projBlurbField = field "blurb" (return . proj_blurb . itemBody)
-    
-    projectItems = return $ makeProjectItem <$> projs
-    makeProjectItem = makeItemWith (\(ProjectMetadata _ pid _) -> fromFilePath $ "__page_" ++ pid)
 
 sassCompiler :: Compiler (Item String)
 sassCompiler = getResourceString >>= withItemBody callSass

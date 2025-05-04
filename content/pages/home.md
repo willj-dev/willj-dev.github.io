@@ -4,13 +4,13 @@ header-title: home
 programming-projects:
     - name: Memorable Password Generator
       github: memorable-password-generator
-      description: This is a small command-line tool for generating a memorable password using words from EFF's wordlist. It uses Polysemy for managing effects such as random number generation.
+      blurb: This is a small command-line tool for generating a memorable password using words from EFF's wordlist. It uses Polysemy for managing effects such as random number generation.
     - name: FacSimILE
       github: facsimile
-      description: The Factory Simulator Integrated Ledger Environment is a terminal-based tool for calculating production chains in factory simulator games such as Factorio and Satisfactory. It uses the brick TUI library and Edward Kmett's recursion-schemes library for computing and summarizing production requirements.
+      blurb: The Factory Simulator Integrated Ledger Environment is a terminal-based tool for calculating production chains in factory simulator games such as Factorio and Satisfactory. It uses the brick TUI library and Edward Kmett's recursion-schemes library for computing and summarizing production requirements.
     - name: Hogue
       github: hogue
-      description: A Haskell port of the classic terminal game, Rogue. Rogue's internal state is easy to model as a pure function of the previous state, and the UI can also be slightly cleaned up and ported into brick.
+      blurb: A Haskell port of the classic terminal game, Rogue. Rogue's internal state is easy to model as a pure function of the previous state, and the UI can also be slightly cleaned up and ported into brick.
 
 ---
 
