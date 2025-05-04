@@ -2,10 +2,11 @@
 .project-container {
   display: flex;
   flex-flow: row wrap;
+  max-width: 50em;
 
   .project-card {
     margin: 0.5em;
-    width: 30vw;
+    width: 24em;
     min-width: 256px;
     min-height: 256px;
 
