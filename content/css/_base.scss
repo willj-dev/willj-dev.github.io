@@ -6,6 +6,7 @@ body {
 
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
   margin: 0;
 
   #dark-mode, #light-mode {
@@ -37,6 +38,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    align-self: flex-start;
 
     #header-path {
       margin-left: 32px;
@@ -71,7 +73,6 @@ body {
     padding: 0 32px;
     flex: 1 0 auto;
     align-items: flex-start;
-    justify-content: stretch;
 
     font-family: 'Alegreya', serif;
     font-size: 18px; // this font is kinda small
