@@ -2,6 +2,9 @@
 title: home
 header-title: home
 programming-projects:
+    - name: willj.dev
+      github: willj-dev.github.io
+      blurb: This very site! It is built using the Hakyll static-site generator using a nontrivial amount of Haskell for bookkeeping (though the prose is generally written in Markdown), and hosted on GitHub Pages.
     - name: Memorable Password Generator
       github: memorable-password-generator
       blurb: This is a small command-line tool for generating a memorable password using words from EFF's wordlist. It uses Polysemy for managing effects such as random number generation.
