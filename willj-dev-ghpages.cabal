@@ -21,8 +21,6 @@ executable willj-dev-ghpages
                        Site.Page,
                        Site.Pandoc,
                        Site.Project,
-                       Site.Utopia,
-                       Site.Utopia.Terms,
                        Site.ConceptualFP,
                        Site.ConceptualFP.PseudoML,
                        Site.GeometricUniverse,

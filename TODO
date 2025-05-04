@@ -1,5 +1,5 @@
 * haddock doc pages for site!
-* make terms site-wide (instead of just in utopia) and have the JS do the highlighting so that we don't have to explicitly mark every single instance of a term
+* site-wide terms and have the JS do the highlighting so that we don't have to explicitly mark every single instance of a term
 * make prev/next in page contents available to be enabled in any project, instead of just CFP
 * develop MU "axiomatically" from doctrine of free will?
 

@@ -8,7 +8,6 @@ import Site.Common
 import Site.ConceptualFP
 import Site.GeometricUniverse
 import Site.Project
-import Site.Utopia
 import Site.Pandoc (compilePandocMarkdown', compileHTMLPandoc)
 
 site :: Rules ()
@@ -19,7 +18,7 @@ site = do
   copyFiles
   compileSass
 
-  sequence [utopiaRules, conceptualFPRules, guRules] >>= compileIndex
+  sequence [conceptualFPRules, guRules] >>= compileIndex
 
 loadTemplates, compileNotFound, loadSiteConfig, copyFiles, compileSass :: Rules ()
 

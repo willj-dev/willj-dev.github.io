@@ -9,15 +9,15 @@ import qualified System.FilePath.Posix as FPP -- always use '/' to make site rou
 -- | kebab-case id for a project (e.g. "conceptual-fp").
 type ProjectId = String
 
--- | kebab-case id for a page (e.g. "a-millennial-utopia"); the identifier for the file
+-- | kebab-case id for a page (e.g. "geometric-universe"); the identifier for the file
 --   containing a page's content is always at 'pages/$project-id$/$page-id$.md'
 type PageId = String
 
 -- | kebab-case "canonical" section name, which should always exist and be targetable
---   by URL fragments, e.g. '/millennial-utopia/a-millennial-utopia.html#government-transparency'
+--   by URL fragments, e.g. '/geometric-universe/metaphysics.html#patterns-information-and-algebra'
 type SectionId = String
 
--- | Arbitrary text that can serve as an RST hyperlink reference, e.g. `Government Transparency`_
+-- | Arbitrary text that can serve as a hyperlink reference, e.g. `Metaphysics`_
 --   (There may be multiple ways to refer to the same section, depending on context)
 type LinkText = String
 

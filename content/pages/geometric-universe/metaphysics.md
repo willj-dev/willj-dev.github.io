@@ -22,7 +22,7 @@ The science of biology has made it clear the mind is affected by the body (prima
 The Doctrine of Free Will
 :   The mind-body connection is a two-way street: the mind can affect the body, in addition to the other way around.
 
-This allows us to define "personal agency" (people can choose to do things) and "justice" (people are responsible for the consequences of things they choose to do, and reasonable punishment is justified for excessively harmful behavior). [A Millennial Utopia](/millennial-utopia) explores the possibility of forming a social contract around these ideas.
+This allows us to define "personal agency" (people can choose to do things) and "justice" (people are responsible for the consequences of things they choose to do, and reasonable punishment is justified for excessively harmful behavior). It may be interesting to explore the possibility of forming a social contract around these ideas.
 
 From now on, we will just say "reality" with the implication that we are only making objective statements. We should also note that even though our focus here is on the objective part of reality, we do not intend to imply that subjective reality is any less *real*. It is simply out of the scope of this narrative; this includes the ancient human tradition of believing in the truth or falsehood of unfalsifiable statements. We will simply acknowledge that objective truth, by definition, does not care one way or the other; the reader is encouraged to find their own way to understand and relate objective facts to their own subjective experience.
 

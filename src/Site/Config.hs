@@ -18,14 +18,9 @@ data Term = Term
 
 $(deriveJSON (defaultOptions {fieldLabelModifier = drop 5}) ''Term)
 
-data UtopiaConfig = UtopiaConfig
-  { utopia_terms :: [Term]
-  }
-
-$(deriveJSON (defaultOptions {fieldLabelModifier = drop 7}) ''UtopiaConfig)
-
+-- | Placeholder for a config file which may be desirable in the future
 data Config = Config
-  { config_utopia :: UtopiaConfig
+  { 
   }
 
 $(deriveJSON (defaultOptions {fieldLabelModifier = drop 7}) ''Config)
