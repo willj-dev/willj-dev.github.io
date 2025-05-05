@@ -7,7 +7,7 @@ programming-projects:
       blurb: This very site! It is built using the Hakyll static-site generator using a nontrivial amount of Haskell for bookkeeping (though the prose is generally written in Markdown), and hosted on GitHub Pages.
     - name: Memorable Password Generator
       github: memorable-password-generator
-      blurb: This is a small command-line tool for generating a memorable password using words from EFF's wordlist. It uses Polysemy for managing effects such as random number generation.
+      blurb: This is a small command-line tool written in Haskell for generating a memorable password using words from EFF's wordlist. It uses Polysemy for managing effects such as random number generation.
     - name: FacSimILE
       github: facsimile
       blurb: The Factory Simulator Integrated Ledger Environment is a terminal-based tool for calculating production chains in factory simulator games such as Factorio and Satisfactory. It uses the brick TUI library and Edward Kmett's recursion-schemes library for computing and summarizing production requirements.
